@@ -55,10 +55,11 @@ void throwDice(int &Dice1,int &Dice2){
 
 GameBoard * GameBoard::instance=nullptr;
 
-GameBoard::GameBoard(QWidget *parent,int number_of_players) :
+GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_players) :
     QDialog(parent),
     ui(new Ui::GameBoard),
     number_of_players(number_of_players)
+
 {
 
     ui->setupUi(this);
@@ -66,6 +67,12 @@ GameBoard::GameBoard(QWidget *parent,int number_of_players) :
 
 
    //vared kardane path va function kart haye shans
+
+    for(int i=0;i<number_of_players;i++){
+
+        qDebug()<<QString::fromStdString(nicknames.at(i))<<endl;
+
+    }
 
 
 
@@ -91,6 +98,11 @@ GameBoard::GameBoard(QWidget *parent,int number_of_players) :
     for(int i=0;i<number_of_players;i++){
 
         //sakhtane Player * va dadan be vector
+
+
+
+        //Player tempPlayer=new Player(nicknames.at(i),);
+        //Players.push_back(tempPlayer);
 
 
     }
@@ -158,11 +170,11 @@ void GameBoard::print(){
 }
 
 //singleton pattern
-GameBoard * GameBoard::get_instance(QWidget *parent,int number_of_players){
+GameBoard * GameBoard::get_instance(vector<string> nicknames,QWidget *parent,int number_of_players){
 
     if(instance==nullptr){
 
-        instance=new GameBoard(parent,number_of_players);
+        instance=new GameBoard(nicknames,parent,number_of_players);
 
 
     }
