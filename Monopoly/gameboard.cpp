@@ -400,8 +400,6 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
     Randomizer(CommunityCards);
 
-    qDebug()<<QString::fromStdString(ChanceCards.at(5)->get_path());
-
 
 
     //por shavad token path ha
