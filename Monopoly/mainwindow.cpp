@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-   QPixmap pic(":/res/Images/pic5.png");
+   QPixmap pic(":/res/Images/pic5.png.crdownload");
    ui->labal2->setPixmap(pic.scaled(ui->labal2->width(),ui->labal2->height(),Qt::KeepAspectRatio));
 
 

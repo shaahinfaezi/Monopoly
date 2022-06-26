@@ -1,8 +1,5 @@
 <RCC>
     <qresource prefix="/res">
-<<<<<<< HEAD
-        <file>Images/pic5.png</file>
-=======
         <file>Images/pic5.png.crdownload</file>
         <file>Images/chance/Advance_To_Boardwalk 1.png</file>
         <file>Images/chance/Advance_To_Go 2.png</file>
@@ -36,6 +33,5 @@
         <file>Images/community/Community_Chest_YAAFSR14.png</file>
         <file>Images/community/Community_Chest_YHWSPIABC3.png</file>
         <file>Images/community/Community_Chest_YI8.png</file>
->>>>>>> adc5232d3eac9ae200c6c36bfb6eb63989c3c580
     </qresource>
 </RCC>
