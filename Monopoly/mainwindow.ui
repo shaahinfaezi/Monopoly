@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color:rgb(255, 0, 12);
+   <string notr="true">background-color:rgb(216, 227, 231);
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -28,7 +28,8 @@
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color:rgb(249, 242, 237);</string>
+     <string notr="true">background-color:rgb(249, 242, 237);
+color: rgb(0, 0, 0);</string>
     </property>
     <property name="currentIndex">
      <number>-1</number>
@@ -73,13 +74,16 @@
     <property name="geometry">
      <rect>
       <x>360</x>
-      <y>620</y>
+      <y>600</y>
       <width>151</width>
       <height>41</height>
      </rect>
     </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(181, 181, 181);</string>
     </property>
     <property name="text">
      <string>Start a new game</string>
@@ -88,11 +92,23 @@
    <widget class="QLabel" name="labal2">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>160</y>
-      <width>471</width>
-      <height>351</height>
+      <x>380</x>
+      <y>170</y>
+      <width>511</width>
+      <height>361</height>
      </rect>
+    </property>
+    <property name="minimumSize">
+     <size>
+      <width>371</width>
+      <height>251</height>
+     </size>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>571</width>
+      <height>451</height>
+     </size>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: transparent;
@@ -113,6 +129,12 @@ background-repeat: none;</string>
       <height>20</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
      <string>Player1:</string>
     </property>
@@ -125,6 +147,12 @@ background-repeat: none;</string>
       <width>69</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Player2:</string>
@@ -139,6 +167,12 @@ background-repeat: none;</string>
       <height>20</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
      <string>Player3:</string>
     </property>
@@ -151,6 +185,12 @@ background-repeat: none;</string>
       <width>69</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Player4:</string>
@@ -165,6 +205,12 @@ background-repeat: none;</string>
       <height>20</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
      <string>Player5:</string>
     </property>
@@ -177,6 +223,12 @@ background-repeat: none;</string>
       <width>69</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Player6:</string>
@@ -191,6 +243,12 @@ background-repeat: none;</string>
       <height>20</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
     <property name="text">
      <string>Player7:</string>
     </property>
@@ -203,6 +261,12 @@ background-repeat: none;</string>
       <width>69</width>
       <height>20</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
     </property>
     <property name="text">
      <string>Player8:</string>
@@ -348,7 +412,7 @@ background-repeat: none;</string>
      <x>0</x>
      <y>0</y>
      <width>904</width>
-     <height>21</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>
