@@ -19,7 +19,7 @@ class GameBoard : public QDialog
 
 public:
 
-    static GameBoard * get_instance(QWidget *parent = nullptr,int=2);
+    static GameBoard * get_instance(vector<string>,QWidget *parent = nullptr,int=2);
 
     ~GameBoard();
 
@@ -30,7 +30,7 @@ private:
 
     int number_of_players;
 
-    explicit GameBoard(QWidget *parent = nullptr,int=2);
+    explicit GameBoard(vector<string>,QWidget *parent = nullptr,int=2);
 
     static GameBoard * instance;
 
