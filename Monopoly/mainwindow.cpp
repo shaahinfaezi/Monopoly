@@ -9,7 +9,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-   QPixmap pic(":/res/Images/pic3.png");
+   QPixmap pic(":/res/Images/593007733919fe0ee3614da3.png");
    ui->labal2->setPixmap(pic.scaled(ui->labal2->width(),ui->labal2->height(),Qt::KeepAspectRatio));
 
 

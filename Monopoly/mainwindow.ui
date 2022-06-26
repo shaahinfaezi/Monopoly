@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">rgbbackground-color:rgb(103, 103, 103);
+   <string notr="true">background-color:rgb(255, 0, 12);
 </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -348,7 +348,7 @@ background-repeat: none;</string>
      <x>0</x>
      <y>0</y>
      <width>904</width>
-     <height>30</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
