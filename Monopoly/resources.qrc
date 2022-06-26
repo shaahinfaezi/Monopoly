@@ -1,5 +1,37 @@
 <RCC>
     <qresource prefix="/res">
         <file>Images/pic5.png.crdownload</file>
+        <file>Images/chance/Advance_To_Boardwalk 1.png</file>
+        <file>Images/chance/Advance_To_Go 2.png</file>
+        <file>Images/chance/Chance_ATIA3.png</file>
+        <file>Images/chance/Chance_ATSCP 4.png</file>
+        <file>Images/chance/Chance_ATTNR5.png</file>
+        <file>Images/chance/Chance_ATTNU6.png</file>
+        <file>Images/chance/Chance_BPYD7.png</file>
+        <file>Images/chance/Chance_GB3S8.png</file>
+        <file>Images/chance/Chance_GOOJF9.png</file>
+        <file>Images/chance/Chance_GTJ10.png</file>
+        <file>Images/chance/Chance_MGR11.png</file>
+        <file>Images/chance/Chance_PPT12.png</file>
+        <file>Images/chance/Chance_TAROTR13.png</file>
+        <file>Images/chance/Chance_YBALM14.png</file>
+        <file>Images/chance/Chance_YHBAECOTB15.jpg</file>
+        <file>Images/chance/Chances16.jpg</file>
+        <file>Images/community/CC_Advance_to_Go1.png</file>
+        <file>Images/community/Community_Chest_BEIYF4.png</file>
+        <file>Images/community/Community_Chest_DF11.png</file>
+        <file>Images/community/Community_Chest_FSOS5.png</file>
+        <file>Images/community/Community_Chest_GOO10.png</file>
+        <file>Images/community/Community_Chest_GOOJF16.png</file>
+        <file>Images/community/Community_Chest_GTJ15.png</file>
+        <file>Images/community/Community_Chest_ITR6.png</file>
+        <file>Images/community/Community_Chest_LIM2.png</file>
+        <file>Images/community/Community_Chest_PH12.png</file>
+        <file>Images/community/Community_Chest_PST13.png</file>
+        <file>Images/community/Community_Chest_RFS7.png</file>
+        <file>Images/community/Community_Chest_XFM9.png</file>
+        <file>Images/community/Community_Chest_YAAFSR14.png</file>
+        <file>Images/community/Community_Chest_YHWSPIABC3.png</file>
+        <file>Images/community/Community_Chest_YI8.png</file>
     </qresource>
 </RCC>
