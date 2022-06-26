@@ -1,12 +1,20 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "gameboard.h"
+#include "QPixmap"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+   QPixmap pic(":/res/Images/pic4.png.crdownload");
+   ui->labal2->setPixmap(pic.scaled(ui->labal2->width(),ui->labal2->height(),Qt::KeepAspectRatio));
+
+
+
+
 }
 
 MainWindow::~MainWindow()
