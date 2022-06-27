@@ -16,7 +16,6 @@
         <file>Images/chance/Chance_TAROTR13.png</file>
         <file>Images/chance/Chance_YBALM14.png</file>
         <file>Images/chance/Chance_YHBAECOTB15.jpg</file>
-        <file>Images/chance/Chances16.jpg</file>
         <file>Images/community/CC_Advance_to_Go1.png</file>
         <file>Images/community/Community_Chest_BEIYF4.png</file>
         <file>Images/community/Community_Chest_DF11.png</file>
@@ -33,7 +32,6 @@
         <file>Images/community/Community_Chest_YAAFSR14.png</file>
         <file>Images/community/Community_Chest_YHWSPIABC3.png</file>
         <file>Images/community/Community_Chest_YI8.png</file>
-        <file>Images/photos/CommunittyChessst.webp</file>
         <file>Images/photos/photo1.jpg</file>
         <file>Images/photos/photo5.jpg</file>
         <file>Images/photos/photo8.jpg</file>
@@ -65,5 +63,55 @@
         <file>Images/photos/photo37.jpg</file>
         <file>Images/photos/photo38.jpg</file>
         <file>Images/photos/photo39.jpg</file>
+        <file>Images/Properties/1.png</file>
+        <file>Images/Properties/2.png</file>
+        <file>Images/Properties/3.png</file>
+        <file>Images/Properties/4.png</file>
+        <file>Images/Properties/5.png</file>
+        <file>Images/Properties/6.png</file>
+        <file>Images/Properties/7.png</file>
+        <file>Images/Properties/8.png</file>
+        <file>Images/Properties/9.png</file>
+        <file>Images/Properties/10.png</file>
+        <file>Images/Properties/11.png</file>
+        <file>Images/Properties/12.png</file>
+        <file>Images/Properties/13.png</file>
+        <file>Images/Properties/14.png</file>
+        <file>Images/Properties/15.png</file>
+        <file>Images/Properties/16.png</file>
+        <file>Images/Properties/17.png</file>
+        <file>Images/Properties/18.png</file>
+        <file>Images/Properties/19.png</file>
+        <file>Images/Properties/20.png</file>
+        <file>Images/Properties/21.png</file>
+        <file>Images/Properties/22.png</file>
+        <file>Images/Properties/23.png</file>
+        <file>Images/Properties/24.png</file>
+        <file>Images/Properties/25.png</file>
+        <file>Images/Properties/26.png</file>
+        <file>Images/mohre/23-237788_monopoly-game-pieces-png-transparent-png.png</file>
+        <file>Images/mohre/143-1433368_monopoly-token-thimble-monopoly-thimble-png-transparent-png.png</file>
+        <file>Images/mohre/533-5331825_transparent-monopoly-pieces-clipart-monopoly-tokens-with-no.png</file>
+        <file>Images/mohre/676-6767464_scottish-terrier-monopoly-game-english-springer-spaniel-monopoly.png</file>
+        <file>Images/mohre/images.jfif</file>
+        <file>Images/photos/community chest2.png</file>
+        <file>Images/photos/photo3.jpg</file>
+        <file>Images/photos/photo10.jpg</file>
+        <file>Images/Dice/1.jpg</file>
+        <file>Images/Dice/2.jpg</file>
+        <file>Images/Dice/3.jpg</file>
+        <file>Images/Dice/4.jpg</file>
+        <file>Images/Dice/5.jpg</file>
+        <file>Images/Dice/6.jpg</file>
+        <file>Images/bord/Chances161.jpg</file>
+        <file>Images/bord/go.png</file>
+        <file>Images/bord/labal.jpg</file>
+        <file>Images/bord/photo_2022-06-27_21-51-35.jpg</file>
+        <file>Images/bord/photo_2022-06-27_21-51-42.jpg</file>
+        <file>Images/bord/photo_2022-06-27_21-51-45.jpg</file>
+        <file>Images/bord/photo_2022-06-27_22-24-40.jpg</file>
+        <file>Images/mohre/photo_2022-06-27_22-06-55.jpg</file>
+        <file>Images/mohre/photo_2022-06-27_22-06-59.jpg</file>
+        <file>Images/mohre/photo_2022-06-27_22-33-37.jpg</file>
     </qresource>
 </RCC>
