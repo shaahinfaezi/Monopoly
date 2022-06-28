@@ -3,6 +3,11 @@
 #include <QLabel>
 #include <string>
 #include <Player.h>
+#include <vector>
+
+using std::vector;
+
+
 
 using std::string;
 
@@ -15,6 +20,7 @@ class Property{
 
     Type type;
 
+    vector<Player*> PlayersOnProperty;
 
     //baraye sanad ha
     //pathe carte malekiat
