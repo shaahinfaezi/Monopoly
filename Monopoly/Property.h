@@ -72,16 +72,16 @@ class Property{
 
     //constructor baraye property ha
 
-    Property(Type,string,int,int,int,int,int,int,int,int,int,int,int,bool,string);
+    Property(QLabel*,Type,string,int,int,int,int,int,int,int,int,int,int,int,bool,string);
 
     //constructor baraye Railroad
 
-    Property(Type,string,int,int,int,bool,string);
+    Property(QLabel*,Type,string,int,int,int,bool,string);
 
 
     //constructor baraye Utility
 
-    Property(Type,string,int,int,int,int,bool,string);
+    Property(QLabel*,Type,string,int,int,int,int,bool,string);
 
 
     void set_number_of_houses(int number_of_houses);

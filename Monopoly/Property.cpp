@@ -2,6 +2,7 @@
 #include "Property.h"
 
 
+
 //constructor baraye 4 gooshe
 Property::Property(Type type){
 
@@ -11,7 +12,7 @@ Property::Property(Type type){
 
 //constructor baraye property ha
 
-Property::Property(Type type,
+Property::Property(QLabel* PropertyOnTheBoard,Type type,
 
 string PropertyCard,
 
@@ -40,6 +41,8 @@ int number_of_houses,
 bool mortgaged,
 
 string color){
+
+    this->PropertyOnTheBoard=PropertyOnTheBoard;
 
     this->type=type;
 
@@ -71,6 +74,7 @@ string color){
 
     this->color=color;
 
+    owner=nullptr;
 
 
 
@@ -79,7 +83,7 @@ string color){
 
 //constructor baraye Railroad
 
-Property::Property(Type type,
+Property::Property(QLabel* PropertyOnTheBoard,Type type,
 
                    string PropertyCard,
 
@@ -93,7 +97,7 @@ Property::Property(Type type,
 
                    string color){
 
-
+    this->PropertyOnTheBoard=PropertyOnTheBoard;
 
     this->type=type;
 
@@ -109,13 +113,15 @@ Property::Property(Type type,
 
     this->color=color;
 
+    owner=nullptr;
+
 
 }
 
 
 //constructor baraye Utility
 
-Property::Property(Type type,
+Property::Property(QLabel* PropertyOnTheBoard,Type type,
 
                    string PropertyCard,
 
@@ -131,7 +137,7 @@ Property::Property(Type type,
 
                    string color){
 
-
+    this->PropertyOnTheBoard=PropertyOnTheBoard;
 
     this->type=type;
 
@@ -149,7 +155,7 @@ Property::Property(Type type,
 
     this->color=color;
 
-
+    owner=nullptr;
 }
 
 
