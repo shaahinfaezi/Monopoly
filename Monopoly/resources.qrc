@@ -89,11 +89,6 @@
         <file>Images/Properties/24.png</file>
         <file>Images/Properties/25.png</file>
         <file>Images/Properties/26.png</file>
-        <file>Images/mohre/23-237788_monopoly-game-pieces-png-transparent-png.png</file>
-        <file>Images/mohre/143-1433368_monopoly-token-thimble-monopoly-thimble-png-transparent-png.png</file>
-        <file>Images/mohre/533-5331825_transparent-monopoly-pieces-clipart-monopoly-tokens-with-no.png</file>
-        <file>Images/mohre/676-6767464_scottish-terrier-monopoly-game-english-springer-spaniel-monopoly.png</file>
-        <file>Images/mohre/images.jfif</file>
         <file>Images/photos/community chest2.png</file>
         <file>Images/photos/photo3.jpg</file>
         <file>Images/photos/photo10.jpg</file>
@@ -105,13 +100,20 @@
         <file>Images/Dice/6.jpg</file>
         <file>Images/bord/Chances161.jpg</file>
         <file>Images/bord/go.png</file>
-        <file>Images/bord/labal.jpg</file>
         <file>Images/bord/photo_2022-06-27_21-51-35.jpg</file>
         <file>Images/bord/photo_2022-06-27_21-51-42.jpg</file>
         <file>Images/bord/photo_2022-06-27_21-51-45.jpg</file>
         <file>Images/bord/photo_2022-06-27_22-24-40.jpg</file>
-        <file>Images/mohre/photo_2022-06-27_22-06-55.jpg</file>
-        <file>Images/mohre/photo_2022-06-27_22-06-59.jpg</file>
-        <file>Images/mohre/photo_2022-06-27_22-33-37.jpg</file>
+        <file>Images/bord/photo_2022-06-27_23-28-37.jpg</file>
+        <file>Images/Properties/photo_2022-06-28_19-00-13.jpg</file>
+        <file>Images/Properties/photo_2022-06-28_19-00-16.jpg</file>
+        <file>Images/mohre/trance11.png</file>
+        <file>Images/mohre/trance12.png</file>
+        <file>Images/mohre/trance13.png</file>
+        <file>Images/mohre/trance14.png</file>
+        <file>Images/mohre/15-removebg-preview.png</file>
+        <file>Images/mohre/16-removebg-preview.png</file>
+        <file>Images/mohre/17-removebg-preview.png</file>
+        <file>Images/mohre/18-removebg-preview.png</file>
     </qresource>
 </RCC>
