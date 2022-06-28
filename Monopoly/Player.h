@@ -18,15 +18,13 @@ private:
 
     //vectori az amlak
 
-
+    string nickname;
 
     long int Munny;
 
     bool get_out_of_jail;
 
-    QLabel* token;
-
-    string nickname;
+    int position;
 
 
 
@@ -35,6 +33,26 @@ public:
     Player(string,QLabel *);
 
     ~Player();
+
+    QLabel* token;
+
+    void set_Munny(long int);
+
+    void set_jail(bool);
+
+    void set_position(int);
+
+    long int get_Munny() const;
+
+    bool get_jail() const;
+
+    int get_position() const;
+
+    string get_nickname() const;
+
+
+
+
 
 
 

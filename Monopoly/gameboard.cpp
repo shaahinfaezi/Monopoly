@@ -40,16 +40,18 @@ void Randomizer(vector<T> &Variable){
 
 }
 
-void throwDice(int &Dice1,int &Dice2){
-
-
-
+bool throwDice(int &Dice1,int &Dice2){
     Dice1=rand() % 6 + 1;
 
     Dice2=rand() % 6 + 1;
 
 
-
+    if(Dice1==Dice2){
+        return true;
+    }
+    else{
+        return false;
+    }
 }
 
 
@@ -407,9 +409,6 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
     Randomizer(tokens_path);
 
 
-
-
-
     for(int i=0;i<number_of_players;i++){
 
         //sakhtane Player * va dadan be vector
@@ -440,8 +439,6 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
         //sleep
 
         sums[i]=Dice1+Dice2;
-
-
 
     }
 

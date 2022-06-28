@@ -19,6 +19,7 @@ SOURCES += \
     Chance.cpp \
     Community.cpp \
     Player.cpp \
+    Property.cpp \
     gameboard.cpp \
     main.cpp \
     mainwindow.cpp
@@ -27,6 +28,7 @@ HEADERS += \
     Chance.h \
     Community.h \
     Player.h \
+    Property.h \
     gameboard.h \
     mainwindow.h
 
