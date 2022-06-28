@@ -23,7 +23,10 @@ public:
 
     ~GameBoard();
 
-    void print();
+    private slots:
+
+
+     void on_pushButton_4_clicked();
 
 private:
     Ui::GameBoard *ui;
@@ -41,6 +44,22 @@ private:
     vector<string> tokens_path;
 
     vector<Player*> Players;
+
+    bool throwDice(int &,int &);
+
+    void print_order();
+
+    void printDice(int,int);
+
+    vector<string> Dice_path;
+
+    int order;
+
+     int Dice1,Dice2;
+
+      int sums[8];
+
+
 };
 
 #endif // GAMEBOARD_H

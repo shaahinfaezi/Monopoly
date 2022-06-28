@@ -5,6 +5,9 @@
 #include <QScreen>
 #include <QDebug>
 #include <QPainter>
+#include <QThread>
+#include <QTimer>
+#include <Property.h>
 
 #include <stdlib.h>
 #include <time.h>
@@ -15,7 +18,6 @@
 
 
 using std::vector;
-
 
 
 template<class T>
@@ -45,17 +47,9 @@ void Randomizer(vector<T> &Variable){
 
 }
 
-void throwDice(int &Dice1,int &Dice2){
 
 
 
-    Dice1=rand() % 6 + 1;
-
-    Dice2=rand() % 6 + 1;
-
-
-
-}
 
 
 GameBoard * GameBoard::instance=nullptr;
@@ -76,9 +70,10 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
         this->setFixedSize(width,height);
 
+        //showing the board
 
 /////////////
-    QPixmap pix=*new QPixmap(":/res/Images/pic5.png.crdownload");
+    QPixmap pix=*new QPixmap(":/res/Images/pic5.png");
 
         QMatrix m;
 
@@ -901,6 +896,99 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
         tokens_path.push_back(":/res/Images/mohre/trance11.png");
 
+        //khane haye board
+        vector<QLabel*> Board;
+
+          Board.push_back(ui->label_40);
+          Board.push_back(ui->label_10);
+          Board.push_back(ui->label_9);
+          Board.push_back(ui->label_8);
+          Board.push_back(ui->label_7);
+          Board.push_back(ui->label_6);
+          Board.push_back(ui->label_5);
+          Board.push_back(ui->label_4);
+          Board.push_back(ui->label_3);
+          Board.push_back(ui->label_2);
+          Board.push_back(ui->label_20);
+          Board.push_back(ui->label_19);
+          Board.push_back(ui->label_18);
+          Board.push_back(ui->label_17);
+          Board.push_back(ui->label_16);
+          Board.push_back(ui->label_15);
+          Board.push_back(ui->label_14);
+          Board.push_back(ui->label_13);
+          Board.push_back(ui->label_12);
+          Board.push_back(ui->label_11);
+          Board.push_back(ui->label_21);
+          Board.push_back(ui->label_23);
+          Board.push_back(ui->label_29);
+          Board.push_back(ui->label_30);
+          Board.push_back(ui->label_26);
+          Board.push_back(ui->label_27);
+          Board.push_back(ui->label_22);
+          Board.push_back(ui->label_24);
+          Board.push_back(ui->label_25);
+          Board.push_back(ui->label_28);
+          Board.push_back(ui->label_41);
+          Board.push_back(ui->label_38);
+          Board.push_back(ui->label_36);
+          Board.push_back(ui->label_33);
+          Board.push_back(ui->label_35);
+          Board.push_back(ui->label_34);
+          Board.push_back(ui->label_31);
+          Board.push_back(ui->label_37);
+          Board.push_back(ui->label_32);
+          Board.push_back(ui->label_39);
+
+         //sanad haye malekiat
+         vector<Property *> Properties;
+
+          Property * tempP=new Property(Board.at(0),PROPERTY,":/res/Images/Properties/1.png",60,2,10,30,90,160,250,30,50,50,"purple");
+          Property * tempP1=new Property(Board.at(1),PROPERTY,":/res/Images/Properties/2.png",60,4,20,60,180,320,450,30,50,50,"purple");
+          Property * tempP2=new Property(Board.at(2),PROPERTY,":/res/Images/Properties/3.png",100,6,30,90,270,400,550,50,50,50,"light blue");
+          Property * tempP3=new Property(Board.at(3),PROPERTY,":/res/Images/Properties/4.png",100,6,30,90,270,400,550,50,50,50,"light blue");
+          Property * tempP4=new Property(Board.at(4),PROPERTY,":/res/Images/Properties/5.png",120,8,40,100,300,450,600,60,50,50,"light blue");
+          Property * tempP5=new Property(Board.at(5),PROPERTY,":/res/Images/Properties/6.png",140,10,50,150,450,625,750,70,100,100,"pink");
+          Property * tempP6=new Property(Board.at(6),PROPERTY,":/res/Images/Properties/7.png",140,10,50,150,450,625,750,70,100,100,"pink");
+          Property * tempP7=new Property(Board.at(7),PROPERTY,":/res/Images/Properties/8.png",160,12,60,180,500,700,900,80,100,100,"pink");
+          Property * tempP8=new Property(Board.at(8),PROPERTY,":/res/Images/Properties/9.png",180,14,70,200,550,750,950,90,100,100,"orange");
+          Property * tempP9=new Property(Board.at(9),PROPERTY,":/res/Images/Properties/10.png",180,14,70,200,550,750,950,90,100,100,"orange");
+          Property * tempP10=new Property(Board.at(10),PROPERTY,":/res/Images/Properties/11.png",200,16,80,220,600,800,1000,100,100,100,"orange");
+          Property * tempP11=new Property(Board.at(11),PROPERTY,":/res/Images/Properties/12.png",220,18,90,250,700,875,1050,110,150,150,"red");
+          Property * tempP12=new Property(Board.at(12),PROPERTY,":/res/Images/Properties/13.png",220,18,90,250,700,875,1050,110,150,150,"red");
+          Property * tempP13=new Property(Board.at(13),PROPERTY,":/res/Images/Properties/14.png",240,20,100,300,750,925,1100,120,150,150,"red");
+          Property * tempP14=new Property(Board.at(14),PROPERTY,":/res/Images/Properties/15.png",260,22,110,330,800,975,1150,130,150,150,"yellow");
+          Property * tempP15=new Property(Board.at(15),PROPERTY,":/res/Images/Properties/16.png",260,22,110,330,800,975,1150,130,150,150,"yellow");
+          Property * tempP16=new Property(Board.at(16),PROPERTY,":/res/Images/Properties/17.png",280,24,120,360,850,1025,1200,140,150,150,"yellow");
+          Property * tempP17=new Property(Board.at(17),PROPERTY,":/res/Images/Properties/18.png",300,26,130,390,900,1100,1275,150,200,200,"green");
+          Property * tempP18=new Property(Board.at(18),PROPERTY,":/res/Images/Properties/19.png",300,26,130,390,900,1100,1275,150,200,200,"green");
+          Property * tempP19=new Property(Board.at(19),PROPERTY,":/res/Images/Properties/20.png",320,28,150,450,1000,1200,1400,160,200,200,"green");
+          Property * tempP20=new Property(Board.at(20),PROPERTY,":/res/Images/Properties/21.png",350,35,175,500,1100,1300,1500,175,200,200,"blue");
+          Property * tempP21=new Property(Board.at(21),PROPERTY,":/res/Images/Properties/22.png",400,50,200,600,1400,1700,2000,200,200,200,"blue");
+
+          Properties.push_back(tempP);
+          Properties.push_back(tempP1);
+          Properties.push_back(tempP2);
+          Properties.push_back(tempP3);
+          Properties.push_back(tempP4);
+          Properties.push_back(tempP5);
+          Properties.push_back(tempP6);
+          Properties.push_back(tempP7);
+          Properties.push_back(tempP8);
+          Properties.push_back(tempP9);
+          Properties.push_back(tempP10);
+          Properties.push_back(tempP11);
+          Properties.push_back(tempP12);
+          Properties.push_back(tempP13);
+          Properties.push_back(tempP14);
+          Properties.push_back(tempP15);
+          Properties.push_back(tempP16);
+          Properties.push_back(tempP17);
+          Properties.push_back(tempP18);
+          Properties.push_back(tempP19);
+          Properties.push_back(tempP20);
+          Properties.push_back(tempP21);
+
 
 
 
@@ -909,14 +997,40 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
 
 
+    vector<QLabel*> tokens;
+
+    tokens.push_back(ui->label_47);
+
+    tokens.push_back(ui->label_48);
+
+    tokens.push_back(ui->label_49);
+
+    tokens.push_back(ui->label_50);
+
+    tokens.push_back(ui->label_51);
+
+    tokens.push_back(ui->label_52);
+
+    tokens.push_back(ui->label_53);
+
+    tokens.push_back(ui->label_54);
+
+    for(int i=0;i<8;i++){
+        tokens.at(i)->hide();
+        tokens.at(i)->setEnabled(false);
+    }
+
+
     for(int i=0;i<number_of_players;i++){
+
+
 
         //sakhtane Player * va dadan be vector
 
 
 
-        //Player tempPlayer=new Player(nicknames.at(i),);
-        //Players.push_back(tempPlayer);
+        Player* tempPlayer=new Player(nicknames.at(i),tokens.at(i));
+        Players.push_back(tempPlayer);
 
 
     }
@@ -924,61 +1038,91 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
     Randomizer(Players);
 
-    int sums[number_of_players];
+
 
     srand(time(NULL));
 
-    for(int i=0;i<number_of_players;i++){
+    Dice_path.push_back(":/res/Images/Dice/1.jpg");
 
-        int Dice1,Dice2;
+    Dice_path.push_back(":/res/Images/Dice/2.jpg");
 
-        throwDice(Dice1,Dice2);
+    Dice_path.push_back(":/res/Images/Dice/3.jpg");
 
-        //neshoon dadan adade tas
+    Dice_path.push_back(":/res/Images/Dice/4.jpg");
 
-        //sleep
+    Dice_path.push_back(":/res/Images/Dice/5.jpg");
 
-        sums[i]=Dice1+Dice2;
+    Dice_path.push_back(":/res/Images/Dice/6.jpg");
+
+    ui->pushButton->hide();
+
+    ui->pushButton_2->hide();
+
+    ui->pushButton_3->hide();
+
+    ui->pushButton->setEnabled(false);
+
+    ui->pushButton_2->setEnabled(false);
+
+    ui->pushButton_3->setEnabled(false);
+
+    ui->label_43->hide();
+
+    ui->label_43->setEnabled(false);
+
+    ui->label_44->hide();
+
+    ui->label_44->setEnabled(false);
 
 
+
+
+        order=0;
+
+        print_order();
+
+}
+bool GameBoard::throwDice(int &Dice1,int &Dice2){
+
+
+
+    Dice1=rand() % 6 + 1;
+
+    Dice2=rand() % 6 + 1;
+
+    if(Dice1==Dice2){
+        return true;
+
+    }
+    else{
+        return false;
 
     }
 
-    for(int i=0;i<number_of_players;i++){
+}
 
-        for(int j=0;j<number_of_players-i-1;j++){
+void GameBoard::printDice(int Dice1,int Dice2){
 
-            if(sums[j+1]>sums[j]){
+    QPixmap dice1(QString::fromStdString(Dice_path.at(Dice1-1)));
 
+    ui->label_45->setPixmap(dice1.scaled(ui->label_46->width(),ui->label_46->height(),Qt::KeepAspectRatio));
 
-                int temp=sums[j+1];
+    QPixmap dice2(QString::fromStdString(Dice_path.at(Dice2-1)));
 
-                sums[j+1]=sums[j];
-
-                sums[j]=temp;
-
-                /*Player * tempPlayer=Players.at(j+1);
-
-                Players.at(j+1)=Players.at(j);
-
-                Players.at(j)=tempPlayer;
-                */
-
-            }
-        }
-
-
-    }
-
-
-
+    ui->label_46->setPixmap(dice2.scaled(ui->label_46->width(),ui->label_46->height(),Qt::KeepAspectRatio));
 
 
 
 }
 
-void GameBoard::print(){
 
+
+void GameBoard::print_order(){
+
+
+    ui->label_42->setText(QString::fromStdString(Players.at(order)->get_nickname()));
+
+    ui->label_44->setText(QString::number(Players.at(order)->get_Munny())+"$");
 
 
 }
@@ -1003,6 +1147,83 @@ GameBoard * GameBoard::get_instance(vector<string> nicknames,QWidget *parent,int
 GameBoard::~GameBoard()
 {
     delete ui;
+
+
+}
+
+void GameBoard::on_pushButton_4_clicked()
+{
+
+    throwDice(Dice1,Dice2);
+
+    printDice(Dice1,Dice2);
+
+    ui->label_55->setText(QString::fromStdString(Players.at(order)->get_nickname())+"'s sum is : "+QString::number(Dice1+Dice2));
+
+    sums[order]=Dice1+Dice2;
+
+    if(order<number_of_players-1){
+
+        order++;
+        print_order();
+
+
+    }
+    else{
+
+
+        for(int i=0;i<number_of_players;i++){
+
+            for(int j=0;j<number_of_players-i-1;j++){
+
+                if(sums[j+1]>sums[j]){
+
+
+                    int temp=sums[j+1];
+
+                    sums[j+1]=sums[j];
+
+                    sums[j]=temp;
+
+                    Player * tempPlayer=Players.at(j+1);
+
+                    Players.at(j+1)=Players.at(j);
+
+                    Players.at(j)=tempPlayer;
+
+
+                }
+            }
+
+
+        }
+        order=0;
+
+        ui->pushButton_4->hide();
+
+        ui->pushButton_4->setEnabled(false);
+
+        ui->pushButton->show();
+
+        ui->pushButton->setEnabled(true);
+
+        ui->pushButton_2->show();
+
+        ui->pushButton_2->setEnabled(true);
+
+        ui->pushButton_3->show();
+
+        ui->pushButton_3->setEnabled(true);
+
+        ui->label_44->show();
+
+        ui->label_44->setEnabled(true);
+
+
+
+
+    }
+
 
 
 }

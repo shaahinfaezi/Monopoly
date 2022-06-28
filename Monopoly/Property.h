@@ -3,15 +3,10 @@
 #include <QLabel>
 #include <string>
 #include <Player.h>
-#include <vector>
-
-using std::vector;
-
-
 
 using std::string;
 
-enum Type{GO,PROPERTY,COMMUNITY,CHANCE,INCOMETAX,LUXURYTAX,JAIL,PARKING,GOTOJAIL};
+enum Type{GO__,PROPERTY,COMMUNITY,CHANCE,INCOMETAX,LUXURYTAX,JAIL,PARKING,GOTOJAIL};
 
 
 class Property{
@@ -20,7 +15,6 @@ class Property{
 
     Type type;
 
-    vector<Player*> PlayersOnProperty;
 
     //baraye sanad ha
     //pathe carte malekiat
@@ -78,16 +72,16 @@ class Property{
 
     //constructor baraye property ha
 
-    Property(QLabel*,Type,string,int,int,int,int,int,int,int,int,int,int,int,bool,string);
+    Property(QLabel*,Type,string,int,int,int,int,int,int,int,int,int,int,string);
 
     //constructor baraye Railroad
 
-    Property(QLabel*,Type,string,int,int,int,bool,string);
+    Property(QLabel*,Type,string,int,int,int,string);
 
 
     //constructor baraye Utility
 
-    Property(QLabel*,Type,string,int,int,int,int,bool,string);
+    Property(QLabel*,Type,string,int,int,int,int,string);
 
 
     void set_number_of_houses(int number_of_houses);

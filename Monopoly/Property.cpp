@@ -36,10 +36,6 @@ int house,
 
 int hotel,
 
-int number_of_houses,
-
-bool mortgaged,
-
 string color){
 
     this->PropertyOnTheBoard=PropertyOnTheBoard;
@@ -68,9 +64,9 @@ string color){
 
     this->hotel=hotel;
 
-    this->number_of_houses=number_of_houses;
+    this->number_of_houses=0;
 
-    this->mortgaged=mortgaged;
+    this->mortgaged=false;
 
     this->color=color;
 
@@ -93,8 +89,6 @@ Property::Property(QLabel* PropertyOnTheBoard,Type type,
 
                    int mortgage,
 
-                   bool mortgaged,
-
                    string color){
 
     this->PropertyOnTheBoard=PropertyOnTheBoard;
@@ -109,7 +103,7 @@ Property::Property(QLabel* PropertyOnTheBoard,Type type,
 
     this->mortgage=mortgage;
 
-    this->mortgaged=mortgaged;
+    this->mortgaged=false;
 
     this->color=color;
 
@@ -133,8 +127,6 @@ Property::Property(QLabel* PropertyOnTheBoard,Type type,
 
                    int mortgage,
 
-                   bool mortgaged,
-
                    string color){
 
     this->PropertyOnTheBoard=PropertyOnTheBoard;
@@ -151,7 +143,7 @@ Property::Property(QLabel* PropertyOnTheBoard,Type type,
 
     this->mortgage=mortgage;
 
-    this->mortgaged=mortgaged;
+    this->mortgaged=false;
 
     this->color=color;
 
