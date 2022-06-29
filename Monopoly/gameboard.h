@@ -28,6 +28,8 @@ public:
 
      void on_pushButton_4_clicked();
 
+     void on_pushButton_2_clicked();
+
 private:
     Ui::GameBoard *ui;
 
@@ -58,6 +60,12 @@ private:
      int Dice1,Dice2;
 
       int sums[8];
+
+      void movement(int);
+
+      vector<Property *> Properties;
+
+
 
 
 };

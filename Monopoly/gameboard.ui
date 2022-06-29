@@ -292,14 +292,19 @@ background-repeat: none;
   <widget class="QLabel" name="label_47">
    <property name="geometry">
     <rect>
-     <x>1740</x>
-     <y>690</y>
-     <width>31</width>
-     <height>31</height>
+     <x>1620</x>
+     <y>680</y>
+     <width>75</width>
+     <height>75</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">background-color: transparent;
+background: none;
+border: none;
+background-repeat: none;
+
+ </string>
    </property>
    <property name="text">
     <string>TextLabel</string>
@@ -342,11 +347,19 @@ background-repeat: none;
   <widget class="QLabel" name="label_48">
    <property name="geometry">
     <rect>
-     <x>1740</x>
-     <y>730</y>
-     <width>31</width>
-     <height>31</height>
+     <x>1660</x>
+     <y>530</y>
+     <width>75</width>
+     <height>75</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+background: none;
+border: none;
+background-repeat: none;
+
+ </string>
    </property>
    <property name="text">
     <string>TextLabel</string>
@@ -355,11 +368,19 @@ background-repeat: none;
   <widget class="QLabel" name="label_49">
    <property name="geometry">
     <rect>
-     <x>1740</x>
+     <x>1720</x>
      <y>770</y>
-     <width>31</width>
-     <height>31</height>
+     <width>75</width>
+     <height>75</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+background: none;
+border: none;
+background-repeat: none;
+
+ </string>
    </property>
    <property name="text">
     <string>TextLabel</string>
@@ -368,11 +389,19 @@ background-repeat: none;
   <widget class="QLabel" name="label_50">
    <property name="geometry">
     <rect>
-     <x>1740</x>
-     <y>810</y>
-     <width>31</width>
-     <height>31</height>
+     <x>1670</x>
+     <y>870</y>
+     <width>75</width>
+     <height>75</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+background: none;
+border: none;
+background-repeat: none;
+
+ </string>
    </property>
    <property name="text">
     <string>TextLabel</string>
@@ -381,11 +410,19 @@ background-repeat: none;
   <widget class="QLabel" name="label_51">
    <property name="geometry">
     <rect>
-     <x>1740</x>
-     <y>850</y>
-     <width>31</width>
-     <height>31</height>
+     <x>1450</x>
+     <y>700</y>
+     <width>75</width>
+     <height>75</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+background: none;
+border: none;
+background-repeat: none;
+
+ </string>
    </property>
    <property name="text">
     <string>TextLabel</string>
@@ -394,11 +431,19 @@ background-repeat: none;
   <widget class="QLabel" name="label_52">
    <property name="geometry">
     <rect>
-     <x>1740</x>
-     <y>890</y>
-     <width>31</width>
-     <height>31</height>
+     <x>1490</x>
+     <y>830</y>
+     <width>75</width>
+     <height>75</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+background: none;
+border: none;
+background-repeat: none;
+
+ </string>
    </property>
    <property name="text">
     <string>TextLabel</string>
@@ -407,11 +452,19 @@ background-repeat: none;
   <widget class="QLabel" name="label_53">
    <property name="geometry">
     <rect>
-     <x>1740</x>
-     <y>930</y>
-     <width>31</width>
-     <height>31</height>
+     <x>1480</x>
+     <y>550</y>
+     <width>75</width>
+     <height>75</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+background: none;
+border: none;
+background-repeat: none;
+
+ </string>
    </property>
    <property name="text">
     <string>TextLabel</string>
@@ -420,11 +473,19 @@ background-repeat: none;
   <widget class="QLabel" name="label_54">
    <property name="geometry">
     <rect>
-     <x>1740</x>
-     <y>970</y>
-     <width>31</width>
-     <height>31</height>
+     <x>1560</x>
+     <y>900</y>
+     <width>75</width>
+     <height>75</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+background: none;
+border: none;
+background-repeat: none;
+
+ </string>
    </property>
    <property name="text">
     <string>TextLabel</string>
@@ -584,6 +645,15 @@ background-repeat: none;
      </widget>
     </item>
    </layout>
+   <zorder>label_9</zorder>
+   <zorder>label_10</zorder>
+   <zorder>label_2</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label_5</zorder>
+   <zorder>label_6</zorder>
+   <zorder>label_7</zorder>
+   <zorder>label_8</zorder>
   </widget>
   <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
@@ -694,7 +764,7 @@ background-repeat: none;</string>
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_18">
+     <widget class="QLabel" name="label_19">
       <property name="styleSheet">
        <string notr="true">background-color: transparent;
 background: none;
@@ -707,7 +777,7 @@ background-repeat: none;</string>
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_19">
+     <widget class="QLabel" name="label_18">
       <property name="styleSheet">
        <string notr="true">background-color: transparent;
 background: none;

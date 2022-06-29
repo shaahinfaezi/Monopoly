@@ -3,8 +3,10 @@
 
 
 
-//constructor baraye 4 gooshe
-Property::Property(Type type){
+//constructor baraye 4 gooshe va chance va community
+Property::Property(QLabel*PropertyOnTheBoard,Type type){
+
+    this->PropertyOnTheBoard=PropertyOnTheBoard;
 
     this->type=type;
 }
@@ -85,7 +87,13 @@ Property::Property(QLabel* PropertyOnTheBoard,Type type,
 
                    int price,
 
-                   int rent,
+                   int rent1,
+
+                   int rent2,
+
+                   int rent3,
+
+                   int rent4,
 
                    int mortgage,
 
@@ -99,7 +107,13 @@ Property::Property(QLabel* PropertyOnTheBoard,Type type,
 
     this->price=price;
 
-    this->rent=rent;
+    this->rent1=rent1;
+
+    this->rent2=rent2;
+
+    this->rent3=rent3;
+
+    this->rent4=rent4;
 
     this->mortgage=mortgage;
 

@@ -176,7 +176,7 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
                 ui->label_20->setGeometry(ui->label_20->x(),ui->label_20->y(),141,131);
                 ui->label_20->setPixmap(pic9.scaled(ui->label_20->width(),ui->label_20->height(),Qt::KeepAspectRatio));
 
-////////////////////////////////
+            ////////////////////////////////
 
                 QPixmap pix3=*new QPixmap(":/res/Images/photos/photo28.jpg");
 
@@ -880,21 +880,21 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
 
 
-        tokens_path.push_back(":/res/Images/mohre/18-removebg-preview.png");
+        tokens_path.push_back(":/res/Images/mohre/monopoly-battleship-piece-removebg-preview.png");
 
-        tokens_path.push_back(":/res/Images/mohre/17-removebg-preview.png");
+        tokens_path.push_back(":/res/Images/mohre/monopoly-boot-piece-removebg-preview.png");
 
-        tokens_path.push_back(":/res/Images/mohre/16-removebg-preview.png");
+        tokens_path.push_back(":/res/Images/mohre/monopoly-cat-piece-removebg-preview.png");
 
-        tokens_path.push_back(":/res/Images/mohre/15-removebg-preview.png");
+        tokens_path.push_back(":/res/Images/mohre/monopoly-thimble-piece-retired-removebg-preview.png");
 
-        tokens_path.push_back(":/res/Images/mohre/trance14.png");
+        tokens_path.push_back(":/res/Images/mohre/monopoly-top-hat__1_-removebg-preview (1).png");
 
-        tokens_path.push_back(":/res/Images/mohre/trance13.png");
+        tokens_path.push_back(":/res/Images/mohre/monopoly-wheelbarrow-removebg-preview.png");
 
-        tokens_path.push_back(":/res/Images/mohre/trance12.png");
+        tokens_path.push_back(":/res/Images/mohre/race-car-piece-monopoly-removebg-preview.png");
 
-        tokens_path.push_back(":/res/Images/mohre/trance11.png");
+        tokens_path.push_back(":/res/Images/mohre/scottie-dog-monopoly-piece-removebg-preview.png");
 
         //khane haye board
         vector<QLabel*> Board;
@@ -941,52 +941,168 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
           Board.push_back(ui->label_39);
 
          //sanad haye malekiat
-         vector<Property *> Properties;
 
-          Property * tempP=new Property(Board.at(0),PROPERTY,":/res/Images/Properties/1.png",60,2,10,30,90,160,250,30,50,50,"purple");
-          Property * tempP1=new Property(Board.at(1),PROPERTY,":/res/Images/Properties/2.png",60,4,20,60,180,320,450,30,50,50,"purple");
-          Property * tempP2=new Property(Board.at(2),PROPERTY,":/res/Images/Properties/3.png",100,6,30,90,270,400,550,50,50,50,"light blue");
-          Property * tempP3=new Property(Board.at(3),PROPERTY,":/res/Images/Properties/4.png",100,6,30,90,270,400,550,50,50,50,"light blue");
-          Property * tempP4=new Property(Board.at(4),PROPERTY,":/res/Images/Properties/5.png",120,8,40,100,300,450,600,60,50,50,"light blue");
-          Property * tempP5=new Property(Board.at(5),PROPERTY,":/res/Images/Properties/6.png",140,10,50,150,450,625,750,70,100,100,"pink");
-          Property * tempP6=new Property(Board.at(6),PROPERTY,":/res/Images/Properties/7.png",140,10,50,150,450,625,750,70,100,100,"pink");
-          Property * tempP7=new Property(Board.at(7),PROPERTY,":/res/Images/Properties/8.png",160,12,60,180,500,700,900,80,100,100,"pink");
-          Property * tempP8=new Property(Board.at(8),PROPERTY,":/res/Images/Properties/9.png",180,14,70,200,550,750,950,90,100,100,"orange");
-          Property * tempP9=new Property(Board.at(9),PROPERTY,":/res/Images/Properties/10.png",180,14,70,200,550,750,950,90,100,100,"orange");
-          Property * tempP10=new Property(Board.at(10),PROPERTY,":/res/Images/Properties/11.png",200,16,80,220,600,800,1000,100,100,100,"orange");
-          Property * tempP11=new Property(Board.at(11),PROPERTY,":/res/Images/Properties/12.png",220,18,90,250,700,875,1050,110,150,150,"red");
-          Property * tempP12=new Property(Board.at(12),PROPERTY,":/res/Images/Properties/13.png",220,18,90,250,700,875,1050,110,150,150,"red");
-          Property * tempP13=new Property(Board.at(13),PROPERTY,":/res/Images/Properties/14.png",240,20,100,300,750,925,1100,120,150,150,"red");
-          Property * tempP14=new Property(Board.at(14),PROPERTY,":/res/Images/Properties/15.png",260,22,110,330,800,975,1150,130,150,150,"yellow");
-          Property * tempP15=new Property(Board.at(15),PROPERTY,":/res/Images/Properties/16.png",260,22,110,330,800,975,1150,130,150,150,"yellow");
-          Property * tempP16=new Property(Board.at(16),PROPERTY,":/res/Images/Properties/17.png",280,24,120,360,850,1025,1200,140,150,150,"yellow");
-          Property * tempP17=new Property(Board.at(17),PROPERTY,":/res/Images/Properties/18.png",300,26,130,390,900,1100,1275,150,200,200,"green");
-          Property * tempP18=new Property(Board.at(18),PROPERTY,":/res/Images/Properties/19.png",300,26,130,390,900,1100,1275,150,200,200,"green");
-          Property * tempP19=new Property(Board.at(19),PROPERTY,":/res/Images/Properties/20.png",320,28,150,450,1000,1200,1400,160,200,200,"green");
-          Property * tempP20=new Property(Board.at(20),PROPERTY,":/res/Images/Properties/21.png",350,35,175,500,1100,1300,1500,175,200,200,"blue");
-          Property * tempP21=new Property(Board.at(21),PROPERTY,":/res/Images/Properties/22.png",400,50,200,600,1400,1700,2000,200,200,200,"blue");
+
+
+          Property * tempGo=new Property(Board.at(0),GO__);
+
+          Property * tempP=new Property(Board.at(1),PROPERTY,":/res/Images/Properties/1.png",60,2,10,30,90,160,250,30,50,50,"purple");
+
+          Property * tempChest1=new Property(Board.at(2),COMMUNITY);
+
+          Property * tempP1=new Property(Board.at(3),PROPERTY,":/res/Images/Properties/2.png",60,4,20,60,180,320,450,30,50,50,"purple");
+
+          Property * tempIncomeTax=new Property(Board.at(4),INCOMETAX);
+
+          Property * tempRR1=new Property(Board.at(5),RR,":/res/Images/Properties/23.png",200,25,50,100,200,100,"black");
+
+          Property * tempP2=new Property(Board.at(6),PROPERTY,":/res/Images/Properties/3.png",100,6,30,90,270,400,550,50,50,50,"light blue");
+
+          Property * tempChance1=new Property(Board.at(7),CHANCE);
+
+          Property * tempP3=new Property(Board.at(8),PROPERTY,":/res/Images/Properties/4.png",100,6,30,90,270,400,550,50,50,50,"light blue");
+
+          Property * tempP4=new Property(Board.at(9),PROPERTY,":/res/Images/Properties/5.png",120,8,40,100,300,450,600,60,50,50,"light blue");
+
+          Property * tempJail=new Property(Board.at(10),JAIL);
+
+          Property * tempP5=new Property(Board.at(11),PROPERTY,":/res/Images/Properties/6.png",140,10,50,150,450,625,750,70,100,100,"pink");
+
+          Property * tempElectric=new Property(Board.at(12),UTILITY_,":/res/Images/Properties/photo_2022-06-28_19-00-13.jpg",150,4,10,75,"white");
+
+          Property * tempP6=new Property(Board.at(13),PROPERTY,":/res/Images/Properties/7.png",140,10,50,150,450,625,750,70,100,100,"pink");
+
+          Property * tempP7=new Property(Board.at(14),PROPERTY,":/res/Images/Properties/8.png",160,12,60,180,500,700,900,80,100,100,"pink");
+
+          Property * tempRR2=new Property(Board.at(15),RR,":/res/Images/Properties/24.png",200,25,50,100,200,100,"black");
+
+          Property * tempP8=new Property(Board.at(16),PROPERTY,":/res/Images/Properties/9.png",180,14,70,200,550,750,950,90,100,100,"orange");
+
+          Property * tempChest2=new Property(Board.at(17),COMMUNITY);
+
+          Property * tempP9=new Property(Board.at(18),PROPERTY,":/res/Images/Properties/10.png",180,14,70,200,550,750,950,90,100,100,"orange");
+
+          Property * tempP10=new Property(Board.at(19),PROPERTY,":/res/Images/Properties/11.png",200,16,80,220,600,800,1000,100,100,100,"orange");
+
+          Property * tempParking=new Property(Board.at(20),PARKING);
+
+          Property * tempP11=new Property(Board.at(21),PROPERTY,":/res/Images/Properties/12.png",220,18,90,250,700,875,1050,110,150,150,"red");
+
+          Property * tempChance2=new Property(Board.at(22),CHANCE);
+
+          Property * tempP12=new Property(Board.at(23),PROPERTY,":/res/Images/Properties/13.png",220,18,90,250,700,875,1050,110,150,150,"red");
+
+          Property * tempP13=new Property(Board.at(24),PROPERTY,":/res/Images/Properties/14.png",240,20,100,300,750,925,1100,120,150,150,"red");
+
+          Property * tempRR3=new Property(Board.at(25),RR,":/res/Images/Properties/25.png",200,25,50,100,200,100,"black");
+
+          Property * tempP14=new Property(Board.at(26),PROPERTY,":/res/Images/Properties/15.png",260,22,110,330,800,975,1150,130,150,150,"yellow");
+
+          Property * tempP15=new Property(Board.at(27),PROPERTY,":/res/Images/Properties/16.png",260,22,110,330,800,975,1150,130,150,150,"yellow");
+
+          Property * tempWater=new Property(Board.at(28),UTILITY_,":/res/Images/Properties/photo_2022-06-28_19-00-16.jpg",150,4,10,75,"white");
+
+          Property * tempP16=new Property(Board.at(29),PROPERTY,":/res/Images/Properties/17.png",280,24,120,360,850,1025,1200,140,150,150,"yellow");
+
+          Property * tempGOTOJAIL=new Property(Board.at(30),GOTOJAIL);
+
+          Property * tempP17=new Property(Board.at(31),PROPERTY,":/res/Images/Properties/18.png",300,26,130,390,900,1100,1275,150,200,200,"green");
+
+          Property * tempP18=new Property(Board.at(32),PROPERTY,":/res/Images/Properties/19.png",300,26,130,390,900,1100,1275,150,200,200,"green");
+
+          Property * tempChest3=new Property(Board.at(33),COMMUNITY);
+
+          Property * tempP19=new Property(Board.at(34),PROPERTY,":/res/Images/Properties/20.png",320,28,150,450,1000,1200,1400,160,200,200,"green");
+
+          Property * tempRR4=new Property(Board.at(35),RR,":/res/Images/Properties/26.png",200,25,50,100,200,100,"black");
+
+          Property * tempChance3=new Property(Board.at(36),CHANCE);
+
+          Property * tempP20=new Property(Board.at(37),PROPERTY,":/res/Images/Properties/21.png",350,35,175,500,1100,1300,1500,175,200,200,"blue");
+
+          Property * tempLuxuryTax=new Property(Board.at(38),LUXURYTAX);
+
+          Property * tempP21=new Property(Board.at(39),PROPERTY,":/res/Images/Properties/22.png",400,50,200,600,1400,1700,2000,200,200,200,"blue");
+
+
+          Properties.push_back(tempGo);
 
           Properties.push_back(tempP);
+
+          Properties.push_back(tempChest1);
+
           Properties.push_back(tempP1);
+
+          Properties.push_back(tempIncomeTax);
+
+          Properties.push_back(tempRR1);
+
           Properties.push_back(tempP2);
+
+          Properties.push_back(tempChance1);
+
           Properties.push_back(tempP3);
+
           Properties.push_back(tempP4);
+
+          Properties.push_back(tempJail);
+
           Properties.push_back(tempP5);
+
+          Properties.push_back(tempElectric);
+
           Properties.push_back(tempP6);
+
           Properties.push_back(tempP7);
+
+          Properties.push_back(tempRR2);
+
           Properties.push_back(tempP8);
+
+          Properties.push_back(tempChest2);
+
           Properties.push_back(tempP9);
+
           Properties.push_back(tempP10);
+
+          Properties.push_back(tempParking);
+
           Properties.push_back(tempP11);
+
+          Properties.push_back(tempChance2);
+
           Properties.push_back(tempP12);
+
           Properties.push_back(tempP13);
+
+          Properties.push_back(tempRR3);
+
           Properties.push_back(tempP14);
+
           Properties.push_back(tempP15);
+
+          Properties.push_back(tempWater);
+
           Properties.push_back(tempP16);
+
+          Properties.push_back(tempGOTOJAIL);
+
           Properties.push_back(tempP17);
+
           Properties.push_back(tempP18);
+
+          Properties.push_back(tempChest3);
+
           Properties.push_back(tempP19);
+
+          Properties.push_back(tempRR4);
+
+          Properties.push_back(tempChance3);
+
           Properties.push_back(tempP20);
+
+          Properties.push_back(tempLuxuryTax);
+
           Properties.push_back(tempP21);
 
 
@@ -994,26 +1110,39 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
     Randomizer(tokens_path);
 
+    vector<QLabel*> AllOfTheTokenLabels;
 
+    AllOfTheTokenLabels.push_back(ui->label_47);
 
+    AllOfTheTokenLabels.push_back(ui->label_48);
+
+    AllOfTheTokenLabels.push_back(ui->label_49);
+
+    AllOfTheTokenLabels.push_back(ui->label_50);
+
+    AllOfTheTokenLabels.push_back(ui->label_51);
+
+    AllOfTheTokenLabels.push_back(ui->label_52);
+
+    AllOfTheTokenLabels.push_back(ui->label_53);
+
+    AllOfTheTokenLabels.push_back(ui->label_54);
 
     vector<QLabel*> tokens;
 
-    tokens.push_back(ui->label_47);
+    for(int i=0;i<int(AllOfTheTokenLabels.size());i++){
 
-    tokens.push_back(ui->label_48);
 
-    tokens.push_back(ui->label_49);
+    QPixmap *pixmap=new QPixmap(QString::fromStdString(tokens_path.at(i)));
 
-    tokens.push_back(ui->label_50);
+    AllOfTheTokenLabels.at(i)->setPixmap(pixmap->scaled(75,75,Qt::KeepAspectRatio));
 
-    tokens.push_back(ui->label_51);
+    tokens.push_back(AllOfTheTokenLabels.at(i));
 
-    tokens.push_back(ui->label_52);
 
-    tokens.push_back(ui->label_53);
+}
 
-    tokens.push_back(ui->label_54);
+
 
     for(int i=0;i<8;i++){
         tokens.at(i)->hide();
@@ -1032,6 +1161,7 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
         Player* tempPlayer=new Player(nicknames.at(i),tokens.at(i));
         Players.push_back(tempPlayer);
 
+        Players.at(i)->tokenPath=tokens_path.at(i);
 
     }
 
@@ -1192,6 +1322,7 @@ void GameBoard::on_pushButton_4_clicked()
                     Players.at(j)=tempPlayer;
 
 
+
                 }
             }
 
@@ -1219,11 +1350,116 @@ void GameBoard::on_pushButton_4_clicked()
 
         ui->label_44->setEnabled(true);
 
+        for(int i=0;i<number_of_players;i++){
+
+            Players.at(i)->token->show();
+
+            Players.at(i)->token->setEnabled(true);
+
+        }
+
+
+        for(int i=0;i<number_of_players;i++){
+
+            Properties.at(0)->PlayersOnProperty.push_back(Players.at(i));
+
+        }
+
+
+        movement(0);
 
 
 
     }
 
+
+
+}
+
+void GameBoard::movement(int position){
+
+    int number_of_players_in_position=int(Properties.at(position)->PlayersOnProperty.size());
+
+    int x=Properties.at(position)->PropertyOnTheBoard->x();
+
+    int y=Properties.at(position)->PropertyOnTheBoard->y();
+
+    int width=Properties.at(position)->PropertyOnTheBoard->width();
+
+    int height=Properties.at(position)->PropertyOnTheBoard->height();
+
+    int Tokenx;
+
+    int Tokeny;
+
+    int Tokenwidth;
+
+    int Tokenheight;
+
+
+
+    Tokenx=x+(0.1*width);
+
+    Tokeny=y+(0.1*height);
+
+    for(int i=0;i<number_of_players_in_position;i++){
+
+
+      if(number_of_players_in_position%2!=0 && i==number_of_players_in_position-1){
+
+          Tokenwidth=0.9*width;
+
+      }
+      else{
+
+          Tokenwidth=0.8*width;
+
+      }
+
+      int column=0.5*(number_of_players_in_position+1);
+
+      int useableHeight=height-(column+1)*(height*0.1);
+
+
+      Tokenheight=useableHeight/column;
+
+
+    Properties.at(position)->PlayersOnProperty.at(i)->token->setGeometry(Tokenx,Tokeny,Tokenwidth,Tokenheight);
+
+    QPixmap *temp=new QPixmap(QString::fromStdString(Properties.at(position)->PlayersOnProperty.at(i)->tokenPath));
+
+
+
+    Properties.at(position)->PlayersOnProperty.at(i)->token->setPixmap(temp->scaled(Tokenwidth,Tokenheight,Qt::KeepAspectRatio));
+
+
+
+    qDebug()<<Tokenx<<Tokeny<<Tokenwidth<<Tokenheight;
+
+      if(i%2!=0){
+
+          Tokenx=x+0.1*width;
+
+          Tokeny+=(0.02*height)+Tokenheight;
+      }
+      else{
+
+          Tokenx+=0.3*width;
+
+
+
+      }
+
+
+
+    }
+
+
+
+}
+
+void GameBoard::on_pushButton_2_clicked()
+{
 
 
 }
