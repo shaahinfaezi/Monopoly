@@ -72,7 +72,7 @@ class Property{
 
     //constructor baraye property ha
 
-    Property(QLabel*,Type,string,int,int,int,int,int,int,int,int,int,int,int,bool,string);
+    Property(QLabel*,Type,string,int,int,int,int,int,int,int,int,int,int,string);
 
     //constructor baraye Railroad
 

@@ -5,6 +5,7 @@
 #include <QScreen>
 #include <QDebug>
 #include <QPainter>
+#include <Property.h>
 
 #include <stdlib.h>
 #include <time.h>
@@ -905,6 +906,7 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
 
     Randomizer(tokens_path);
+
 
 
 
