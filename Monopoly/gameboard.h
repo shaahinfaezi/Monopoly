@@ -30,6 +30,10 @@ public:
 
      void on_pushButton_2_clicked();
 
+         void movement();
+
+
+
 private:
     Ui::GameBoard *ui;
 
@@ -61,7 +65,9 @@ private:
 
       int sums[8];
 
-      void movement(int);
+
+
+    int position;
 
       vector<Property *> Properties;
 
