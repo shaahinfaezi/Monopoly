@@ -79,6 +79,10 @@ private:
 
     void RenderMovement(int);
 
+    bool Double;
+
+    int Doubles;
+
 
 
 };

@@ -1211,6 +1211,8 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
         print_order();
 
+        Double=0;
+
 }
 bool GameBoard::throwDice(int &Dice1,int &Dice2){
 
@@ -1888,7 +1890,7 @@ void GameBoard::set_position(int desination){
 
 
 
-    Players.at(order)->set_position(Players.at(order)->get_position()+desination);
+    Players.at(order)->set_position(desination);
 
 
     position=Players.at(order)->get_position();
@@ -1950,7 +1952,14 @@ void GameBoard::on_pushButton_2_clicked()
 {
 
 
-    bool Double=throwDice(Dice1,Dice2);
+    Double=throwDice(Dice1,Dice2);
+
+    if(Double==true){
+        Doubles++;
+    }
+    else{
+        Doubles=0;
+    }
 
     printDice(Dice1,Dice2);
 
@@ -1958,12 +1967,11 @@ void GameBoard::on_pushButton_2_clicked()
 
     ui->pushButton_2->hide();
 
-    QTimer::singleShot(10000,this,SLOT(clearDice()));
 
-    RenderMovement(10);
-
+    RenderMovement(Players.at(order)->get_position()+Dice1+Dice2);
 
 
+    //dokmeha ro namayesh bedin
 
 
 }
@@ -1971,11 +1979,31 @@ void GameBoard::on_pushButton_2_clicked()
 void GameBoard::on_pushButton_3_clicked()
 {
 
-    order++;
+    if(Doubles>0){
+
+        if(Doubles==3){
+            Double=false;
+            Doubles=0;
+            RenderMovement(10);
+            qDebug()<<"JAIL";
+        }
+    }
+    else{
+        order++;
+    }
+
 
     if(order>number_of_players-1){
         order=0;
     }
 
-    RenderMovement(10);
+    print_order();
+
+    ui->pushButton_2->setEnabled(true);
+
+    ui->pushButton_2->show();
+
+
+
+    //dokmeha bardashte she
 }
