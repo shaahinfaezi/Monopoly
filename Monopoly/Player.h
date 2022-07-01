@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <QLabel>
+class Property;
 
 
 using std::string;
@@ -16,7 +17,7 @@ class Player{
 private:
 
 
-    //vectori az amlak
+
 
     string nickname;
 
@@ -51,17 +52,9 @@ public:
     string get_nickname() const;
 
 
+    vector<Property*> MyProperties;
 
-
-
-
-
-
-
-
-
-
-
+    string tokenPath;
 
 
 
