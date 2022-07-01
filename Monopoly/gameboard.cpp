@@ -1173,17 +1173,17 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
     srand(time(NULL));
 
-    Dice_path.push_back(":/res/Images/Dice/1.jpg");
+    Dice_path.push_back(":/res/Images/Dice/1.png");
 
-    Dice_path.push_back(":/res/Images/Dice/2.jpg");
+    Dice_path.push_back(":/res/Images/Dice/2.png");
 
-    Dice_path.push_back(":/res/Images/Dice/3.jpg");
+    Dice_path.push_back(":/res/Images/Dice/3.png");
 
-    Dice_path.push_back(":/res/Images/Dice/4.jpg");
+    Dice_path.push_back(":/res/Images/Dice/4.png");
 
-    Dice_path.push_back(":/res/Images/Dice/5.jpg");
+    Dice_path.push_back(":/res/Images/Dice/5.png");
 
-    Dice_path.push_back(":/res/Images/Dice/6.jpg");
+    Dice_path.push_back(":/res/Images/Dice/6.png");
 
     ui->pushButton->hide();
 

@@ -10,7 +10,8 @@ Buy::Buy(Property* property,QWidget *parent) :
     this->property=property;
 
     QPixmap pixmap(QString::fromStdString(property->get_PropertyCard()));
-   ui->label->setPixmap(pixmap.scaled(348,541,Qt::KeepAspectRatio));
+
+   ui->label->setPixmap(pixmap.scaled(361,491,Qt::KeepAspectRatio));
 
 }
 
