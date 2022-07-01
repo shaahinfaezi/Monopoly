@@ -8,6 +8,7 @@
 #include <QThread>
 #include <QTimer>
 #include <Property.h>
+#include "buy.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -1196,6 +1197,10 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
     ui->pushButton_3->setEnabled(false);
 
+    ui->pushButton_5->hide();
+
+    ui->pushButton_5->setEnabled(false);
+
     ui->label_43->hide();
 
     ui->label_43->setEnabled(false);
@@ -1384,6 +1389,18 @@ void GameBoard::on_pushButton_4_clicked()
        movement();
 
        print_order();
+
+       ui->pushButton_3->hide();
+
+       ui->pushButton_3->setEnabled(false);
+
+       ui->pushButton->hide();
+
+       ui->pushButton->setEnabled(false);
+
+       ui->pushButton_5->hide();
+
+       ui->pushButton_5->setEnabled(false);
 
 
 
@@ -1971,7 +1988,18 @@ void GameBoard::on_pushButton_2_clicked()
     RenderMovement(Players.at(order)->get_position()+Dice1+Dice2);
 
 
-    //dokmeha ro namayesh bedin
+    ui->pushButton_3->show();
+
+    ui->pushButton_3->setEnabled(true);
+
+    ui->pushButton->show();
+
+    ui->pushButton->setEnabled(true);
+
+    ui->pushButton_5->show();
+
+    ui->pushButton_5->setEnabled(true);
+
 
 
 }
@@ -1985,7 +2013,7 @@ void GameBoard::on_pushButton_3_clicked()
             Double=false;
             Doubles=0;
             RenderMovement(10);
-            qDebug()<<"JAIL";
+            order++;
         }
     }
     else{
@@ -2004,6 +2032,31 @@ void GameBoard::on_pushButton_3_clicked()
     ui->pushButton_2->show();
 
 
+    ui->pushButton_3->hide();
 
-    //dokmeha bardashte she
+    ui->pushButton_3->setEnabled(false);
+
+    ui->pushButton->hide();
+
+    ui->pushButton->setEnabled(false);
+
+    ui->pushButton_5->hide();
+
+    ui->pushButton_5->setEnabled(false);
+
+
+}
+
+void GameBoard::on_pushButton_5_clicked()
+{
+
+    if(Properties.at(Players.at(order)->get_position())->owner==nullptr){
+
+        Buy * buy=new Buy(Properties.at(Players.at(order)->get_position()),this);
+
+        buy->exec();
+
+    }
+
+
 }

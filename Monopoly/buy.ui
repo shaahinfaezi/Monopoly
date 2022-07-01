@@ -22,8 +22,8 @@ background-color: rgb(69, 105, 144);</string>
     <rect>
      <x>100</x>
      <y>60</y>
-     <width>421</width>
-     <height>541</height>
+     <width>361</width>
+     <height>491</height>
     </rect>
    </property>
    <property name="styleSheet">

@@ -338,7 +338,7 @@ background-repeat: none;
    <property name="geometry">
     <rect>
      <x>1190</x>
-     <y>540</y>
+     <y>780</y>
      <width>112</width>
      <height>34</height>
     </rect>
@@ -570,7 +570,7 @@ background-repeat: none;
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true"> </string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
@@ -1354,8 +1354,8 @@ background-repeat: none;
   <widget class="QPushButton" name="pushButton_5">
    <property name="geometry">
     <rect>
-     <x>1730</x>
-     <y>260</y>
+     <x>1190</x>
+     <y>610</y>
      <width>112</width>
      <height>34</height>
     </rect>
@@ -1370,7 +1370,7 @@ background-repeat: none;
     <string notr="true">background-color: rgb(119, 141, 169);</string>
    </property>
    <property name="text">
-    <string>buy</string>
+    <string>Buy Property</string>
    </property>
   </widget>
   <zorder>label_16</zorder>

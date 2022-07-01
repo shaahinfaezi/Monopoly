@@ -1,11 +1,17 @@
 #include "buy.h"
 #include "ui_buy.h"
 
-Buy::Buy(QWidget *parent) :
+Buy::Buy(Property* property,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Buy)
 {
     ui->setupUi(this);
+
+    this->property=property;
+
+    QPixmap pixmap(QString::fromStdString(property->get_PropertyCard()));
+   ui->label->setPixmap(pixmap.scaled(348,541,Qt::KeepAspectRatio));
+
 }
 
 Buy::~Buy()
