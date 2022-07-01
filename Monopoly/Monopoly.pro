@@ -20,6 +20,7 @@ SOURCES += \
     Community.cpp \
     Player.cpp \
     Property.cpp \
+    auction.cpp \
     buy.cpp \
     community_chance.cpp \
     gameboard.cpp \
@@ -31,12 +32,14 @@ HEADERS += \
     Community.h \
     Player.h \
     Property.h \
+    auction.h \
     buy.h \
     community_chance.h \
     gameboard.h \
     mainwindow.h
 
 FORMS += \
+    auction.ui \
     buy.ui \
     community_chance.ui \
     gameboard.ui \
