@@ -8,6 +8,7 @@
 #include <QThread>
 #include <QTimer>
 #include <Property.h>
+#include "buy.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -1172,17 +1173,17 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
     srand(time(NULL));
 
-    Dice_path.push_back(":/res/Images/Dice/1.jpg");
+    Dice_path.push_back(":/res/Images/Dice/1.png");
 
-    Dice_path.push_back(":/res/Images/Dice/2.jpg");
+    Dice_path.push_back(":/res/Images/Dice/2.png");
 
-    Dice_path.push_back(":/res/Images/Dice/3.jpg");
+    Dice_path.push_back(":/res/Images/Dice/3.png");
 
-    Dice_path.push_back(":/res/Images/Dice/4.jpg");
+    Dice_path.push_back(":/res/Images/Dice/4.png");
 
-    Dice_path.push_back(":/res/Images/Dice/5.jpg");
+    Dice_path.push_back(":/res/Images/Dice/5.png");
 
-    Dice_path.push_back(":/res/Images/Dice/6.jpg");
+    Dice_path.push_back(":/res/Images/Dice/6.png");
 
     ui->pushButton->hide();
 
@@ -1195,6 +1196,10 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
     ui->pushButton_2->setEnabled(false);
 
     ui->pushButton_3->setEnabled(false);
+
+    ui->pushButton_5->hide();
+
+    ui->pushButton_5->setEnabled(false);
 
     ui->label_43->hide();
 
@@ -1210,6 +1215,8 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
         order=0;
 
         print_order();
+
+        Double=0;
 
 }
 bool GameBoard::throwDice(int &Dice1,int &Dice2){
@@ -1233,6 +1240,16 @@ bool GameBoard::throwDice(int &Dice1,int &Dice2){
 
 void GameBoard::printDice(int Dice1,int Dice2){
 
+    ui->label_45->show();
+    ui->label_46->show();
+    ui->label_55->show();
+
+    ui->label_45->setEnabled(true);
+    ui->label_46->setEnabled(true);
+    ui->label_55->setEnabled(true);
+
+
+
     QPixmap dice1(QString::fromStdString(Dice_path.at(Dice1-1)));
 
     ui->label_45->setPixmap(dice1.scaled(ui->label_46->width(),ui->label_46->height(),Qt::KeepAspectRatio));
@@ -1242,6 +1259,7 @@ void GameBoard::printDice(int Dice1,int Dice2){
     ui->label_46->setPixmap(dice2.scaled(ui->label_46->width(),ui->label_46->height(),Qt::KeepAspectRatio));
 
 
+    ui->label_55->setText(QString::fromStdString(Players.at(order)->get_nickname())+"'s sum is : "+QString::number(Dice1+Dice2));
 
 }
 
@@ -1287,8 +1305,6 @@ void GameBoard::on_pushButton_4_clicked()
     throwDice(Dice1,Dice2);
 
     printDice(Dice1,Dice2);
-
-    ui->label_55->setText(QString::fromStdString(Players.at(order)->get_nickname())+"'s sum is : "+QString::number(Dice1+Dice2));
 
     sums[order]=Dice1+Dice2;
 
@@ -1363,18 +1379,28 @@ void GameBoard::on_pushButton_4_clicked()
 
             Properties.at(0)->PlayersOnProperty.push_back(Players.at(i));
 
+            Players.at(i)->set_position(0);
+
         }
 
        position=0;
 
 
        movement();
+
        print_order();
 
+       ui->pushButton_3->hide();
 
-     Properties.at(position)->PlayersOnProperty.clear();
+       ui->pushButton_3->setEnabled(false);
 
+       ui->pushButton->hide();
 
+       ui->pushButton->setEnabled(false);
+
+       ui->pushButton_5->hide();
+
+       ui->pushButton_5->setEnabled(false);
 
 
 
@@ -1409,7 +1435,7 @@ if(position<10){
     if(number_of_players_in_position<5){
 
         if(position==0){
-            Tokenx=x-0.70*width+(number_of_players*width/7);
+            Tokenx=x-0.70*width+(number_of_players_in_position*width/7);
         }
         else{
              Tokenx=x-0.46*width;
@@ -1475,7 +1501,7 @@ else if(position<=29){
         }
 
         if(position==20){
-            Tokenx=x-0.70*width+(number_of_players*width/7);
+            Tokenx=x-0.70*width+(number_of_players_in_position*width/7);
         }
         else{
              Tokenx=x-0.46*width;
@@ -1583,7 +1609,7 @@ else if(position<=39){
 
 
                 if(position==0){
-                    Tokenx=x-0.70*width+(number_of_players*width/7);
+                    Tokenx=x-0.70*width+(number_of_players_in_position*width/7);
                 }
                 else{
                      Tokenx=x-0.46*width;
@@ -1740,7 +1766,7 @@ else if(position<=39){
 
                 if(position==20){
 
-                    Tokenx=x-0.70*width+(number_of_players*width/7);
+                    Tokenx=x-0.70*width+(number_of_players_in_position*width/7);
 
                 }
                 else{
@@ -1864,26 +1890,173 @@ else if(position<=39){
 
 }
 
-void GameBoard::on_pushButton_2_clicked()
-{
+void GameBoard::clearDice(){
 
-    position++;
+    ui->label_45->hide();
+    ui->label_46->hide();
+    ui->label_55->hide();
+
+    ui->label_45->setEnabled(false);
+    ui->label_46->setEnabled(false);
+    ui->label_55->setEnabled(false);
 
 
+}
+
+void GameBoard::set_position(int desination){
+
+
+
+    Players.at(order)->set_position(desination);
+
+
+    position=Players.at(order)->get_position();
 
     if(position>39){
 
-        position=0;
+        position=position%40;
+
+        Players.at(order)->set_position(position);
+
+        Players.at(order)->set_Munny(Players.at(order)->get_Munny()+200);
+
+        print_order();
     }
 
-    for(int i=0;i<number_of_players;i++){
 
-        Properties.at(position)->PlayersOnProperty.push_back(Players.at(i));
+}
+
+void GameBoard::RenderMovement(int destination){
+
+    int tempPos=Players.at(order)->get_position();
+
+
+    int i;
+    for(i=0;i<int(Properties.at(tempPos)->PlayersOnProperty.size());i++){
+
+        if(Properties.at(tempPos)->PlayersOnProperty.at(i)->get_nickname()==Players.at(order)->get_nickname()){
+            break;
+        }
 
     }
+
+
+
+
+    Properties.at(tempPos)->PlayersOnProperty.erase(Properties.at(tempPos)->PlayersOnProperty.begin()+i);
+
+
+    set_position(destination);
+
+     Properties.at(position)->PlayersOnProperty.push_back(Players.at(order));
+
+
+    QThread::msleep(50);
 
     movement();
 
-    Properties.at(position)->PlayersOnProperty.clear();
+    position=tempPos;
+
+    QThread::msleep(50);
+
+    movement();
+
+
+
+}
+
+void GameBoard::on_pushButton_2_clicked()
+{
+
+
+    Double=throwDice(Dice1,Dice2);
+
+    if(Double==true){
+        Doubles++;
+    }
+    else{
+        Doubles=0;
+    }
+
+    printDice(Dice1,Dice2);
+
+    ui->pushButton_2->setEnabled(false);
+
+    ui->pushButton_2->hide();
+
+
+    RenderMovement(Players.at(order)->get_position()+Dice1+Dice2);
+
+
+    ui->pushButton_3->show();
+
+    ui->pushButton_3->setEnabled(true);
+
+    ui->pushButton->show();
+
+    ui->pushButton->setEnabled(true);
+
+    ui->pushButton_5->show();
+
+    ui->pushButton_5->setEnabled(true);
+
+
+
+}
+
+void GameBoard::on_pushButton_3_clicked()
+{
+
+    if(Doubles>0){
+
+        if(Doubles==3){
+            Double=false;
+            Doubles=0;
+            RenderMovement(10);
+            order++;
+        }
+    }
+    else{
+        order++;
+    }
+
+
+    if(order>number_of_players-1){
+        order=0;
+    }
+
+    print_order();
+
+    ui->pushButton_2->setEnabled(true);
+
+    ui->pushButton_2->show();
+
+
+    ui->pushButton_3->hide();
+
+    ui->pushButton_3->setEnabled(false);
+
+    ui->pushButton->hide();
+
+    ui->pushButton->setEnabled(false);
+
+    ui->pushButton_5->hide();
+
+    ui->pushButton_5->setEnabled(false);
+
+
+}
+
+void GameBoard::on_pushButton_5_clicked()
+{
+
+    if(Properties.at(Players.at(order)->get_position())->owner==nullptr){
+
+        Buy * buy=new Buy(Properties.at(Players.at(order)->get_position()),this);
+
+        buy->exec();
+
+    }
+
 
 }

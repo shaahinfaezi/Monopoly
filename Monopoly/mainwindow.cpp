@@ -145,7 +145,13 @@ void MainWindow::on_comboBox_currentIndexChanged(const QString &arg1)
 {
     int number=arg1.toInt();
 
+    ui->label_10->show();
+
+    ui->label_10->setEnabled(true);
+
     for(int i=0;i<8;i++){
+
+
 
         LineEdits.at(i)->hide();
 
@@ -169,6 +175,8 @@ void MainWindow::on_comboBox_currentIndexChanged(const QString &arg1)
         Labels.at(i)->show();
 
         Labels.at(i)->setEnabled(true);
+
+        LineEdits.at(i)->setText("");
 
 
     }

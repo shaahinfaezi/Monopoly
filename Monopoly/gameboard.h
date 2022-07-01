@@ -32,7 +32,14 @@ public:
 
          void movement();
 
+          void clearDice();
 
+
+
+
+          void on_pushButton_3_clicked();
+
+          void on_pushButton_5_clicked();
 
 private:
     Ui::GameBoard *ui;
@@ -61,16 +68,22 @@ private:
 
     int order;
 
-     int Dice1,Dice2;
+    int Dice1,Dice2;
 
-      int sums[8];
-
-
+    int sums[8];
 
     int position;
 
-      vector<Property *> Properties;
+    vector<Property *> Properties;
 
+
+    void set_position(int);
+
+    void RenderMovement(int);
+
+    bool Double;
+
+    int Doubles;
 
 
 
