@@ -171,9 +171,9 @@ void Property::set_number_of_houses(int number_of_houses){
 
 }
 
-void Property::set_mortgage(bool mortgage){
+void Property::set_mortgage(bool mortgaged){
 
-    this->mortgage=mortgage;
+    this->mortgaged=mortgaged;
 
 
 }

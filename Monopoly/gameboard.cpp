@@ -10,6 +10,7 @@
 #include <Property.h>
 #include "buy.h"
 #include <QMessageBox>
+#include <my_properties.h>
 
 #include <stdlib.h>
 #include <time.h>
@@ -1984,7 +1985,7 @@ void GameBoard::RenderMovement(int destination){
 
 }
 
-bool GameBoard::Monopoly(string color,string nickname){
+bool GameBoard::Monopoly(string color,Player* Owner){
 
     for(int i=0;i<int(Properties.size());i++){
 
@@ -1994,7 +1995,7 @@ bool GameBoard::Monopoly(string color,string nickname){
                 return false;
             }
 
-            if(Properties.at(i)->owner->get_nickname()!=nickname){
+            if(Properties.at(i)->owner!=Owner){
                 return false;
             }
 
@@ -2059,7 +2060,7 @@ void GameBoard::SituationCheck(){
         }
         else{
 
-            if(!tempProperty->get_mortgaged()){//ejare
+            if(!tempProperty->get_mortgaged()&& tempProperty->owner!=Players.at(order)){//ejare
 
                  QMessageBox::information(this,"Information","This property is owned by "+QString::fromStdString(tempProperty->owner->get_nickname())+"\n"+" pay up!");
 
@@ -2070,7 +2071,7 @@ void GameBoard::SituationCheck(){
 
                  case 0:
 
-                     if(Monopoly(tempProperty->get_color(),tempProperty->owner->get_nickname())){
+                     if(Monopoly(tempProperty->get_color(),tempProperty->owner)){
 
                          tempRent=2*(tempProperty->get_rent0());
 
@@ -2118,7 +2119,7 @@ void GameBoard::SituationCheck(){
                  //bankruptcy
 
             }
-            else{//ejare nemigirim
+            else if(tempProperty->get_mortgaged()&& tempProperty->owner!=Players.at(order)){//ejare nemigirim
 
             }
 
@@ -2141,7 +2142,7 @@ void GameBoard::SituationCheck(){
 
     case INCOMETAX:
 
-        QMessageBox::information(this,"Information","You have landed on income tax,10% of your income will go to the government.");
+        QMessageBox::information(this,"Information","You have landed on Income tax,10% of your income will go to the government.");
 
         Players.at(order)->set_Munny(int(0.9*Players.at(order)->get_Munny()));
 
@@ -2153,7 +2154,13 @@ void GameBoard::SituationCheck(){
 
     case LUXURYTAX:
 
+        QMessageBox::information(this,"Information","You have landed on Luxury tax,you'll be charged 75$.");
+
         Players.at(order)->set_Munny(Players.at(order)->get_Munny()-75);
+
+        print_order();
+
+        //bankruptcy
 
         break;
 
@@ -2236,7 +2243,7 @@ void GameBoard::SituationCheck(){
         }
         else{
 
-            if(!tempProperty->get_mortgaged()){//ejare
+            if(!tempProperty->get_mortgaged() &&tempProperty->owner!=Players.at(order)){//ejare
 
                  QMessageBox::information(this,"Information","This property is owned by "+QString::fromStdString(tempProperty->owner->get_nickname())+"\n"+" pay up!");
 
@@ -2247,7 +2254,7 @@ void GameBoard::SituationCheck(){
 
                  for(int i=0;i<int(Properties.size());i++){
 
-                     if(Properties.at(i)->owner->get_nickname()==tempProperty->owner->get_nickname() && Properties.at(i)->get_color()=="black"){
+                     if(Properties.at(i)->owner==tempProperty->owner && Properties.at(i)->get_color()=="black"){
 
                          numOfRailRoads++;
 
@@ -2295,7 +2302,7 @@ void GameBoard::SituationCheck(){
                  //bankruptcy
 
             }
-            else{//ejare nemigirim
+            else if(tempProperty->get_mortgaged() &&tempProperty->owner!=Players.at(order)){//ejare nemigirim
 
             }
 
@@ -2314,7 +2321,7 @@ void GameBoard::SituationCheck(){
         }
         else{
 
-            if(!tempProperty->get_mortgaged()){//ejare
+            if(!tempProperty->get_mortgaged()&&tempProperty->owner!=Players.at(order)){//ejare
 
                  QMessageBox::information(this,"Information","This property is owned by "+QString::fromStdString(tempProperty->owner->get_nickname())+"\n"+" pay up!");
 
@@ -2325,7 +2332,7 @@ void GameBoard::SituationCheck(){
 
                  for(int i=0;i<int(Properties.size());i++){
 
-                     if(Properties.at(i)->owner->get_nickname()==tempProperty->owner->get_nickname() && Properties.at(i)->get_color()=="black"){
+                     if(Properties.at(i)->owner==tempProperty->owner && Properties.at(i)->get_color()=="white"){
 
                         numOfUtilities++;
 
@@ -2351,7 +2358,7 @@ void GameBoard::SituationCheck(){
                  //bankruptcy
 
             }
-            else{//ejare nemigirim
+            else if(tempProperty->get_mortgaged()&&tempProperty->owner!=Players.at(order)){//ejare nemigirim
 
             }
 
@@ -2754,6 +2761,16 @@ void GameBoard::on_pushButton_8_clicked()
     QMessageBox::information(this,"Information","You're free!");
 
     Players.at(order)->number_of_turns_in_jail=-1;
+
+
+}
+
+void GameBoard::on_pushButton_clicked()
+{
+    my_Properties *My_properties=new my_Properties(this);
+
+    My_properties->exec();
+
 
 
 }

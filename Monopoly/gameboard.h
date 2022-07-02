@@ -31,6 +31,8 @@ public:
 
          void HideBuyButton();
 
+             bool Monopoly(string,Player*);
+
     ~GameBoard();
 
     private slots:
@@ -57,6 +59,8 @@ public:
           void on_pushButton_7_clicked();
 
           void on_pushButton_8_clicked();
+
+          void on_pushButton_clicked();
 
 private:
     Ui::GameBoard *ui;
@@ -92,8 +96,6 @@ private:
     int position;
 
 
-
-
     void set_position(int);
 
     void RenderMovement(int);
@@ -103,8 +105,6 @@ private:
     int Doubles;
 
     void PassGo();
-
-    bool Monopoly(string,string);
 
     void jail();
 

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1021</width>
-    <height>613</height>
+    <width>921</width>
+    <height>688</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,21 +17,11 @@
    <string notr="true">
 background-color: rgb(69, 105, 144);</string>
   </property>
-  <widget class="QListWidget" name="listWidget">
-   <property name="geometry">
-    <rect>
-     <x>60</x>
-     <y>40</y>
-     <width>531</width>
-     <height>551</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>731</x>
-     <y>130</y>
+     <x>730</x>
+     <y>170</y>
      <width>141</width>
      <height>34</height>
     </rect>
@@ -41,14 +31,14 @@ background-color: rgb(69, 105, 144);</string>
 </string>
    </property>
    <property name="text">
-    <string>buy house</string>
+    <string>Buy a house</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_2">
    <property name="geometry">
     <rect>
-     <x>731</x>
-     <y>190</y>
+     <x>730</x>
+     <y>240</y>
      <width>141</width>
      <height>34</height>
     </rect>
@@ -58,14 +48,14 @@ background-color: rgb(69, 105, 144);</string>
 </string>
    </property>
    <property name="text">
-    <string>buy hotel</string>
+    <string>Buy hotel</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_3">
    <property name="geometry">
     <rect>
-     <x>731</x>
-     <y>260</y>
+     <x>730</x>
+     <y>30</y>
      <width>141</width>
      <height>34</height>
     </rect>
@@ -75,14 +65,14 @@ background-color: rgb(69, 105, 144);</string>
 </string>
    </property>
    <property name="text">
-    <string>sell  property</string>
+    <string>Sell property</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_4">
    <property name="geometry">
     <rect>
-     <x>731</x>
-     <y>320</y>
+     <x>730</x>
+     <y>310</y>
      <width>141</width>
      <height>34</height>
     </rect>
@@ -92,13 +82,13 @@ background-color: rgb(69, 105, 144);</string>
 </string>
    </property>
    <property name="text">
-    <string>sell house</string>
+    <string>Sell a house</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_5">
    <property name="geometry">
     <rect>
-     <x>731</x>
+     <x>730</x>
      <y>380</y>
      <width>141</width>
      <height>34</height>
@@ -109,31 +99,14 @@ background-color: rgb(69, 105, 144);</string>
 </string>
    </property>
    <property name="text">
-    <string>sell hotel</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton_6">
-   <property name="geometry">
-    <rect>
-     <x>731</x>
-     <y>70</y>
-     <width>141</width>
-     <height>34</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">background-color: rgb(119, 141, 169);
-</string>
-   </property>
-   <property name="text">
-    <string>show document</string>
+    <string>Sell hotel</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_7">
    <property name="geometry">
     <rect>
-     <x>731</x>
-     <y>440</y>
+     <x>730</x>
+     <y>100</y>
      <width>141</width>
      <height>34</height>
     </rect>
@@ -143,7 +116,75 @@ background-color: rgb(69, 105, 144);</string>
 </string>
    </property>
    <property name="text">
-    <string>mortgage</string>
+    <string>Mortgage/UnMortgage</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>30</y>
+     <width>321</width>
+     <height>471</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_6">
+   <property name="geometry">
+    <rect>
+     <x>170</x>
+     <y>540</y>
+     <width>101</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+background: none;
+border: none;
+background-repeat: none;
+
+ 
+</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_8">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>540</y>
+     <width>101</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: transparent;
+background: none;
+border: none;
+background-repeat: none;
+
+ </string>
+   </property>
+   <property name="text">
+    <string/>
    </property>
   </widget>
  </widget>
