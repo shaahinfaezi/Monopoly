@@ -288,7 +288,7 @@ background-repeat: none;
     <string notr="true">background-color: rgb(119, 141, 169);</string>
    </property>
    <property name="text">
-    <string>Throw Dice</string>
+    <string>Roll Dice</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_45">
@@ -338,7 +338,7 @@ background-repeat: none;
    <property name="geometry">
     <rect>
      <x>1190</x>
-     <y>780</y>
+     <y>990</y>
      <width>112</width>
      <height>34</height>
     </rect>
@@ -550,7 +550,7 @@ background-repeat: none;
 </string>
    </property>
    <property name="text">
-    <string>Throw Dice for turns</string>
+    <string>Roll Dice for turns</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_55">
@@ -1373,6 +1373,45 @@ background-repeat: none;
     <string>Buy Property</string>
    </property>
   </widget>
+  <widget class="QPushButton" name="pushButton_6">
+   <property name="geometry">
+    <rect>
+     <x>1190</x>
+     <y>690</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Roll dice to get out</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_7">
+   <property name="geometry">
+    <rect>
+     <x>1190</x>
+     <y>780</y>
+     <width>121</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Pay 50$ to get out</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_8">
+   <property name="geometry">
+    <rect>
+     <x>1190</x>
+     <y>870</y>
+     <width>131</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Use get out of jail card</string>
+   </property>
+  </widget>
   <zorder>label_16</zorder>
   <zorder>label_17</zorder>
   <zorder>label_18</zorder>
@@ -1437,6 +1476,9 @@ background-repeat: none;
   <zorder>label_55</zorder>
   <zorder>label_56</zorder>
   <zorder>pushButton_5</zorder>
+  <zorder>pushButton_6</zorder>
+  <zorder>pushButton_7</zorder>
+  <zorder>pushButton_8</zorder>
  </widget>
  <resources/>
  <connections/>

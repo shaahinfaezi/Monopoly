@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <Property.h>
+#include "gameboard.h"
 
 namespace Ui {
 class Buy;
@@ -13,13 +14,18 @@ class Buy : public QDialog
     Q_OBJECT
 
 public:
-    explicit Buy(Property *,QWidget *parent = nullptr);
+    explicit Buy(QWidget *parent = nullptr);
     ~Buy();
+
+private slots:
+    void on_pushButton_clicked();
 
 private:
     Ui::Buy *ui;
 
     Property * property;
+
+    GameBoard * gameboard;
 };
 
 #endif // BUY_H

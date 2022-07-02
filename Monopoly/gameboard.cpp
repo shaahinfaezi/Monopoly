@@ -9,6 +9,8 @@
 #include <QTimer>
 #include <Property.h>
 #include "buy.h"
+#include <QMessageBox>
+#include <my_properties.h>
 
 #include <stdlib.h>
 #include <time.h>
@@ -1218,6 +1220,18 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
         Double=0;
 
+        ui->pushButton_6->hide();
+
+        ui->pushButton_6->setEnabled(false);
+
+        ui->pushButton_7->hide();
+
+        ui->pushButton_7->setEnabled(false);
+
+        ui->pushButton_8->hide();
+
+        ui->pushButton_8->setEnabled(false);
+
 }
 bool GameBoard::throwDice(int &Dice1,int &Dice2){
 
@@ -1903,15 +1917,7 @@ void GameBoard::clearDice(){
 
 }
 
-void GameBoard::set_position(int desination){
-
-
-
-    Players.at(order)->set_position(desination);
-
-
-    position=Players.at(order)->get_position();
-
+void GameBoard::PassGo(){
     if(position>39){
 
         position=position%40;
@@ -1922,7 +1928,19 @@ void GameBoard::set_position(int desination){
 
         print_order();
     }
+}
 
+void GameBoard::set_position(int desination){
+
+
+
+    Players.at(order)->set_position(desination);
+
+
+    position=Players.at(order)->get_position();
+
+
+    PassGo();
 
 }
 
@@ -1963,100 +1981,796 @@ void GameBoard::RenderMovement(int destination){
 
 
 
-}
-
-void GameBoard::on_pushButton_2_clicked()
-{
-
-
-    Double=throwDice(Dice1,Dice2);
-
-    if(Double==true){
-        Doubles++;
-    }
-    else{
-        Doubles=0;
-    }
-
-    printDice(Dice1,Dice2);
-
-    ui->pushButton_2->setEnabled(false);
-
-    ui->pushButton_2->hide();
-
-
-    RenderMovement(Players.at(order)->get_position()+Dice1+Dice2);
-
-
-    ui->pushButton_3->show();
-
-    ui->pushButton_3->setEnabled(true);
-
-    ui->pushButton->show();
-
-    ui->pushButton->setEnabled(true);
-
-    ui->pushButton_5->show();
-
-    ui->pushButton_5->setEnabled(true);
-
 
 
 }
 
-void GameBoard::on_pushButton_3_clicked()
-{
+bool GameBoard::Monopoly(string color,Player* Owner){
 
-    if(Doubles>0){
+    for(int i=0;i<int(Properties.size());i++){
 
-        if(Doubles==3){
-            Double=false;
-            Doubles=0;
-            RenderMovement(10);
-            order++;
+        if(Properties.at(i)->get_color()==color){
+
+            if(Properties.at(i)->owner==nullptr){
+                return false;
+            }
+
+            if(Properties.at(i)->owner!=Owner){
+                return false;
+            }
+
         }
-    }
-    else{
-        order++;
+
     }
 
+    return true;
 
-    if(order>number_of_players-1){
-        order=0;
-    }
+}
+
+void GameBoard::jail(){
 
     print_order();
-
-    ui->pushButton_2->setEnabled(true);
-
-    ui->pushButton_2->show();
-
-
-    ui->pushButton_3->hide();
-
-    ui->pushButton_3->setEnabled(false);
 
     ui->pushButton->hide();
 
     ui->pushButton->setEnabled(false);
 
+    ui->pushButton_3->hide();
+
+    ui->pushButton_3->setEnabled(false);
+
     ui->pushButton_5->hide();
 
     ui->pushButton_5->setEnabled(false);
 
+    ui->pushButton_6->show();
+
+    ui->pushButton_6->setEnabled(true);
+
+    ui->pushButton_7->show();
+
+    ui->pushButton_7->setEnabled(true);
+
+    if(Players.at(order)->get_jail()){
+
+        ui->pushButton_8->show();
+
+        ui->pushButton_8->setEnabled(true);
+
+    }
+
+
 
 }
 
-void GameBoard::on_pushButton_5_clicked()
+void GameBoard::SituationCheck(){
+
+
+    Property * tempProperty=Properties.at(Players.at(order)->get_position());
+    switch(tempProperty->get_type()){
+
+    case PROPERTY:
+
+        if(tempProperty->owner==nullptr){
+
+            ui->pushButton_5->show();
+
+            ui->pushButton_5->setEnabled(true);
+
+        }
+        else{
+
+            if(!tempProperty->get_mortgaged()&& tempProperty->owner!=Players.at(order)){//ejare
+
+                 QMessageBox::information(this,"Information","This property is owned by "+QString::fromStdString(tempProperty->owner->get_nickname())+"\n"+" pay up!");
+
+
+                 int tempRent;
+
+                 switch (tempProperty->get_number_of_houses()) {
+
+                 case 0:
+
+                     if(Monopoly(tempProperty->get_color(),tempProperty->owner)){
+
+                         tempRent=2*(tempProperty->get_rent0());
+
+                     }
+                     else{
+
+                        tempRent=tempProperty->get_rent0();
+
+                     }
+
+
+
+                     break;
+
+                 case 1:
+
+                     tempRent=tempProperty->get_rent1();
+                     break;
+                 case 2:
+
+                     tempRent=tempProperty->get_rent2();
+                     break;
+                 case 3:
+
+                     tempRent=tempProperty->get_rent3();
+                     break;
+                 case 4:
+
+                     tempRent=tempProperty->get_rent4();
+                     break;
+                 case 5://hotel
+
+                     tempRent=tempProperty->get_rentHotel();
+                     break;
+
+                 }
+
+
+                 Players.at(order)->set_Munny(Players.at(order)->get_Munny()-tempRent);
+                 tempProperty->owner->set_Munny(tempProperty->owner->get_Munny()+tempRent);
+
+                 print_order();
+
+
+                 //bankruptcy
+
+            }
+            else if(tempProperty->get_mortgaged()&& tempProperty->owner!=Players.at(order)){//ejare nemigirim
+
+            }
+
+
+        }
+
+    break;
+
+    case CHANCE:
+
+
+
+        break;
+
+    case COMMUNITY:
+
+
+
+        break;
+
+    case INCOMETAX:
+
+        QMessageBox::information(this,"Information","You have landed on Income tax,10% of your income will go to the government.");
+
+        Players.at(order)->set_Munny(int(0.9*Players.at(order)->get_Munny()));
+
+        print_order();
+
+        //bankruptcy
+
+        break;
+
+    case LUXURYTAX:
+
+        QMessageBox::information(this,"Information","You have landed on Luxury tax,you'll be charged 75$.");
+
+        Players.at(order)->set_Munny(Players.at(order)->get_Munny()-75);
+
+        print_order();
+
+        //bankruptcy
+
+        break;
+
+    case JAIL:
+
+
+         break;
+
+    case GO__:
+
+     break;
+    case PARKING:
+
+      break;
+
+    case GOTOJAIL:
+
+
+        QMessageBox::information(this,"Information","You shall go to jail!");
+
+        Players.at(order)->number_of_turns_in_jail=0;
+
+        RenderMovement(10);
+
+       order++;
+
+       Doubles=0;
+
+       Double=false;
+
+       if(order>number_of_players-1){
+           order=0;
+       }
+
+
+       print_order();
+
+      ui->pushButton_2->setEnabled(true);
+
+      ui->pushButton_2->show();
+
+
+
+       ui->pushButton_3->hide();
+
+       ui->pushButton_3->setEnabled(true);
+
+        ui->pushButton_3->setVisible(false);
+
+
+
+
+       ui->pushButton->hide();
+
+        ui->pushButton->setEnabled(true);
+
+        ui->pushButton->setVisible(false);
+
+
+
+       ui->pushButton_5->hide();
+
+        ui->pushButton_5->setEnabled(true);
+
+
+        ui->pushButton_5->setVisible(false);
+
+        JailCheck=true;
+
+        break;
+
+    case RR:
+
+        if(tempProperty->owner==nullptr){
+
+            ui->pushButton_5->show();
+
+            ui->pushButton_5->setEnabled(true);
+
+        }
+        else{
+
+            if(!tempProperty->get_mortgaged() &&tempProperty->owner!=Players.at(order)){//ejare
+
+                 QMessageBox::information(this,"Information","This property is owned by "+QString::fromStdString(tempProperty->owner->get_nickname())+"\n"+" pay up!");
+
+
+                 int tempRent;
+
+                 int numOfRailRoads=0;
+
+                 for(int i=0;i<int(Properties.size());i++){
+
+                     if(Properties.at(i)->owner==tempProperty->owner && Properties.at(i)->get_color()=="black"){
+
+                         numOfRailRoads++;
+
+
+                     }
+
+                 }
+
+                 switch (numOfRailRoads) {
+
+                 case 1:
+
+                     tempRent=tempProperty->get_rent1();
+
+                     break;
+
+                 case 2:
+
+                     tempRent=tempProperty->get_rent2();
+
+                     break;
+
+                 case 3:
+
+                     tempRent=tempProperty->get_rent3();
+
+                     break;
+
+                 case 4:
+
+                     tempRent=tempProperty->get_rent4();
+
+                     break;
+
+
+                 }
+
+
+                 Players.at(order)->set_Munny(Players.at(order)->get_Munny()-tempRent);
+                 tempProperty->owner->set_Munny(tempProperty->owner->get_Munny()+tempRent);
+
+                 print_order();
+
+
+                 //bankruptcy
+
+            }
+            else if(tempProperty->get_mortgaged() &&tempProperty->owner!=Players.at(order)){//ejare nemigirim
+
+            }
+
+            }
+
+        break;
+
+    case UTILITY_:
+
+        if(tempProperty->owner==nullptr){
+
+            ui->pushButton_5->show();
+
+            ui->pushButton_5->setEnabled(true);
+
+        }
+        else{
+
+            if(!tempProperty->get_mortgaged()&&tempProperty->owner!=Players.at(order)){//ejare
+
+                 QMessageBox::information(this,"Information","This property is owned by "+QString::fromStdString(tempProperty->owner->get_nickname())+"\n"+" pay up!");
+
+
+                 int tempRent;
+
+                 int numOfUtilities=0;
+
+                 for(int i=0;i<int(Properties.size());i++){
+
+                     if(Properties.at(i)->owner==tempProperty->owner && Properties.at(i)->get_color()=="white"){
+
+                        numOfUtilities++;
+
+
+                     }
+
+                 }
+
+                 if(numOfUtilities==1){
+                     tempRent=tempProperty->get_multiplier1() *(Dice1+Dice2);
+                 }
+                 else{
+                     tempRent=tempProperty->get_multiplier2() *(Dice1+Dice2);
+                 }
+
+
+                 Players.at(order)->set_Munny(Players.at(order)->get_Munny()-tempRent);
+                 tempProperty->owner->set_Munny(tempProperty->owner->get_Munny()+tempRent);
+
+                 print_order();
+
+
+                 //bankruptcy
+
+            }
+            else if(tempProperty->get_mortgaged()&&tempProperty->owner!=Players.at(order)){//ejare nemigirim
+
+            }
+
+            }
+
+
+        break;
+
+
+
+}
+}
+
+void GameBoard::rollDice(){
+    JailCheck=false;
+
+      Double=throwDice(Dice1,Dice2);
+
+      if(Double==true){
+          Doubles++;
+
+
+          if(Doubles==3){
+
+              Double=false;
+
+              Doubles=0;
+
+              RenderMovement(10);
+
+              Players.at(order)->number_of_turns_in_jail=0;
+
+              order++;
+
+              QMessageBox::warning(this,"Warning","You rolled 3 doubles,you'll go to jail!");
+
+
+              if(order>number_of_players-1){
+
+                  order=0;
+
+              }
+
+             JailCheck=true;
+
+       }
+
+      else{
+          QMessageBox::information(this,"Information","You rolled a double,you get to roll again!");
+          }
+      }
+      else{
+          Doubles=0;
+      }
+
+
+      if(!JailCheck){
+
+
+      printDice(Dice1,Dice2);
+
+
+      RenderMovement(Players.at(order)->get_position()+Dice1+Dice2);
+
+
+
+      SituationCheck();
+
+      if(JailCheck){
+          print_order();
+
+          ui->pushButton_2->setEnabled(true);
+
+          ui->pushButton_2->show();
+
+
+          ui->pushButton_3->hide();
+
+          ui->pushButton_3->setEnabled(false);
+
+          ui->pushButton->hide();
+
+          ui->pushButton->setEnabled(false);
+
+          ui->pushButton_5->hide();
+
+          ui->pushButton_5->setEnabled(false);
+
+      }
+      else{
+
+      ui->pushButton_3->show();
+
+      ui->pushButton_3->setEnabled(true);
+
+      ui->pushButton->show();
+
+      ui->pushButton->setEnabled(true);
+
+      ui->pushButton_2->setEnabled(false);
+
+      ui->pushButton_2->hide();
+      }
+
+  }
+      else{
+
+          print_order();
+
+          ui->pushButton_2->setEnabled(true);
+
+          ui->pushButton_2->show();
+
+
+          ui->pushButton_3->hide();
+
+          ui->pushButton_3->setEnabled(false);
+
+          ui->pushButton->hide();
+
+          ui->pushButton->setEnabled(false);
+
+          ui->pushButton_5->hide();
+
+          ui->pushButton_5->setEnabled(false);
+
+      }
+
+
+
+  }
+
+void GameBoard::on_pushButton_2_clicked()//roll dice
+{
+
+  rollDice();
+
+
+}
+
+  void GameBoard::on_pushButton_3_clicked()//end turn
+  {
+
+
+      if(Doubles>0){
+
+      }
+      else{
+
+          order++;
+      }
+
+
+      if(order>number_of_players-1){
+
+          order=0;
+
+      }
+
+
+      if(Players.at(order)->number_of_turns_in_jail>-1){
+
+          jail();
+
+          Players.at(order)->number_of_turns_in_jail++;
+
+      }
+      else{
+
+
+
+      print_order();
+
+      ui->pushButton_2->setEnabled(true);
+
+      ui->pushButton_2->show();
+
+
+      ui->pushButton_3->hide();
+
+      ui->pushButton_3->setEnabled(false);
+
+      ui->pushButton->hide();
+
+      ui->pushButton->setEnabled(false);
+
+      ui->pushButton_5->hide();
+
+      ui->pushButton_5->setEnabled(false);
+
+      }
+}
+
+
+
+  void GameBoard::HideBuyButton(){
+
+      ui->pushButton_5->hide();
+
+      ui->pushButton_5->setEnabled(false);
+
+  }
+
+void GameBoard::on_pushButton_5_clicked()//buy property
 {
 
     if(Properties.at(Players.at(order)->get_position())->owner==nullptr){
 
-        Buy * buy=new Buy(Properties.at(Players.at(order)->get_position()),this);
+        Buy * buy=new Buy(this);
 
         buy->exec();
 
     }
+
+
+}
+
+void GameBoard::on_pushButton_6_clicked()//roll to get out of jail
+{
+    Double=throwDice(Dice1,Dice2);
+
+    printDice(Dice1,Dice2);
+
+    if(Double){
+
+        RenderMovement(Players.at(order)->get_position()+Dice1+Dice2);
+
+        SituationCheck();
+
+        ui->pushButton_3->show();
+
+        ui->pushButton_3->setEnabled(true);
+
+        ui->pushButton->show();
+
+        ui->pushButton->setEnabled(true);
+
+        ui->pushButton_2->setEnabled(false);
+
+        ui->pushButton_2->hide();
+
+        ui->pushButton_6->setEnabled(false);
+
+        ui->pushButton_6->hide();
+
+        ui->pushButton_7->setEnabled(false);
+
+        ui->pushButton_7->hide();
+
+        ui->pushButton_8->setEnabled(false);
+
+        ui->pushButton_8->hide();
+
+
+         QMessageBox::information(this,"Information","You rolled a double,you can get out of jail!");
+
+         Double=false;
+
+    Players.at(order)->number_of_turns_in_jail=-1;
+
+    }
+    else{
+
+        if(Players.at(order)->number_of_turns_in_jail==3){
+
+            Players.at(order)->set_Munny(Players.at(order)->get_Munny()-50);
+
+            print_order();
+
+            //bankruptcy
+
+
+            RenderMovement(Players.at(order)->get_position()+Dice1+Dice2);
+
+            SituationCheck();
+
+            ui->pushButton_3->show();
+
+            ui->pushButton_3->setEnabled(true);
+
+            ui->pushButton->show();
+
+            ui->pushButton->setEnabled(true);
+
+            ui->pushButton_2->setEnabled(false);
+
+            ui->pushButton_2->hide();
+
+            ui->pushButton_6->setEnabled(false);
+
+            ui->pushButton_6->hide();
+
+            ui->pushButton_7->setEnabled(false);
+
+            ui->pushButton_7->hide();
+
+            ui->pushButton_8->setEnabled(false);
+
+            ui->pushButton_8->hide();
+
+             QMessageBox::information(this,"Information","You payed 50$,you can get out of jail!");
+
+              Players.at(order)->number_of_turns_in_jail=-1;
+
+
+
+        }
+
+        else{
+
+
+
+        ui->pushButton_3->show();
+
+        ui->pushButton_3->setEnabled(true);
+
+        ui->pushButton->show();
+
+        ui->pushButton->setEnabled(true);
+
+        ui->pushButton_2->setEnabled(false);
+
+        ui->pushButton_2->hide();
+
+        ui->pushButton_6->setEnabled(false);
+
+        ui->pushButton_6->hide();
+
+        ui->pushButton_7->setEnabled(false);
+
+        ui->pushButton_7->hide();
+
+        ui->pushButton_8->setEnabled(false);
+
+        ui->pushButton_8->hide();
+
+        }
+
+    }
+
+
+
+
+}
+
+void GameBoard::on_pushButton_7_clicked()//50 to get out
+{
+    Players.at(order)->set_Munny(Players.at(order)->get_Munny()-50);
+
+    print_order();
+
+    //bankruptcy
+
+    ui->pushButton_2->setEnabled(true);
+
+    ui->pushButton_2->show();
+
+    ui->pushButton_6->setEnabled(false);
+
+    ui->pushButton_6->hide();
+
+    ui->pushButton_7->setEnabled(false);
+
+    ui->pushButton_7->hide();
+
+    ui->pushButton_8->setEnabled(false);
+
+    ui->pushButton_8->hide();
+
+    QMessageBox::information(this,"Information","You're free!");
+
+     Players.at(order)->number_of_turns_in_jail=-1;
+
+
+
+
+}
+
+void GameBoard::on_pushButton_8_clicked()
+{
+
+    Players.at(order)->set_jail(false);
+
+    ui->pushButton_2->setEnabled(true);
+
+    ui->pushButton_2->show();
+
+    ui->pushButton_6->setEnabled(false);
+
+    ui->pushButton_6->hide();
+
+    ui->pushButton_7->setEnabled(false);
+
+    ui->pushButton_7->hide();
+
+    ui->pushButton_8->setEnabled(false);
+
+    ui->pushButton_8->hide();
+
+    QMessageBox::information(this,"Information","You're free!");
+
+    Players.at(order)->number_of_turns_in_jail=-1;
+
+
+}
+
+void GameBoard::on_pushButton_clicked()
+{
+    my_Properties *My_properties=new my_Properties(this);
+
+    My_properties->exec();
+
 
 
 }

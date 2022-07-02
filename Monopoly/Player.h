@@ -56,6 +56,7 @@ public:
 
     string tokenPath;
 
+   int number_of_turns_in_jail;
 
 
 };
