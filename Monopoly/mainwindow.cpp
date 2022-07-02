@@ -102,9 +102,24 @@ void MainWindow::on_pushButton_clicked()
 
         }
 
+    }
+    bool DifferentNames=true;
+
+    for(int i=0;i<number_of_players;i++){
+
+        for(int j=0;j<number_of_players && i!=j;j++){
+
+            if(LineEdits.at(i)->text()==LineEdits.at(j)->text()){
+                DifferentNames=false;
+            }
+
+
+        }
+
 
 
     }
+
     if(ui->comboBox->currentIndex()==-1){
 
 
@@ -119,8 +134,13 @@ void MainWindow::on_pushButton_clicked()
 
 
     }
+    if(DifferentNames==false){
 
-    else{
+        QMessageBox::warning(this,"Warning","Please enter different names.");
+
+    }
+
+    else if(DifferentNames==true && empty_check==false){
 
         vector<string> names;
 

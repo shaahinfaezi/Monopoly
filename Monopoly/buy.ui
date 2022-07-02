@@ -22,7 +22,7 @@ background-color: rgb(69, 105, 144);</string>
     <rect>
      <x>100</x>
      <y>60</y>
-     <width>331</width>
+     <width>351</width>
      <height>471</height>
     </rect>
    </property>
@@ -51,7 +51,7 @@ background-repeat: none;
     <string notr="true">background-color: rgb(119, 141, 169);</string>
    </property>
    <property name="text">
-    <string>BUY</string>
+    <string>Buy</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_2">
@@ -67,7 +67,7 @@ background-repeat: none;
     <string notr="true">background-color: rgb(119, 141, 169);</string>
    </property>
    <property name="text">
-    <string>auction</string>
+    <string>Auction</string>
    </property>
   </widget>
  </widget>

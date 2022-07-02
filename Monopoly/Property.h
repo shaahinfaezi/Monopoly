@@ -1,4 +1,4 @@
-#ifndef PROPERTY_H
+ #ifndef PROPERTY_H
 #define PROPERTY_H
 #include <QLabel>
 #include <string>
