@@ -5,6 +5,28 @@
 #include <sell_property.h>
 
 void my_Properties::listPrint(){
+
+
+    ui->label_2->hide();
+
+    ui->label_2->setEnabled(false);
+
+    ui->label_3->hide();
+
+    ui->label_3->setEnabled(false);
+
+    ui->label_4->hide();
+
+    ui->label_4->setEnabled(false);
+
+    ui->label_5->hide();
+
+    ui->label_5->setEnabled(false);
+
+    ui->label_6->hide();
+
+    ui->label_6->setEnabled(false);
+
     if(gameBoard->Players.at(gameBoard->order)->MyProperties.size()==0){
 
         ui->label->setText("You do not own a property at the moment.");
@@ -53,6 +75,115 @@ void my_Properties::listPrint(){
 
         ui->pushButton_8->setEnabled(true);
 
+       if(gameBoard->Players.at(gameBoard->order)->MyProperties.at(iterator)->get_type()==PROPERTY) {
+
+           QPixmap housepix(":/res/Images/photo_2022-07-01_11-11-57__2_-removebg-preview.png");
+
+           QPixmap hotelpix(":/res/Images/photo_2022-07-01_11-11-57-removebg-preview.png");
+
+
+           switch (gameBoard->Players.at(gameBoard->order)->MyProperties.at(iterator)->get_number_of_houses()) {
+
+           case 0:
+
+            break;
+
+           case 1:
+               ui->label_2->show();
+
+               ui->label_2->setEnabled(true);
+
+               ui->label_2->setPixmap(housepix.scaled(51,51,Qt::KeepAspectRatio));
+
+            break;
+
+           case 2:
+
+               ui->label_2->show();
+
+               ui->label_2->setEnabled(true);
+
+               ui->label_3->show();
+
+               ui->label_3->setEnabled(true);
+
+               ui->label_2->setPixmap(housepix.scaled(51,51,Qt::KeepAspectRatio));
+
+               ui->label_3->setPixmap(housepix.scaled(51,51,Qt::KeepAspectRatio));
+
+            break;
+
+           case 3:
+
+               ui->label_2->show();
+
+               ui->label_2->setEnabled(true);
+
+               ui->label_3->show();
+
+               ui->label_3->setEnabled(true);
+
+               ui->label_4->show();
+
+               ui->label_4->setEnabled(true);
+
+               ui->label_2->setPixmap(housepix.scaled(51,51,Qt::KeepAspectRatio));
+
+               ui->label_3->setPixmap(housepix.scaled(51,51,Qt::KeepAspectRatio));
+
+               ui->label_4->setPixmap(housepix.scaled(51,51,Qt::KeepAspectRatio));
+
+            break;
+
+           case 4:
+               ui->label_2->show();
+
+               ui->label_2->setEnabled(true);
+
+               ui->label_3->show();
+
+               ui->label_3->setEnabled(true);
+
+               ui->label_4->show();
+
+               ui->label_4->setEnabled(true);
+
+               ui->label_5->show();
+
+               ui->label_5->setEnabled(true);
+
+
+
+               ui->label_2->setPixmap(housepix.scaled(51,51,Qt::KeepAspectRatio));
+
+               ui->label_3->setPixmap(housepix.scaled(51,51,Qt::KeepAspectRatio));
+
+               ui->label_4->setPixmap(housepix.scaled(51,51,Qt::KeepAspectRatio));
+
+               ui->label_5->setPixmap(housepix.scaled(51,51,Qt::KeepAspectRatio));
+
+            break;
+
+           case 5:
+
+               ui->label_6->show();
+
+               ui->label_6->setEnabled(true);
+
+               ui->label_6->setPixmap(hotelpix.scaled(51,51,Qt::KeepAspectRatio));
+
+            break;
+
+
+
+
+
+
+
+           }
+       }
+
+
      if(gameBoard->Players.at(gameBoard->order)->MyProperties.at(iterator)->get_type()==RR ||gameBoard->Players.at(gameBoard->order)->MyProperties.at(iterator)->get_type()==UTILITY_ ||gameBoard->Players.at(gameBoard->order)->MyProperties.at(iterator)->get_mortgaged()==true){
 
          ui->pushButton->hide();
@@ -75,22 +206,46 @@ void my_Properties::listPrint(){
 
      }
      else{
-         ui->pushButton->show();
-
-         ui->pushButton->setEnabled(true);
-
-         ui->pushButton_2->show();
-
-         ui->pushButton_2->setEnabled(true);
+         if(gameBoard->Players.at(gameBoard->order)->MyProperties.at(iterator)->get_number_of_houses()==5){
 
 
-         ui->pushButton_4->show();
+             ui->pushButton->hide();
 
-         ui->pushButton_4->setEnabled(true);
+             ui->pushButton->setEnabled(false);
 
-         ui->pushButton_5->show();
+             ui->pushButton_2->hide();
 
-         ui->pushButton_5->setEnabled(true);
+             ui->pushButton_2->setEnabled(false);
+
+             ui->pushButton_4->hide();
+
+             ui->pushButton_4->setEnabled(false);
+
+
+         }
+         else{
+
+
+             ui->pushButton->show();
+
+             ui->pushButton->setEnabled(true);
+
+             ui->pushButton_2->show();
+
+             ui->pushButton_2->setEnabled(true);
+
+             ui->pushButton_4->show();
+
+             ui->pushButton_4->setEnabled(true);
+
+             ui->pushButton_5->show();
+
+             ui->pushButton_5->setEnabled(true);
+
+
+
+
+         }
 
 
 
@@ -100,7 +255,12 @@ void my_Properties::listPrint(){
 
   ui->label->setPixmap(pixmap.scaled(321,471,Qt::KeepAspectRatio));
 
+
+
 }
+
+
+
 
 }
 
@@ -366,16 +526,16 @@ void my_Properties::on_pushButton_4_clicked()//sell house
 
 void my_Properties::on_pushButton_2_clicked()//buy hotel
 {
-    bool FourHouses=true;
+    bool FourOrFiveHouses=true;
 
     for(int i=0;i<int(gameBoard->Properties.size());i++){
 
 
        if(gameBoard->Properties.at(i)->get_color()==gameBoard->Players.at(gameBoard->order)->MyProperties.at(iterator)->get_color()){
 
-           if(gameBoard->Properties.at(i)->get_number_of_houses()!=4){
+           if(gameBoard->Properties.at(i)->get_number_of_houses()!=4 && gameBoard->Properties.at(i)->get_number_of_houses()!=5){
 
-               FourHouses=false;
+               FourOrFiveHouses=false;
 
            }
 
@@ -385,7 +545,7 @@ void my_Properties::on_pushButton_2_clicked()//buy hotel
     }
 
 
-    if(FourHouses==true){
+    if(FourOrFiveHouses==true){
 
         gameBoard->Players.at(gameBoard->order)->MyProperties.at(iterator)->set_number_of_houses(gameBoard->Players.at(gameBoard->order)->MyProperties.at(iterator)->get_number_of_houses()+1);
 
@@ -401,7 +561,7 @@ void my_Properties::on_pushButton_2_clicked()//buy hotel
     }
     else{
 
-         QMessageBox::information(this,"Information","You need to have 4 houses on each of the color group to buy a hotel.");
+         QMessageBox::information(this,"Information","You need to have 4 houses or a hotel on the color group properties to buy a hotel.");
     }
 
 }
@@ -460,14 +620,55 @@ void my_Properties::on_pushButton_7_clicked()//mortgage and un mortgage
 
 void my_Properties::on_pushButton_3_clicked()
 {
+    bool unimproved_properties=true;
+
+    for(int i=0;i<int(gameBoard->Properties.size());i++){
+
+
+        if(gameBoard->Properties.at(i)->get_color()==gameBoard->Players.at(gameBoard->order)->MyProperties.at(iterator)->get_color()){
+
+            if(gameBoard->Properties.at(i)->get_number_of_houses()>0){
+
+                unimproved_properties=false;
+
+            }
+
+        }
+
+    }
+
+    if(unimproved_properties ||gameBoard->Players.at(gameBoard->order)->MyProperties.at(iterator)->get_type()==RR || gameBoard->Players.at(gameBoard->order)->MyProperties.at(iterator)->get_type()==UTILITY_){
+
    sell_property * Sell_Property=new sell_property(iterator,this);
 
   int code=Sell_Property->exec();
 
     if(code==QDialog::Accepted){
 
+
+
+        if(iterator==int(gameBoard->Players.at(gameBoard->order)->MyProperties.size())){
+
+            iterator--;
+
+        }
+
+
+
+
+
+
         listPrint();
 
+
+    }
+
+
+
+    }
+    else{
+
+        QMessageBox::information(this,"Information","There are some improved properties in this color group.");
     }
 
 }
