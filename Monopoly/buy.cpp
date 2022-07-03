@@ -1,6 +1,7 @@
 #include "buy.h"
 #include "ui_buy.h"
 #include <QMessageBox>
+#include "auction.h"
 
 
 Buy::Buy(QWidget *parent) :
@@ -44,5 +45,20 @@ void Buy::on_pushButton_clicked()
 
     this->close();
 
+
+}
+
+void Buy::on_pushButton_2_clicked()
+{
+
+    auction * Auction=new auction(this);
+
+    int code=Auction->exec();
+
+    if(code==QDialog::Rejected ||code==QDialog::Accepted){
+
+     this->close();
+
+    }
 
 }

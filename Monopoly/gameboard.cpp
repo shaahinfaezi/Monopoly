@@ -2196,6 +2196,16 @@ void GameBoard::SituationCheck(){
        }
 
 
+       if(Players.at(order)->number_of_turns_in_jail>-1){
+
+           jail();
+
+           Players.at(order)->number_of_turns_in_jail++;
+
+       }
+       else{
+
+
        print_order();
 
       ui->pushButton_2->setEnabled(true);
@@ -2229,6 +2239,8 @@ void GameBoard::SituationCheck(){
         ui->pushButton_5->setVisible(false);
 
         JailCheck=true;
+
+       }
 
         break;
 
@@ -2373,6 +2385,8 @@ void GameBoard::SituationCheck(){
 }
 
 void GameBoard::rollDice(){
+
+
     JailCheck=false;
 
       Double=throwDice(Dice1,Dice2);
@@ -2404,9 +2418,9 @@ void GameBoard::rollDice(){
 
              JailCheck=true;
 
-       }
+        }
 
-      else{
+        else{
           QMessageBox::information(this,"Information","You rolled a double,you get to roll again!");
           }
       }
@@ -2428,6 +2442,9 @@ void GameBoard::rollDice(){
       SituationCheck();
 
       if(JailCheck){
+
+
+
           print_order();
 
           ui->pushButton_2->setEnabled(true);
@@ -2446,6 +2463,10 @@ void GameBoard::rollDice(){
           ui->pushButton_5->hide();
 
           ui->pushButton_5->setEnabled(false);
+
+
+
+
 
       }
       else{
@@ -2485,9 +2506,18 @@ void GameBoard::rollDice(){
 
           ui->pushButton_5->setEnabled(false);
 
+
+
+
       }
 
+      if(Players.at(order)->number_of_turns_in_jail>-1){
 
+          jail();
+
+          Players.at(order)->number_of_turns_in_jail++;
+
+      }
 
   }
 

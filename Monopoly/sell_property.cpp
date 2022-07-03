@@ -19,7 +19,7 @@ bool empty_string_check_(string s){
 
 bool isNumber(string s){
 
-    QRegExp re("\\d*");  // a digit (\d), zero or more times (*)
+    QRegExp re("\\d*");
     if (re.exactMatch(QString::fromStdString(s)))
         return true;
 
@@ -80,25 +80,25 @@ void sell_property::on_pushButton_clicked()
 
                  int buyer=0;
 
-                 for(;buyer<int(gameBoard->Players.size());buyer++){
+                 for(int i=0;i<int(gameBoard->Players.size());i++){
 
 
-                     if(QString::fromStdString(gameBoard->Players.at(buyer)->get_nickname())==ui->comboBox->currentIndex()){
+                     if(QString::fromStdString(gameBoard->Players.at(i)->get_nickname())==ui->comboBox->currentText()){
 
-                         break;
+                         buyer=i;
                      }
 
                  }
 
-                 buyer--;
+
+
+
 
                  for(int i=0;i<int(gameBoard->Properties.size());i++){
 
                      if(gameBoard->Properties.at(i)==gameBoard->Players.at(gameBoard->order)->MyProperties.at(Iterator)){
 
                          gameBoard->Properties.at(i)->owner=gameBoard->Players.at(buyer);
-
-                         break;
 
                      }
 
@@ -111,6 +111,8 @@ void sell_property::on_pushButton_clicked()
 
                  gameBoard->Players.at(gameBoard->order)->MyProperties.erase(gameBoard->Players.at(gameBoard->order)->MyProperties.begin()+Iterator);
 
+
+
                  gameBoard->Players.at(gameBoard->order)->set_Munny(gameBoard->Players.at(gameBoard->order)->get_Munny()+ui->lineEdit->text().toInt());
 
                  gameBoard->print_order();
@@ -119,6 +121,7 @@ void sell_property::on_pushButton_clicked()
                  QMessageBox::StandardButton reply=QMessageBox::information(this,"Information",ui->comboBox->currentText()+" bought this property from you.");
 
                  if(reply==QMessageBox::Ok || reply==QMessageBox::Close){
+
 
                      accept();
 

@@ -188,7 +188,8 @@ background-repeat: none;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">
+</string>
    </property>
    <property name="text">
     <string/>
@@ -209,7 +210,8 @@ background-repeat: none;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(255, 255, 255);</string>
+    <string notr="true">
+</string>
    </property>
    <property name="text">
     <string/>
