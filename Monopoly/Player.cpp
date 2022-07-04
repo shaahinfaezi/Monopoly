@@ -1,7 +1,7 @@
 #include "Player.h"
 
 
-Player::Player(string nickname,QLabel * token):nickname(nickname),Munny(1500),get_out_of_jail(false),position(-1){
+Player::Player(string nickname,QLabel * token):nickname(nickname),Munny(1500),get_out_of_jail(false),position(-1),number_of_turns_in_jail(-1){
 
 
 this->token=token;

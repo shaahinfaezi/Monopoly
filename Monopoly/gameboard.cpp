@@ -7,8 +7,12 @@
 #include <QPainter>
 #include <QThread>
 #include <QTimer>
-#include <Property.h>
+#include "Property.h"
 #include "buy.h"
+#include <QMessageBox>
+#include "my_properties.h"
+#include "community_chance.h"
+#include "mainwindow.h"
 
 #include <stdlib.h>
 #include <time.h>
@@ -16,7 +20,27 @@
 #include "vector"
 
 
+bool Empty_string_check(string s){
 
+    if(all_of(s.begin(),s.end(),isspace)||s.empty()){
+        return true;
+    }
+    else{
+        return false;
+    }
+
+}
+
+bool IsNumber(string s){
+
+    QRegExp re("\\d*");
+    if (re.exactMatch(QString::fromStdString(s)))
+        return true;
+
+    return false;
+
+
+}
 
 using std::vector;
 
@@ -49,7 +73,218 @@ void Randomizer(vector<T> &Variable){
 }
 
 
+void GameBoard::move(int destination){
 
+    RenderMovement(destination);
+
+
+
+    SituationCheck();
+}
+
+void GameBoard::BankruptCheck(){
+
+qDebug()<<"check";
+
+
+    if(Players.at(order)->get_Munny()<0){
+
+
+
+
+        QMessageBox::information(this,"Information","Your balance is negative so we'll sell your houses and hotels to try to save you from bankruptcy.");
+
+
+        int credit=0;
+
+        for(int i=0;i<int(Players.at(order)->MyProperties.size());i++){
+
+            if(Players.at(order)->MyProperties.at(i)->get_type()==PROPERTY){
+
+                if(Players.at(order)->MyProperties.at(i)->get_number_of_houses()<5){
+
+                    credit+=Players.at(order)->MyProperties.at(i)->get_number_of_houses()*Players.at(order)->MyProperties.at(i)->get_house()*0.5;
+
+                }
+                else{
+
+                    credit+=Players.at(order)->MyProperties.at(i)->get_hotel()*0.5;
+
+                }
+
+
+            }
+
+
+
+        }
+
+        qDebug()<<credit;
+
+        if(Players.at(order)->get_Munny()+credit<0){
+
+          Bankrupt();
+
+
+
+        }
+        else{
+
+
+            Players.at(order)->set_Munny(Players.at(order)->get_Munny()+credit);
+
+            print_order();
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+
+
+
+}
+
+void GameBoard::Bankrupt(){
+
+
+     QMessageBox::information(this,"Information",QString::fromStdString(Players.at(order)->get_nickname())+" went bankrupt.");
+
+    for(int i=0;i<int(Properties.size());i++){
+
+        if(Properties.at(i)->owner==Players.at(order)){
+
+            Properties.at(i)->owner=nullptr;
+
+            Properties.at(i)->set_number_of_houses(0);
+
+            Properties.at(i)->set_mortgage(false);
+
+        }
+
+    }
+
+    int i;
+    for(i=0;i<int(Properties.at(Players.at(order)->get_position())->PlayersOnProperty.size());i++){
+
+        if(Properties.at(Players.at(order)->get_position())->PlayersOnProperty.at(i)->get_nickname()==Players.at(order)->get_nickname()){
+            break;
+        }
+
+    }
+
+
+    Properties.at(Players.at(order)->get_position())->PlayersOnProperty.at(i)->token->hide();
+
+    Properties.at(Players.at(order)->get_position())->PlayersOnProperty.at(i)->token->setEnabled(false);
+
+    Properties.at(Players.at(order)->get_position())->PlayersOnProperty.erase(Properties.at(Players.at(order)->get_position())->PlayersOnProperty.begin()+i);
+
+    position=Players.at(order)->get_position();
+
+    movement();
+
+    number_of_players--;
+
+    qDebug()<<order;
+
+    Players.erase(Players.begin()+order);
+
+    if(order==int(Players.size()))
+
+        order=0;
+
+
+     qDebug()<<order;
+
+
+      BankruptCheck();
+
+    if(Players.at(order)->number_of_turns_in_jail>-1){
+
+        jail();
+
+        Players.at(order)->number_of_turns_in_jail++;
+
+    }
+    else{
+
+
+
+    print_order();
+
+    ui->pushButton_2->setEnabled(true);
+
+    ui->pushButton_2->show();
+
+
+    ui->pushButton_3->hide();
+
+    ui->pushButton_3->setEnabled(false);
+
+    ui->pushButton->hide();
+
+    ui->pushButton->setEnabled(false);
+
+    ui->pushButton_5->hide();
+
+    ui->pushButton_5->setEnabled(false);
+
+    }
+
+    if(Players.size()==1){
+
+
+
+
+
+        QMessageBox::StandardButton reply=QMessageBox::information(this,"Information",QString::fromStdString(Players.at(order)->get_nickname())+" WON!!!!!!");
+
+        if(reply==QMessageBox::Ok || reply==QMessageBox::Close){
+
+            MainWindow * mainwindow=new MainWindow(this);
+
+            mainwindow->show();
+
+           this->hide();
+
+
+
+
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+
+}
 
 
 
@@ -755,7 +990,7 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
     tempCommunity->set_path(":/res/Images/community/Community_Chest_GOO10.png");
 
-    tempCommunity->set_function(GETOUT_);
+    tempCommunity->set_function(FIFTY_FROM_EVERYONE);
 
     CommunityCards.push_back(tempCommunity);
 
@@ -765,7 +1000,7 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
     tempCommunity->set_path(":/res/Images/community/Community_Chest_GOOJF16.png");
 
-    tempCommunity->set_function(FIFTY_FROM_EVERYONE);
+    tempCommunity->set_function(GETOUT_);
 
     CommunityCards.push_back(tempCommunity);
 
@@ -1218,6 +1453,53 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
         Double=0;
 
+        ui->pushButton_6->hide();
+
+        ui->pushButton_6->setEnabled(false);
+
+        ui->pushButton_7->hide();
+
+        ui->pushButton_7->setEnabled(false);
+
+        ui->pushButton_8->hide();
+
+        ui->pushButton_8->setEnabled(false);
+
+        ui->pushButton_9->hide();
+
+        ui->pushButton_9->setEnabled(false);
+
+        ChanceToUtility=false;
+
+        ui->label_57->hide();
+
+       ui->label_57->setEnabled(false);
+
+        ui->label_58->hide();
+
+        ui->label_58->setEnabled(false);
+
+        ui->label_59->hide();
+
+        ui->label_59->setEnabled(false);
+
+        ui->pushButton_10->hide();
+
+        ui->pushButton_10->setEnabled(false);
+
+        ui->pushButton_11->hide();
+
+        ui->pushButton_11->setEnabled(false);
+
+        ui->comboBox->hide();
+
+        ui->comboBox->setEnabled(false);
+
+        ui->lineEdit->hide();
+
+        ui->lineEdit->setEnabled(false);
+
+
 }
 bool GameBoard::throwDice(int &Dice1,int &Dice2){
 
@@ -1272,6 +1554,78 @@ void GameBoard::print_order(){
 
     ui->label_44->setText(QString::number(Players.at(order)->get_Munny())+"$");
 
+    if(Players.at(order)->get_jail()==true){
+
+        QPixmap JailCard(":/res/Images/download__7_-removebg-preview.png");
+
+        ui->label_57->setPixmap(JailCard.scaled(274,184,Qt::KeepAspectRatio));
+
+        ui->label_57->show();
+
+        ui->label_57->setEnabled(true);
+
+        ui->pushButton_10->show();
+
+        ui->pushButton_10->setEnabled(true);
+
+
+
+        ui->label_58->hide();
+
+        ui->label_58->setEnabled(false);
+
+        ui->label_59->hide();
+
+        ui->label_59->setEnabled(false);
+
+        ui->pushButton_11->hide();
+
+        ui->pushButton_11->setEnabled(false);
+
+        ui->comboBox->hide();
+
+        ui->comboBox->setEnabled(false);
+
+        ui->lineEdit->hide();
+
+        ui->lineEdit->setEnabled(false);
+
+    }
+
+    else{
+
+        ui->label_57->hide();
+
+        ui->label_57->setEnabled(false);
+
+        ui->label_58->hide();
+
+        ui->label_58->setEnabled(false);
+
+        ui->label_59->hide();
+
+        ui->label_59->setEnabled(false);
+
+        ui->pushButton_10->hide();
+
+        ui->pushButton_10->setEnabled(false);
+
+        ui->pushButton_11->hide();
+
+        ui->pushButton_11->setEnabled(false);
+
+        ui->comboBox->hide();
+
+        ui->comboBox->setEnabled(false);
+
+        ui->lineEdit->hide();
+
+        ui->lineEdit->setEnabled(false);
+
+
+
+    }
+
 
 }
 
@@ -1311,6 +1665,9 @@ void GameBoard::on_pushButton_4_clicked()
     if(order<number_of_players-1){
 
         order++;
+
+
+
         print_order();
 
 
@@ -1903,15 +2260,7 @@ void GameBoard::clearDice(){
 
 }
 
-void GameBoard::set_position(int desination){
-
-
-
-    Players.at(order)->set_position(desination);
-
-
-    position=Players.at(order)->get_position();
-
+void GameBoard::PassGo(){
     if(position>39){
 
         position=position%40;
@@ -1922,7 +2271,19 @@ void GameBoard::set_position(int desination){
 
         print_order();
     }
+}
 
+void GameBoard::set_position(int desination){
+
+
+
+    Players.at(order)->set_position(desination);
+
+
+    position=Players.at(order)->get_position();
+
+
+    PassGo();
 
 }
 
@@ -1950,80 +2311,1697 @@ void GameBoard::RenderMovement(int destination){
 
      Properties.at(position)->PlayersOnProperty.push_back(Players.at(order));
 
-
-    QThread::msleep(50);
-
     movement();
 
     position=tempPos;
 
-    QThread::msleep(50);
-
     movement();
 
 
 
+
+
 }
 
-void GameBoard::on_pushButton_2_clicked()
+bool GameBoard::Monopoly(string color,Player* Owner){
+
+    for(int i=0;i<int(Properties.size());i++){
+
+        if(Properties.at(i)->get_color()==color){
+
+            if(Properties.at(i)->owner==nullptr){
+                return false;
+            }
+
+            if(Properties.at(i)->owner!=Owner){
+                return false;
+            }
+
+        }
+
+    }
+
+    return true;
+
+}
+
+void GameBoard::jail(){
+
+    print_order();
+
+    ui->pushButton->hide();
+
+    ui->pushButton->setEnabled(false);
+
+    ui->pushButton_3->hide();
+
+    ui->pushButton_3->setEnabled(false);
+
+    ui->pushButton_5->hide();
+
+    ui->pushButton_5->setEnabled(false);
+
+    ui->pushButton_6->show();
+
+    ui->pushButton_6->setEnabled(true);
+
+    ui->pushButton_7->show();
+
+    ui->pushButton_7->setEnabled(true);
+
+    if(Players.at(order)->get_jail()){
+
+        ui->pushButton_8->show();
+
+        ui->pushButton_8->setEnabled(true);
+
+    }
+
+
+
+}
+
+void GameBoard::SituationCheck(){
+
+
+    Property * tempProperty=Properties.at(Players.at(order)->get_position());
+    switch(tempProperty->get_type()){
+
+    case PROPERTY:
+
+        if(tempProperty->owner==nullptr){
+
+            ui->pushButton_5->show();
+
+            ui->pushButton_5->setEnabled(true);
+
+        }
+        else{
+
+            if(!tempProperty->get_mortgaged()&& tempProperty->owner!=Players.at(order)){//ejare
+
+                 QMessageBox::information(this,"Information","This property is owned by "+QString::fromStdString(tempProperty->owner->get_nickname())+"\n"+" pay up!");
+
+
+                 int tempRent;
+
+                 switch (tempProperty->get_number_of_houses()) {
+
+                 case 0:
+
+                     if(Monopoly(tempProperty->get_color(),tempProperty->owner)){
+
+                         tempRent=2*(tempProperty->get_rent0());
+
+                     }
+                     else{
+
+                        tempRent=tempProperty->get_rent0();
+
+                     }
+
+
+
+                     break;
+
+                 case 1:
+
+                     tempRent=tempProperty->get_rent1();
+                     break;
+                 case 2:
+
+                     tempRent=tempProperty->get_rent2();
+                     break;
+                 case 3:
+
+                     tempRent=tempProperty->get_rent3();
+                     break;
+                 case 4:
+
+                     tempRent=tempProperty->get_rent4();
+                     break;
+                 case 5://hotel
+
+                     tempRent=tempProperty->get_rentHotel();
+                     break;
+
+                 }
+
+
+                 Players.at(order)->set_Munny(Players.at(order)->get_Munny()-tempRent);
+
+                 BankruptCheck();
+
+                 tempProperty->owner->set_Munny(tempProperty->owner->get_Munny()+tempRent);
+
+                 print_order();
+
+
+
+
+            }
+            else if(tempProperty->get_mortgaged()&& tempProperty->owner!=Players.at(order)){//ejare nemigirim
+
+            }
+
+
+        }
+
+    break;
+
+    case CHANCE:
+
+    {
+
+        CommunityOrChance=false;
+
+    Community_Chance * CC=new Community_Chance(CommunityOrChance,this);
+
+    int code=CC->exec();
+
+        if(code==Rejected){
+
+
+            switch (ChanceCards.back()->get_function()) {
+
+
+            case BOARDWALK:
+
+                move(39);
+
+
+                break;
+
+            case GO:
+
+                move(40);
+
+                break;
+
+            case ILLINOIS:
+
+                move(24);
+
+                break;
+
+            case ST_CHARLES_GO:
+
+                if(Players.at(order)->get_position()>11){
+
+                    Players.at(order)->set_Munny(Players.at(order)->get_Munny()+200);
+
+                    print_order();
+                }
+
+
+                move(11);
+
+                break;
+            case RAILROAD:
+
+               if(Players.at(order)->get_position()==7){
+
+                   RenderMovement(15);
+
+               }
+               else if(Players.at(order)->get_position()==22){
+
+                   RenderMovement(25);
+               }
+
+               else if(Players.at(order)->get_position()==36){
+
+                   RenderMovement(45);
+
+
+               }
+
+
+
+
+
+               if(Properties.at(Players.at(order)->get_position())->owner==nullptr){
+
+                   ui->pushButton_5->show();
+
+                   ui->pushButton_5->setEnabled(true);
+
+
+               }
+               else{
+
+                   if(!Properties.at(Players.at(order)->get_position())->get_mortgaged()&& Properties.at(Players.at(order)->get_position())->owner!=Players.at(order)){
+
+                   QMessageBox::information(this,"Information","You have to pay double the rental.");
+
+
+                   int tempRent;
+
+                   int numOfRailRoads=0;
+
+                   for(int i=0;i<int(Properties.size());i++){
+
+                       if(Properties.at(i)->owner==Properties.at(Players.at(order)->get_position())->owner && Properties.at(i)->get_color()=="black"){
+
+                           numOfRailRoads++;
+
+
+                       }
+
+                   }
+
+                   switch (numOfRailRoads) {
+
+                   case 1:
+
+                       tempRent=Properties.at(Players.at(order)->get_position())->get_rent1();
+
+                       break;
+
+                   case 2:
+
+                       tempRent=Properties.at(Players.at(order)->get_position())->get_rent2();
+
+                       break;
+
+                   case 3:
+
+                       tempRent=Properties.at(Players.at(order)->get_position())->get_rent3();
+
+                       break;
+
+                   case 4:
+
+                       tempRent=Properties.at(Players.at(order)->get_position())->get_rent4();
+
+                       break;
+
+
+                   }
+
+
+                    tempRent=tempRent*2;
+
+
+                   Players.at(order)->set_Munny(Players.at(order)->get_Munny()-tempRent);
+
+                    BankruptCheck();
+
+                   Properties.at(Players.at(order)->get_position())->owner->set_Munny(Properties.at(Players.at(order)->get_position())->owner->get_Munny()+tempRent);
+
+                   print_order();
+
+
+
+
+
+               }
+                    else if(Properties.at(Players.at(order)->get_position())->get_mortgaged()&& Properties.at(Players.at(order)->get_position())->owner!=Players.at(order)){
+
+                   }
+               }
+
+
+
+
+                break;
+
+            case RAILROAD2:
+
+                if(Players.at(order)->get_position()==7){
+
+                    RenderMovement(15);
+
+                }
+                else if(Players.at(order)->get_position()==22){
+
+                    RenderMovement(25);
+                }
+
+                else if(Players.at(order)->get_position()==36){
+
+                    RenderMovement(45);
+
+
+                }
+
+
+
+                if(Properties.at(Players.at(order)->get_position())->owner==nullptr){
+
+                    ui->pushButton_5->show();
+
+                    ui->pushButton_5->setEnabled(true);
+
+
+                }
+                else{
+
+                    if(!Properties.at(Players.at(order)->get_position())->get_mortgaged()&& Properties.at(Players.at(order)->get_position())->owner!=Players.at(order)){
+
+
+                        QMessageBox::information(this,"Information","You have to pay double the rental.");
+
+
+                        int tempRent;
+
+                        int numOfRailRoads=0;
+
+                        for(int i=0;i<int(Properties.size());i++){
+
+                            if(Properties.at(i)->owner==Properties.at(Players.at(order)->get_position())->owner && Properties.at(i)->get_color()=="black"){
+
+                                numOfRailRoads++;
+
+
+                            }
+
+                        }
+
+                        switch (numOfRailRoads) {
+
+                        case 1:
+
+                            tempRent=Properties.at(Players.at(order)->get_position())->get_rent1();
+
+                            break;
+
+                        case 2:
+
+                            tempRent=Properties.at(Players.at(order)->get_position())->get_rent2();
+
+                            break;
+
+                        case 3:
+
+                            tempRent=Properties.at(Players.at(order)->get_position())->get_rent3();
+
+                            break;
+
+                        case 4:
+
+                            tempRent=Properties.at(Players.at(order)->get_position())->get_rent4();
+
+                            break;
+
+
+                        }
+
+
+                         tempRent=tempRent*2;
+
+
+                        Players.at(order)->set_Munny(Players.at(order)->get_Munny()-tempRent);
+
+                      BankruptCheck();
+
+                        Properties.at(Players.at(order)->get_position())->owner->set_Munny(Properties.at(Players.at(order)->get_position())->owner->get_Munny()+tempRent);
+
+                        print_order();
+
+
+
+}
+                     else if(Properties.at(Players.at(order)->get_position())->get_mortgaged()&& Properties.at(Players.at(order)->get_position())->owner!=Players.at(order)){
+
+                    }
+                }
+
+                break;
+
+            case UTILIY:
+
+                if(Players.at(order)->get_position()==7){
+
+                    RenderMovement(12);
+
+                }
+                else if(Players.at(order)->get_position()==22){
+
+                    RenderMovement(28);
+                }
+
+                else if(Players.at(order)->get_position()==36){
+
+                    RenderMovement(52);
+
+
+                }
+
+
+
+                if(Properties.at(Players.at(order)->get_position())->owner==nullptr){
+
+                    ui->pushButton_5->show();
+
+                    ui->pushButton_5->setEnabled(true);
+
+
+                }
+                else{
+                    if(!Properties.at(Players.at(order)->get_position())->get_mortgaged()&& Properties.at(Players.at(order)->get_position())->owner!=Players.at(order)){
+
+                    ui->pushButton_9->show();
+
+                    ui->pushButton_9->setEnabled(true);
+
+                    ui->pushButton->hide();
+
+                    ui->pushButton_3->hide();
+
+                    ui->pushButton->setEnabled(false);
+
+                    ui->pushButton_3->setEnabled(false);
+
+                    ChanceToUtility=true;
+                    }
+                     else if(Properties.at(Players.at(order)->get_position())->get_mortgaged()&& Properties.at(Players.at(order)->get_position())->owner!=Players.at(order)){}
+
+                }
+
+
+
+
+                break;
+
+            case DIVIDEND:
+
+                Players.at(order)->set_Munny(Players.at(order)->get_Munny()+50);
+
+                print_order();
+
+
+
+                break;
+
+
+            case THREE_SPACES:
+
+
+                move(Players.at(order)->get_position()-3);
+
+
+            break;
+
+
+            case GETOUT:
+
+            Players.at(order)->set_jail(true);
+
+            print_order();
+
+
+            break;
+
+        case JAIL_NO_GO:
+
+            Players.at(order)->number_of_turns_in_jail=0;
+
+            RenderMovement(10);
+
+           order++;
+
+           if(order>number_of_players-1){
+               order=0;
+           }
+
+           BankruptCheck();
+
+           Doubles=0;
+
+           Double=false;
+
+
+
+
+           if(Players.at(order)->number_of_turns_in_jail>-1){
+
+               jail();
+
+               Players.at(order)->number_of_turns_in_jail++;
+
+           }
+           else{
+
+
+           print_order();
+
+          ui->pushButton_2->setEnabled(true);
+
+          ui->pushButton_2->show();
+
+
+
+           ui->pushButton_3->hide();
+
+           ui->pushButton_3->setEnabled(true);
+
+            ui->pushButton_3->setVisible(false);
+
+
+
+
+           ui->pushButton->hide();
+
+            ui->pushButton->setEnabled(true);
+
+            ui->pushButton->setVisible(false);
+
+
+
+           ui->pushButton_5->hide();
+
+            ui->pushButton_5->setEnabled(true);
+
+
+            ui->pushButton_5->setVisible(false);
+
+            JailCheck=true;
+
+           }
+
+            break;
+
+            case REPAIRS:
+            {
+
+                int TotalHouses=0;
+
+                int TotalHotels=0;
+
+
+               for(int i=0;i<int(Players.at(order)->MyProperties.size());i++){
+
+
+                   if(Players.at(order)->MyProperties.at(i)->get_type()==PROPERTY){
+
+                   if(Players.at(order)->MyProperties.at(i)->get_number_of_houses()==5){
+
+                       TotalHotels++;
+
+
+                   }
+                   else{
+
+                       TotalHouses++;
+
+                   }
+
+                   }
+
+
+
+
+               }
+
+               int repairs=TotalHouses*40+TotalHotels*115;
+
+               Players.at(order)->set_Munny(Players.at(order)->get_Munny()-repairs);
+
+               print_order();
+
+               BankruptCheck();
+
+                }
+
+
+                break;
+
+
+            case POORTAX:
+
+                Players.at(order)->set_Munny(Players.at(order)->get_Munny()-15);
+
+                print_order();
+
+                BankruptCheck();
+
+                break;
+
+            case READING_GO:
+
+                if(Players.at(order)->get_position()>5){
+
+                    Players.at(order)->set_Munny(Players.at(order)->get_Munny()+200);
+
+                    print_order();
+                }
+
+
+                move(5);
+
+
+
+                break;
+
+            case ONE_FIFTY:
+
+                Players.at(order)->set_Munny(Players.at(order)->get_Munny()+150);
+
+                print_order();
+
+
+                break;
+
+            case FIFTY_FOR_EVERYONE:
+
+            {
+
+                for(int i=0;i<int(Players.size());i++){
+
+                    if(Players.at(i)!=Players.at(order)){
+
+                 Players.at(i)->set_Munny(Players.at(i)->get_Munny()+50);
+
+
+                 Players.at(order)->set_Munny(Players.at(order)->get_Munny()-50);
+
+                    }
+
+                    }
+
+
+                BankruptCheck();
+
+
+
+
+
+                 print_order();
+
+                break;
+
+
+
+
+            }
+
+
+        }
+
+
+            if(ChanceCards.back()->get_function()!=GETOUT){
+
+
+
+           Chance * temp=ChanceCards.back();
+
+            ChanceCards.erase(ChanceCards.end()-1);
+
+            ChanceCards.insert(ChanceCards.begin(),temp);
+            }
+            else{
+
+                 ChanceCards.erase(ChanceCards.end()-1);
+
+            }
+
+        }
+
+
+}
+
+        break;
+
+    case COMMUNITY:
+    {
+
+         CommunityOrChance=true;
+
+     Community_Chance * CC2=new Community_Chance(CommunityOrChance,this);
+
+        int code=CC2->exec();
+
+        if(code==Rejected){
+
+            switch (CommunityCards.back()->get_function()) {
+
+
+
+            case GO_:
+
+                move(40);
+
+
+
+           break;
+
+              case BANK200:
+
+                Players.at(order)->set_Munny(Players.at(order)->get_Munny()+200);
+
+                print_order();
+
+
+
+                break;
+
+            case DOCTOR50:
+
+                Players.at(order)->set_Munny(Players.at(order)->get_Munny()-50);
+
+                print_order();
+
+               BankruptCheck();
+                break;
+
+            case STOCK45:
+
+                Players.at(order)->set_Munny(Players.at(order)->get_Munny()+45);
+
+                print_order();
+
+
+
+                break;
+
+            case FIFTY_FROM_EVERYONE:
+
+            {
+                for(int i=0;i<int(Players.size());i++){
+
+                    if(Players.at(i)!=Players.at(order)){
+
+                 Players.at(i)->set_Munny(Players.at(i)->get_Munny()-50);
+
+                 Players.at(order)->set_Munny(Players.at(order)->get_Munny()+50);
+
+
+
+                    }
+
+                    }
+
+
+
+
+
+                 print_order();
+
+                 }
+
+                break;
+
+
+                case GETOUT_:
+
+                Players.at(order)->set_jail(true);
+
+                print_order();
+
+
+                break;
+
+            case JAIL_NO_GO_:
+
+                Players.at(order)->number_of_turns_in_jail=0;
+
+                RenderMovement(10);
+
+               order++;
+
+               if(order>number_of_players-1){
+                   order=0;
+               }
+
+             BankruptCheck();
+
+               Doubles=0;
+
+               Double=false;
+
+
+
+
+               if(Players.at(order)->number_of_turns_in_jail>-1){
+
+                   jail();
+
+                   Players.at(order)->number_of_turns_in_jail++;
+
+               }
+               else{
+
+
+               print_order();
+
+              ui->pushButton_2->setEnabled(true);
+
+              ui->pushButton_2->show();
+
+
+
+               ui->pushButton_3->hide();
+
+               ui->pushButton_3->setEnabled(true);
+
+                ui->pushButton_3->setVisible(false);
+
+
+
+
+               ui->pushButton->hide();
+
+                ui->pushButton->setEnabled(true);
+
+                ui->pushButton->setVisible(false);
+
+
+
+               ui->pushButton_5->hide();
+
+                ui->pushButton_5->setEnabled(true);
+
+
+                ui->pushButton_5->setVisible(false);
+
+                JailCheck=true;
+
+               }
+
+                break;
+
+
+            case TAX20:
+
+
+                Players.at(order)->set_Munny(Players.at(order)->get_Munny()+20);
+
+                print_order();
+
+
+
+                break;
+
+            case INSURANCE100:
+                Players.at(order)->set_Munny(Players.at(order)->get_Munny()+100);
+
+                print_order();
+
+
+
+
+                break;
+
+            case HOSPITAL100:
+                Players.at(order)->set_Munny(Players.at(order)->get_Munny()-100);
+
+                print_order();
+
+                 BankruptCheck();
+
+                break;
+
+            case SCHOOL150:
+                Players.at(order)->set_Munny(Players.at(order)->get_Munny()-150);
+
+                print_order();
+
+                BankruptCheck();
+
+
+                break;
+
+            case SERVICE25:
+                Players.at(order)->set_Munny(Players.at(order)->get_Munny()+25);
+
+                print_order();
+
+
+
+                break;
+
+            case XMAS100:
+                Players.at(order)->set_Munny(Players.at(order)->get_Munny()+100);
+
+                print_order();
+
+
+
+
+                break;
+
+            case REPAIRS_:
+            {
+
+                int TotalHouses=0;
+
+                int TotalHotels=0;
+
+
+               for(int i=0;i<int(Players.at(order)->MyProperties.size());i++){
+
+
+                   if(Players.at(order)->MyProperties.at(i)->get_type()==PROPERTY){
+
+                   if(Players.at(order)->MyProperties.at(i)->get_number_of_houses()==5){
+
+                       TotalHotels++;
+
+
+                   }
+                   else{
+
+                       TotalHouses++;
+
+                   }
+
+                   }
+
+
+
+
+               }
+
+               int repairs=TotalHouses*40+TotalHotels*115;
+
+               Players.at(order)->set_Munny(Players.at(order)->get_Munny()-repairs);
+
+               print_order();
+
+               BankruptCheck();
+                }
+                break;
+
+            case BEAUTY20:
+
+                Players.at(order)->set_Munny(Players.at(order)->get_Munny()+10);
+
+                print_order();
+
+
+
+
+                break;
+
+            case INHERIT100:
+
+                Players.at(order)->set_Munny(Players.at(order)->get_Munny()+100);
+
+                print_order();
+
+
+
+
+
+
+
+
+
+
+
+  }
+
+             if(CommunityCards.back()->get_function()!=GETOUT_){
+
+
+            Community * temp=CommunityCards.back();
+
+            CommunityCards.erase(CommunityCards.end()-1);
+
+            CommunityCards.insert(CommunityCards.begin(),temp);
+             }
+             else{
+
+                  CommunityCards.erase(CommunityCards.end()-1);
+
+             }
+
+
+        }
+    }
+
+        break;
+
+    case INCOMETAX:
+
+        QMessageBox::information(this,"Information","You have landed on Income tax,10% of your income will go to the government.");
+
+        Players.at(order)->set_Munny(int(0.9*Players.at(order)->get_Munny()));
+
+        print_order();
+
+
+
+        break;
+
+    case LUXURYTAX:
+
+        QMessageBox::information(this,"Information","You have landed on Luxury tax,you'll be charged 75$.");
+
+        Players.at(order)->set_Munny(Players.at(order)->get_Munny()-75);
+
+        print_order();
+
+        BankruptCheck();
+        break;
+
+    case JAIL:
+
+
+         break;
+
+    case GO__:
+
+     break;
+    case PARKING:
+
+      break;
+
+    case GOTOJAIL:
+
+
+        QMessageBox::information(this,"Information","You shall go to jail!");
+
+        Players.at(order)->number_of_turns_in_jail=0;
+
+        RenderMovement(10);
+
+       order++;
+
+       if(order>number_of_players-1){
+           order=0;
+       }
+
+       BankruptCheck();
+
+       Doubles=0;
+
+       Double=false;
+
+
+
+
+       if(Players.at(order)->number_of_turns_in_jail>-1){
+
+           jail();
+
+           Players.at(order)->number_of_turns_in_jail++;
+
+       }
+       else{
+
+
+       print_order();
+
+      ui->pushButton_2->setEnabled(true);
+
+      ui->pushButton_2->show();
+
+
+
+       ui->pushButton_3->hide();
+
+       ui->pushButton_3->setEnabled(true);
+
+        ui->pushButton_3->setVisible(false);
+
+
+
+
+       ui->pushButton->hide();
+
+        ui->pushButton->setEnabled(true);
+
+        ui->pushButton->setVisible(false);
+
+
+
+       ui->pushButton_5->hide();
+
+        ui->pushButton_5->setEnabled(true);
+
+
+        ui->pushButton_5->setVisible(false);
+
+        JailCheck=true;
+
+       }
+
+        break;
+
+    case RR:
+
+        if(tempProperty->owner==nullptr){
+
+            ui->pushButton_5->show();
+
+            ui->pushButton_5->setEnabled(true);
+
+        }
+        else{
+
+            if(!tempProperty->get_mortgaged() &&tempProperty->owner!=Players.at(order)){//ejare
+
+                 QMessageBox::information(this,"Information","This property is owned by "+QString::fromStdString(tempProperty->owner->get_nickname())+"\n"+" pay up!");
+
+
+                 int tempRent;
+
+                 int numOfRailRoads=0;
+
+                 for(int i=0;i<int(Properties.size());i++){
+
+                     if(Properties.at(i)->owner==tempProperty->owner && Properties.at(i)->get_color()=="black"){
+
+                         numOfRailRoads++;
+
+
+                     }
+
+                 }
+
+                 switch (numOfRailRoads) {
+
+                 case 1:
+
+                     tempRent=tempProperty->get_rent1();
+
+                     break;
+
+                 case 2:
+
+                     tempRent=tempProperty->get_rent2();
+
+                     break;
+
+                 case 3:
+
+                     tempRent=tempProperty->get_rent3();
+
+                     break;
+
+                 case 4:
+
+                     tempRent=tempProperty->get_rent4();
+
+                     break;
+
+
+                 }
+
+
+                 Players.at(order)->set_Munny(Players.at(order)->get_Munny()-tempRent);
+
+               BankruptCheck();
+
+                 tempProperty->owner->set_Munny(tempProperty->owner->get_Munny()+tempRent);
+
+                 print_order();
+
+
+
+
+            }
+            else if(tempProperty->get_mortgaged() &&tempProperty->owner!=Players.at(order)){//ejare nemigirim
+
+            }
+
+            }
+
+        break;
+
+    case UTILITY_:
+
+        if(tempProperty->owner==nullptr){
+
+            ui->pushButton_5->show();
+
+            ui->pushButton_5->setEnabled(true);
+
+        }
+        else{
+
+            if(!tempProperty->get_mortgaged()&&tempProperty->owner!=Players.at(order)){//ejare
+
+                 QMessageBox::information(this,"Information","This property is owned by "+QString::fromStdString(tempProperty->owner->get_nickname())+"\n"+" pay up!");
+
+
+                 int tempRent;
+
+                 int numOfUtilities=0;
+
+                 for(int i=0;i<int(Properties.size());i++){
+
+                     if(Properties.at(i)->owner==tempProperty->owner && Properties.at(i)->get_color()=="white"){
+
+                        numOfUtilities++;
+
+
+                     }
+
+                 }
+
+                 if(numOfUtilities==1){
+                     tempRent=tempProperty->get_multiplier1() *(Dice1+Dice2);
+                 }
+                 else{
+                     tempRent=tempProperty->get_multiplier2() *(Dice1+Dice2);
+                 }
+
+
+                 Players.at(order)->set_Munny(Players.at(order)->get_Munny()-tempRent);
+
+                BankruptCheck();
+                 tempProperty->owner->set_Munny(tempProperty->owner->get_Munny()+tempRent);
+
+                 print_order();
+
+
+
+
+            }
+            else if(tempProperty->get_mortgaged()&&tempProperty->owner!=Players.at(order)){//ejare nemigirim
+
+            }
+
+            }
+
+
+        break;
+
+
+
+}
+}
+
+void GameBoard::rollDice(){
+
+
+    JailCheck=false;
+
+      Double=throwDice(Dice1,Dice2);
+
+      if(Double==true){
+          Doubles++;
+
+
+          if(Doubles==3){
+
+              Double=false;
+
+              Doubles=0;
+
+              RenderMovement(10);
+
+              Players.at(order)->number_of_turns_in_jail=0;
+
+              order++;
+
+              if(order>number_of_players-1){
+
+                  order=0;
+
+              }
+              BankruptCheck();
+
+              QMessageBox::warning(this,"Warning","You rolled 3 doubles,you'll go to jail!");
+
+
+
+
+             JailCheck=true;
+
+        }
+
+        else{
+          QMessageBox::information(this,"Information","You rolled a double,you get to roll again!");
+          }
+      }
+      else{
+          Doubles=0;
+      }
+
+
+      if(!JailCheck){
+
+
+      printDice(Dice1,Dice2);
+
+
+      RenderMovement(Players.at(order)->get_position()+Dice1+Dice2);
+
+
+
+      SituationCheck();
+
+      if(JailCheck){
+
+
+
+          print_order();
+
+          ui->pushButton_2->setEnabled(true);
+
+          ui->pushButton_2->show();
+
+
+          ui->pushButton_3->hide();
+
+          ui->pushButton_3->setEnabled(false);
+
+          ui->pushButton->hide();
+
+          ui->pushButton->setEnabled(false);
+
+          ui->pushButton_5->hide();
+
+          ui->pushButton_5->setEnabled(false);
+
+
+
+
+
+      }
+      else{
+
+      ui->pushButton_3->show();
+
+      ui->pushButton_3->setEnabled(true);
+
+      ui->pushButton->show();
+
+      ui->pushButton->setEnabled(true);
+
+      ui->pushButton_2->setEnabled(false);
+
+      ui->pushButton_2->hide();
+      }
+
+  }
+      else{
+
+          print_order();
+
+          ui->pushButton_2->setEnabled(true);
+
+          ui->pushButton_2->show();
+
+
+          ui->pushButton_3->hide();
+
+          ui->pushButton_3->setEnabled(false);
+
+          ui->pushButton->hide();
+
+          ui->pushButton->setEnabled(false);
+
+          ui->pushButton_5->hide();
+
+          ui->pushButton_5->setEnabled(false);
+
+
+
+
+      }
+
+      if(Players.at(order)->number_of_turns_in_jail>-1){
+
+          jail();
+
+          Players.at(order)->number_of_turns_in_jail++;
+
+      }
+
+      if(ChanceToUtility){
+
+          ChanceToUtility=false;
+
+          ui->pushButton_3->hide();
+
+          ui->pushButton_3->setEnabled(false);
+
+          ui->pushButton->hide();
+
+          ui->pushButton->setEnabled(false);
+
+
+      }
+
+  }
+
+void GameBoard::on_pushButton_2_clicked()//roll dice
 {
 
+  rollDice();
 
+
+}
+
+  void GameBoard::on_pushButton_3_clicked()//end turn
+  {
+
+
+      if(Doubles>0){
+
+      }
+      else{
+
+          order++;
+
+
+      }
+      if(order>number_of_players-1){
+
+          order=0;
+
+      }
+
+     BankruptCheck();
+
+
+
+
+      if(Players.at(order)->number_of_turns_in_jail>-1){
+
+          jail();
+
+          Players.at(order)->number_of_turns_in_jail++;
+
+      }
+      else{
+
+
+
+      print_order();
+
+      ui->pushButton_2->setEnabled(true);
+
+      ui->pushButton_2->show();
+
+
+      ui->pushButton_3->hide();
+
+      ui->pushButton_3->setEnabled(false);
+
+      ui->pushButton->hide();
+
+      ui->pushButton->setEnabled(false);
+
+      ui->pushButton_5->hide();
+
+      ui->pushButton_5->setEnabled(false);
+
+      }
+}
+
+
+
+  void GameBoard::HideBuyButton(){
+
+      ui->pushButton_5->hide();
+
+      ui->pushButton_5->setEnabled(false);
+
+  }
+
+void GameBoard::on_pushButton_5_clicked()//buy property
+{
+
+    if(Properties.at(Players.at(order)->get_position())->owner==nullptr){
+
+        Buy * buy=new Buy(this);
+
+        int code=buy->exec();
+
+        if(code==Accepted || code==Rejected){
+             BankruptCheck();
+        }
+
+
+    }
+
+
+}
+
+void GameBoard::on_pushButton_6_clicked()//roll to get out of jail
+{
     Double=throwDice(Dice1,Dice2);
-
-    if(Double==true){
-        Doubles++;
-    }
-    else{
-        Doubles=0;
-    }
 
     printDice(Dice1,Dice2);
 
-    ui->pushButton_2->setEnabled(false);
+    if(Double){
 
-    ui->pushButton_2->hide();
+        RenderMovement(Players.at(order)->get_position()+Dice1+Dice2);
+
+        SituationCheck();
+
+        ui->pushButton_3->show();
+
+        ui->pushButton_3->setEnabled(true);
+
+        ui->pushButton->show();
+
+        ui->pushButton->setEnabled(true);
+
+        ui->pushButton_2->setEnabled(false);
+
+        ui->pushButton_2->hide();
+
+        ui->pushButton_6->setEnabled(false);
+
+        ui->pushButton_6->hide();
+
+        ui->pushButton_7->setEnabled(false);
+
+        ui->pushButton_7->hide();
+
+        ui->pushButton_8->setEnabled(false);
+
+        ui->pushButton_8->hide();
 
 
-    RenderMovement(Players.at(order)->get_position()+Dice1+Dice2);
+         QMessageBox::information(this,"Information","You rolled a double,you can get out of jail!");
+
+         Double=false;
+
+    Players.at(order)->number_of_turns_in_jail=-1;
+
+    }
+    else{
+
+        if(Players.at(order)->number_of_turns_in_jail==3){
+
+            Players.at(order)->set_Munny(Players.at(order)->get_Munny()-50);
 
 
-    ui->pushButton_3->show();
 
-    ui->pushButton_3->setEnabled(true);
+           BankruptCheck();
 
-    ui->pushButton->show();
+             print_order();
 
-    ui->pushButton->setEnabled(true);
+            RenderMovement(Players.at(order)->get_position()+Dice1+Dice2);
 
-    ui->pushButton_5->show();
+            SituationCheck();
 
-    ui->pushButton_5->setEnabled(true);
+            ui->pushButton_3->show();
+
+            ui->pushButton_3->setEnabled(true);
+
+            ui->pushButton->show();
+
+            ui->pushButton->setEnabled(true);
+
+            ui->pushButton_2->setEnabled(false);
+
+            ui->pushButton_2->hide();
+
+            ui->pushButton_6->setEnabled(false);
+
+            ui->pushButton_6->hide();
+
+            ui->pushButton_7->setEnabled(false);
+
+            ui->pushButton_7->hide();
+
+            ui->pushButton_8->setEnabled(false);
+
+            ui->pushButton_8->hide();
+
+             QMessageBox::information(this,"Information","You payed 50$,you can get out of jail!");
+
+              Players.at(order)->number_of_turns_in_jail=-1;
+
+
+
+        }
+
+        else{
+
+
+
+        ui->pushButton_3->show();
+
+        ui->pushButton_3->setEnabled(true);
+
+        ui->pushButton->show();
+
+        ui->pushButton->setEnabled(true);
+
+        ui->pushButton_2->setEnabled(false);
+
+        ui->pushButton_2->hide();
+
+        ui->pushButton_6->setEnabled(false);
+
+        ui->pushButton_6->hide();
+
+        ui->pushButton_7->setEnabled(false);
+
+        ui->pushButton_7->hide();
+
+        ui->pushButton_8->setEnabled(false);
+
+        ui->pushButton_8->hide();
+
+        }
+
+    }
+
 
 
 
 }
 
-void GameBoard::on_pushButton_3_clicked()
+void GameBoard::on_pushButton_7_clicked()//50 to get out
+{
+    Players.at(order)->set_Munny(Players.at(order)->get_Munny()-50);
+
+     BankruptCheck();
+
+    print_order();
+
+
+
+    ui->pushButton_2->setEnabled(true);
+
+    ui->pushButton_2->show();
+
+    ui->pushButton_6->setEnabled(false);
+
+    ui->pushButton_6->hide();
+
+    ui->pushButton_7->setEnabled(false);
+
+    ui->pushButton_7->hide();
+
+    ui->pushButton_8->setEnabled(false);
+
+    ui->pushButton_8->hide();
+
+    QMessageBox::information(this,"Information","You're free!");
+
+     Players.at(order)->number_of_turns_in_jail=-1;
+
+
+
+
+}
+
+void GameBoard::on_pushButton_8_clicked()
 {
 
-    if(Doubles>0){
-
-        if(Doubles==3){
-            Double=false;
-            Doubles=0;
-            RenderMovement(10);
-            order++;
-        }
-    }
-    else{
-        order++;
-    }
-
-
-    if(order>number_of_players-1){
-        order=0;
-    }
+    Players.at(order)->set_jail(false);
 
     print_order();
 
@@ -2031,32 +4009,194 @@ void GameBoard::on_pushButton_3_clicked()
 
     ui->pushButton_2->show();
 
+    ui->pushButton_6->setEnabled(false);
 
-    ui->pushButton_3->hide();
+    ui->pushButton_6->hide();
 
-    ui->pushButton_3->setEnabled(false);
+    ui->pushButton_7->setEnabled(false);
 
-    ui->pushButton->hide();
+    ui->pushButton_7->hide();
 
-    ui->pushButton->setEnabled(false);
+    ui->pushButton_8->setEnabled(false);
 
-    ui->pushButton_5->hide();
+    ui->pushButton_8->hide();
 
-    ui->pushButton_5->setEnabled(false);
+    QMessageBox::information(this,"Information","You're free!");
+
+    Players.at(order)->number_of_turns_in_jail=-1;
 
 
 }
 
-void GameBoard::on_pushButton_5_clicked()
+void GameBoard::on_pushButton_clicked()
+{
+    my_Properties *My_properties=new my_Properties(this);
+
+    int code=My_properties->exec();
+
+    if(code==Accepted || code==Rejected){
+        BankruptCheck();
+    }
+
+}
+
+void GameBoard::on_pushButton_9_clicked()
 {
 
-    if(Properties.at(Players.at(order)->get_position())->owner==nullptr){
+    ui->pushButton_9->hide();
 
-        Buy * buy=new Buy(Properties.at(Players.at(order)->get_position()),this);
+    ui->pushButton_9->setEnabled(false);
 
-        buy->exec();
+    throwDice(Dice1,Dice2);
+
+    printDice(Dice1,Dice2);
+
+    QMessageBox::information(this,"Information","You have to pay 10x the amount of dice.");
+
+    Players.at(order)->set_Munny(Players.at(order)->get_Munny()-10*(Dice1+Dice2));
+
+    BankruptCheck();
+
+    print_order();
+
+
+
+
+    ui->pushButton->show();
+
+    ui->pushButton_3->show();
+
+    ui->pushButton->setEnabled(true);
+
+    ui->pushButton_3->setEnabled(true);
+
+}
+
+void GameBoard::on_pushButton_10_clicked()
+{
+    ui->pushButton_10->hide();
+
+    ui->pushButton_10->setEnabled(false);
+
+
+    ui->label_58->show();
+
+    ui->label_58->setEnabled(true);
+
+    ui->label_59->show();
+
+    ui->label_59->setEnabled(true);
+
+    ui->pushButton_11->show();
+
+    ui->pushButton_11->setEnabled(true);
+
+    ui->comboBox->show();
+
+    ui->comboBox->setEnabled(true);
+
+    ui->lineEdit->show();
+
+    ui->lineEdit->setEnabled(true);
+
+    for(int i=0;i<int(Players.size());i++){
+
+        if(Players.at(i)!=Players.at(order)){
+
+        ui->comboBox->addItem(QString::fromStdString(Players.at(i)->get_nickname()));
+
+
+}
+    }
+
+    ui->comboBox->setCurrentIndex(-1);
+
+    ui->lineEdit->clear();
+
+
+
+}
+
+void GameBoard::on_pushButton_11_clicked()
+{
+
+    if(ui->comboBox->currentIndex()!=-1){
+
+        if(!Empty_string_check(ui->lineEdit->text().toUtf8().constData()) && IsNumber(ui->lineEdit->text().toUtf8().constData()) &&ui->lineEdit->text().toInt()>0 ){
+
+            QMessageBox::StandardButton reply;
+
+             reply = QMessageBox::question(this, "Offer",ui->comboBox->currentText()+ " do you want to buy this get out of jail card for "+ui->lineEdit->text() + " ?",
+
+                                           QMessageBox::Yes|QMessageBox::No);
+
+
+             if (reply == QMessageBox::Yes) {
+
+                 int buyer=0;
+
+                 for(int i=0;i<int(Players.size());i++){
+
+
+                     if(QString::fromStdString(Players.at(i)->get_nickname())==ui->comboBox->currentText()){
+
+                         buyer=i;
+                     }
+
+                 }
+
+
+
+
+
+
+                 Players.at(order)->set_jail(false);
+
+
+                Players.at(buyer)->set_jail(true);
+
+
+                 Players.at(buyer)->set_Munny(Players.at(buyer)->get_Munny()-ui->lineEdit->text().toInt());
+
+                 Players.at(order)->set_Munny(Players.at(order)->get_Munny()+ui->lineEdit->text().toInt());
+
+                 print_order();
+
+
+                QMessageBox::information(this,"Information",ui->comboBox->currentText()+" bought this get out of jail card from you.");
+
+
+             }
+             else {
+
+                  QMessageBox::information(this,"Information",ui->comboBox->currentText()+" didn't accept your offer.");
+             }
+
+
+        }
+        else{
+             QMessageBox::warning(this,"Warning","Please enter a correct price.");
+
+        }
 
     }
+    else{
+
+        QMessageBox::warning(this,"Warning","Please enter the player you want to send the offer.");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 }
