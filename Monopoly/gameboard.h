@@ -25,13 +25,24 @@ public:
 
     vector<Property *> Properties;
 
-        int order;
+    int order;
 
-         void print_order();
+    void print_order();
 
-         void HideBuyButton();
+     void HideBuyButton();
 
-             bool Monopoly(string,Player*);
+     bool Monopoly(string,Player*);
+
+     vector<Chance*> ChanceCards;
+
+     vector<Community*> CommunityCards;
+
+     void BankruptCheck();
+
+     void Bankrupt();
+
+
+     bool CommunityOrChance;
 
     ~GameBoard();
 
@@ -46,10 +57,6 @@ public:
 
           void clearDice();
 
-
-
-
-
           void on_pushButton_3_clicked();
 
           void on_pushButton_5_clicked();
@@ -62,6 +69,12 @@ public:
 
           void on_pushButton_clicked();
 
+          void on_pushButton_9_clicked();
+
+          void on_pushButton_10_clicked();
+
+          void on_pushButton_11_clicked();
+
 private:
     Ui::GameBoard *ui;
 
@@ -71,9 +84,7 @@ private:
 
     static GameBoard * instance;
 
-    vector<Chance*> ChanceCards;
 
-    vector<Community*> CommunityCards;
 
     vector<string> tokens_path;
 
@@ -98,7 +109,7 @@ private:
 
     void set_position(int);
 
-    void RenderMovement(int);
+
 
     bool Double;
 
@@ -108,14 +119,19 @@ private:
 
     void jail();
 
-    void SituationCheck();
 
     bool JailCheck;
 
     void rollDice();
 
 
+   void move(int);
 
+   void RenderMovement(int);
+
+    void SituationCheck();
+
+    bool ChanceToUtility;
 
 
 };

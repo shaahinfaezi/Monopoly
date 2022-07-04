@@ -64,6 +64,26 @@ void my_Properties::listPrint(){
 
     ui->pushButton_8->setEnabled(false);
 
+    ui->label_2->hide();
+
+    ui->label_2->setEnabled(false);
+
+    ui->label_3->hide();
+
+    ui->label_3->setEnabled(false);
+
+    ui->label_4->hide();
+
+    ui->label_4->setEnabled(false);
+
+    ui->label_5->hide();
+
+    ui->label_5->setEnabled(false);
+
+    ui->label_6->hide();
+
+    ui->label_6->setEnabled(false);
+
 
     }
     else{

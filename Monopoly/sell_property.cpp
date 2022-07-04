@@ -112,6 +112,7 @@ void sell_property::on_pushButton_clicked()
                  gameBoard->Players.at(gameBoard->order)->MyProperties.erase(gameBoard->Players.at(gameBoard->order)->MyProperties.begin()+Iterator);
 
 
+                 gameBoard->Players.at(buyer)->set_Munny(gameBoard->Players.at(buyer)->get_Munny()-ui->lineEdit->text().toInt());
 
                  gameBoard->Players.at(gameBoard->order)->set_Munny(gameBoard->Players.at(gameBoard->order)->get_Munny()+ui->lineEdit->text().toInt());
 
