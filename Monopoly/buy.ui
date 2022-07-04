@@ -47,6 +47,12 @@ background-repeat: none;
      <height>34</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(119, 141, 169);</string>
    </property>
@@ -62,6 +68,12 @@ background-repeat: none;
      <width>112</width>
      <height>34</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(119, 141, 169);</string>
