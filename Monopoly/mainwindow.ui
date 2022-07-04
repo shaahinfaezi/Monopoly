@@ -84,15 +84,15 @@ selection-color: rgb(255, 255, 255);
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>390</x>
+      <x>380</x>
       <y>640</y>
-      <width>161</width>
+      <width>221</width>
       <height>41</height>
      </rect>
     </property>
     <property name="font">
      <font>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
       <weight>50</weight>
       <bold>false</bold>
      </font>
@@ -101,10 +101,13 @@ selection-color: rgb(255, 255, 255);
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(119, 141, 169);</string>
+     <string notr="true">background-color: rgb(119, 141, 169);
+
+
+</string>
     </property>
     <property name="text">
-     <string>Start a new game</string>
+     <string>start a new game </string>
     </property>
    </widget>
    <widget class="QLabel" name="labal2">

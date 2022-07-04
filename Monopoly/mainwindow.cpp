@@ -21,6 +21,11 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    //ui->pushButton->setIcon(QIcon(":/res/Images/push_buuton/7.png"));
+    //ui->pushButton->setIconSize(QSize(700,500));
+
+
    QPixmap pic(":/res/Images/pic5.png");
    ui->labal2->setPixmap(pic.scaled(ui->labal2->width(),ui->labal2->height(),Qt::KeepAspectRatio));
 
@@ -89,6 +94,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pushButton_clicked()
 {
+
 
     int number_of_players=ui->comboBox->currentText().toInt();
 

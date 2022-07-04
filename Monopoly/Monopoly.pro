@@ -26,6 +26,7 @@ SOURCES += \
     gameboard.cpp \
     main.cpp \
     mainwindow.cpp \
+    minimap.cpp \
     my_properties.cpp \
     sell_property.cpp
 
@@ -39,6 +40,7 @@ HEADERS += \
     community_chance.h \
     gameboard.h \
     mainwindow.h \
+    minimap.h \
     my_properties.h \
     sell_property.h
 
