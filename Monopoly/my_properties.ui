@@ -22,8 +22,8 @@ background-color: rgb(69, 105, 144);</string>
     <rect>
      <x>660</x>
      <y>280</y>
-     <width>211</width>
-     <height>34</height>
+     <width>221</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -33,8 +33,12 @@ background-color: rgb(69, 105, 144);</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(119, 141, 169);
-</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(177, 208, 224), stop: 1 rgb(177, 208, 224));
+border-style: solid;
+border:none;
+border-width: 5px;
+border-radius: 20px;</string>
    </property>
    <property name="text">
     <string>Buy a house</string>
@@ -45,8 +49,8 @@ background-color: rgb(69, 105, 144);</string>
     <rect>
      <x>660</x>
      <y>160</y>
-     <width>211</width>
-     <height>34</height>
+     <width>221</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -56,8 +60,12 @@ background-color: rgb(69, 105, 144);</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(119, 141, 169);
-</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(177, 208, 224), stop: 1 rgb(177, 208, 224));
+border-style: solid;
+border:none;
+border-width: 5px;
+border-radius: 20px;</string>
    </property>
    <property name="text">
     <string>Buy hotel</string>
@@ -68,8 +76,8 @@ background-color: rgb(69, 105, 144);</string>
     <rect>
      <x>660</x>
      <y>40</y>
-     <width>211</width>
-     <height>34</height>
+     <width>221</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -79,8 +87,12 @@ background-color: rgb(69, 105, 144);</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(119, 141, 169);
-</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(177, 208, 224), stop: 1 rgb(177, 208, 224));
+border-style: solid;
+border:none;
+border-width: 5px;
+border-radius: 20px;</string>
    </property>
    <property name="text">
     <string>Sell property</string>
@@ -91,8 +103,8 @@ background-color: rgb(69, 105, 144);</string>
     <rect>
      <x>660</x>
      <y>340</y>
-     <width>211</width>
-     <height>34</height>
+     <width>221</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -102,8 +114,12 @@ background-color: rgb(69, 105, 144);</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(119, 141, 169);
-</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(177, 208, 224), stop: 1 rgb(177, 208, 224));
+border-style: solid;
+border:none;
+border-width: 5px;
+border-radius: 20px;</string>
    </property>
    <property name="text">
     <string>Sell a house</string>
@@ -114,8 +130,8 @@ background-color: rgb(69, 105, 144);</string>
     <rect>
      <x>660</x>
      <y>220</y>
-     <width>211</width>
-     <height>34</height>
+     <width>221</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -125,8 +141,12 @@ background-color: rgb(69, 105, 144);</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(119, 141, 169);
-</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(177, 208, 224), stop: 1 rgb(177, 208, 224));
+border-style: solid;
+border:none;
+border-width: 5px;
+border-radius: 20px;</string>
    </property>
    <property name="text">
     <string>Sell hotel</string>
@@ -137,8 +157,8 @@ background-color: rgb(69, 105, 144);</string>
     <rect>
      <x>660</x>
      <y>100</y>
-     <width>211</width>
-     <height>34</height>
+     <width>221</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -148,8 +168,12 @@ background-color: rgb(69, 105, 144);</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(119, 141, 169);
-</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(177, 208, 224), stop: 1 rgb(177, 208, 224));
+border-style: solid;
+border:none;
+border-width: 5px;
+border-radius: 20px;</string>
    </property>
    <property name="text">
     <string>Mortgage/UnMortgage</string>
