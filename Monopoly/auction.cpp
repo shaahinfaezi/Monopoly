@@ -50,7 +50,7 @@ auction::auction(QWidget *parent) :
 
      QPixmap pixmap(QString::fromStdString(property->get_PropertyCard()));
 
-    ui->label->setPixmap(pixmap.scaled(321,471,Qt::KeepAspectRatio));
+    ui->label->setPixmap(pixmap.scaled(422,574,Qt::KeepAspectRatio));
 
     iterator=0;
 

@@ -20,10 +20,10 @@ background-color: rgb(69, 105, 144);</string>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>100</x>
-     <y>60</y>
-     <width>351</width>
-     <height>471</height>
+     <x>130</x>
+     <y>20</y>
+     <width>422</width>
+     <height>574</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -42,9 +42,9 @@ background-repeat: none;
    <property name="geometry">
     <rect>
      <x>680</x>
-     <y>220</y>
-     <width>112</width>
-     <height>34</height>
+     <y>213</y>
+     <width>151</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -54,7 +54,12 @@ background-repeat: none;
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(119, 141, 169);</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(177, 208, 224), stop: 1 rgb(177, 208, 224));
+border-style: solid;
+border:none;
+border-width: 5px;
+border-radius: 20px;</string>
    </property>
    <property name="text">
     <string>Buy</string>
@@ -64,9 +69,9 @@ background-repeat: none;
    <property name="geometry">
     <rect>
      <x>680</x>
-     <y>290</y>
-     <width>112</width>
-     <height>34</height>
+     <y>283</y>
+     <width>151</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
@@ -76,7 +81,12 @@ background-repeat: none;
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(119, 141, 169);</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(177, 208, 224), stop: 1 rgb(177, 208, 224));
+border-style: solid;
+border:none;
+border-width: 5px;
+border-radius: 20px;</string>
    </property>
    <property name="text">
     <string>Auction</string>
