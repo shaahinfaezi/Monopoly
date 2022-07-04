@@ -1,9 +1,7 @@
 #include "gameboard.h"
 #include "ui_gameboard.h"
-#include <QDebug>
 #include "QPixmap"
 #include <QScreen>
-#include <QDebug>
 #include <QPainter>
 #include <QThread>
 #include <QTimer>
@@ -84,7 +82,7 @@ void GameBoard::move(int destination){
 
 void GameBoard::BankruptCheck(){
 
-qDebug()<<"check";
+
 
 
     if(Players.at(order)->get_Munny()<0){
@@ -119,7 +117,7 @@ qDebug()<<"check";
 
         }
 
-        qDebug()<<credit;
+
 
         if(Players.at(order)->get_Munny()+credit<0){
 
@@ -206,7 +204,7 @@ void GameBoard::Bankrupt(){
 
     number_of_players--;
 
-    qDebug()<<order;
+
 
     Players.erase(Players.begin()+order);
 
@@ -215,7 +213,7 @@ void GameBoard::Bankrupt(){
         order=0;
 
 
-     qDebug()<<order;
+
 
 
       BankruptCheck();
@@ -345,7 +343,7 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
                 ui->label_2->setPixmap(pic.scaled(ui->label_2->width(),ui->label_2->height(),Qt::KeepAspectRatio));
 
-                qDebug()<<ui->label_2->width();
+
 
 
 
@@ -4103,8 +4101,6 @@ void GameBoard::on_pushButton_10_clicked()
 
     ui->lineEdit->setEnabled(true);
 
-    ui->comboBox->clear();
-
     for(int i=0;i<int(Players.size());i++){
 
         if(Players.at(i)!=Players.at(order)){
@@ -4167,9 +4163,6 @@ void GameBoard::on_pushButton_11_clicked()
                  Players.at(order)->set_Munny(Players.at(order)->get_Munny()+ui->lineEdit->text().toInt());
 
                  print_order();
-
-
-
 
                 QMessageBox::information(this,"Information",ui->comboBox->currentText()+" bought this get out of jail card from you.");
 
