@@ -36,6 +36,7 @@ sell_property::sell_property(int Iterator,QWidget *parent) :
     gameBoard=GameBoard::get_instance();
 
     this->Iterator=Iterator;
+    ui->comboBox->clear();
 
 
     QPixmap pixmap(QString::fromStdString(gameBoard->Players.at(gameBoard->order)->MyProperties.at(Iterator)->get_PropertyCard()));

@@ -75,6 +75,8 @@ public:
 
           void on_pushButton_11_clicked();
 
+
+
 private:
     Ui::GameBoard *ui;
 

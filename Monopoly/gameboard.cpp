@@ -1622,6 +1622,10 @@ void GameBoard::print_order(){
 
         ui->lineEdit->setEnabled(false);
 
+        ui->pushButton_8->hide();
+
+        ui->pushButton_8->setEnabled(false);
+
 
 
     }
@@ -4099,6 +4103,8 @@ void GameBoard::on_pushButton_10_clicked()
 
     ui->lineEdit->setEnabled(true);
 
+    ui->comboBox->clear();
+
     for(int i=0;i<int(Players.size());i++){
 
         if(Players.at(i)!=Players.at(order)){
@@ -4161,6 +4167,8 @@ void GameBoard::on_pushButton_11_clicked()
                  Players.at(order)->set_Munny(Players.at(order)->get_Munny()+ui->lineEdit->text().toInt());
 
                  print_order();
+
+
 
 
                 QMessageBox::information(this,"Information",ui->comboBox->currentText()+" bought this get out of jail card from you.");
