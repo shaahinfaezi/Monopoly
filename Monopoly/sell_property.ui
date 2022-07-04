@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>803</width>
-    <height>531</height>
+    <width>1000</width>
+    <height>639</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,49 +20,10 @@ background-color: rgb(69, 105, 144);</string>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>120</y>
+     <x>180</x>
+     <y>140</y>
      <width>51</width>
      <height>31</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <weight>75</weight>
-     <bold>true</bold>
-    </font>
-   </property>
-   <property name="text">
-    <string>Price</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="lineEdit">
-   <property name="geometry">
-    <rect>
-     <x>250</x>
-     <y>120</y>
-     <width>121</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QComboBox" name="comboBox">
-   <property name="geometry">
-    <rect>
-     <x>250</x>
-     <y>170</y>
-     <width>121</width>
-     <height>26</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="pushButton">
-   <property name="geometry">
-    <rect>
-     <x>251</x>
-     <y>240</y>
-     <width>121</width>
-     <height>34</height>
     </rect>
    </property>
    <property name="font">
@@ -73,8 +34,60 @@ background-color: rgb(69, 105, 144);</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(119, 141, 169);
-</string>
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>Price</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>140</y>
+     <width>121</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>190</y>
+     <width>131</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>240</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>9</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(177, 208, 224), stop: 1 rgb(177, 208, 224));
+border-style: solid;
+border:none;
+border-width: 5px;
+border-radius: 20px;</string>
    </property>
    <property name="text">
     <string>Offer</string>
@@ -85,8 +98,8 @@ background-color: rgb(69, 105, 144);</string>
     <rect>
      <x>450</x>
      <y>40</y>
-     <width>321</width>
-     <height>471</height>
+     <width>422</width>
+     <height>574</height>
     </rect>
    </property>
    <property name="text">

@@ -273,7 +273,7 @@ void my_Properties::listPrint(){
 
   QPixmap pixmap(QString::fromStdString(gameBoard->Players.at(gameBoard->order)->MyProperties.at(iterator)->get_PropertyCard()));
 
-  ui->label->setPixmap(pixmap.scaled(321,471,Qt::KeepAspectRatio));
+  ui->label->setPixmap(pixmap.scaled(422,574,Qt::KeepAspectRatio));
 
 
 

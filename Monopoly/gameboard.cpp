@@ -1622,6 +1622,9 @@ void GameBoard::print_order(){
 
         ui->lineEdit->setEnabled(false);
 
+        ui->pushButton_8->hide();
+
+        ui->pushButton_8->setEnabled(false);
 
 
     }
@@ -4098,6 +4101,8 @@ void GameBoard::on_pushButton_10_clicked()
     ui->lineEdit->show();
 
     ui->lineEdit->setEnabled(true);
+
+    ui->comboBox->clear();
 
     for(int i=0;i<int(Players.size());i++){
 

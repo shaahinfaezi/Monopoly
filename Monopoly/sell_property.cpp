@@ -40,7 +40,9 @@ sell_property::sell_property(int Iterator,QWidget *parent) :
 
     QPixmap pixmap(QString::fromStdString(gameBoard->Players.at(gameBoard->order)->MyProperties.at(Iterator)->get_PropertyCard()));
 
-    ui->label_2->setPixmap(pixmap.scaled(321,471,Qt::KeepAspectRatio));
+    ui->label_2->setPixmap(pixmap.scaled(422,574,Qt::KeepAspectRatio));
+
+    ui->comboBox->clear();
 
     for(int i=0;i<int(gameBoard->Players.size());i++){
 
