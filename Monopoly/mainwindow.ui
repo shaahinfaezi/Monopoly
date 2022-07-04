@@ -85,9 +85,9 @@ selection-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>650</y>
-      <width>241</width>
-      <height>61</height>
+      <y>630</y>
+      <width>281</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="font">
@@ -101,13 +101,15 @@ selection-color: rgb(255, 255, 255);
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(119, 141, 169);
-
-
-</string>
+     <string notr="true">color: rgb(0, 0, 0);
+background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 rgb(177, 208, 224), stop: 1 rgb(177, 208, 224));
+border-style: solid;
+border:none;
+border-width: 5px;
+border-radius: 20px;</string>
     </property>
     <property name="text">
-     <string>start a new game </string>
+     <string>Start a new game </string>
     </property>
    </widget>
    <widget class="QLabel" name="labal2">
@@ -144,10 +146,10 @@ background-repeat: none;</string>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>22</x>
+      <x>8</x>
       <y>182</y>
-      <width>67</width>
-      <height>20</height>
+      <width>81</width>
+      <height>31</height>
      </rect>
     </property>
     <property name="font">
@@ -157,18 +159,18 @@ background-repeat: none;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);</string>
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Player1:</string>
+     <string>Player 1 :</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>22</x>
+      <x>8</x>
       <y>239</y>
-      <width>67</width>
+      <width>81</width>
       <height>20</height>
      </rect>
     </property>
@@ -179,18 +181,18 @@ background-repeat: none;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);</string>
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Player2:</string>
+     <string>Player 2 :</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>22</x>
+      <x>8</x>
       <y>296</y>
-      <width>67</width>
+      <width>81</width>
       <height>20</height>
      </rect>
     </property>
@@ -201,18 +203,18 @@ background-repeat: none;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);</string>
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Player3:</string>
+     <string>Player 3 :</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>22</x>
+      <x>8</x>
       <y>353</y>
-      <width>67</width>
+      <width>81</width>
       <height>20</height>
      </rect>
     </property>
@@ -223,18 +225,18 @@ background-repeat: none;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);</string>
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Player4:</string>
+     <string>Player 4 :</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>22</x>
+      <x>8</x>
       <y>410</y>
-      <width>67</width>
+      <width>81</width>
       <height>20</height>
      </rect>
     </property>
@@ -245,18 +247,18 @@ background-repeat: none;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);</string>
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Player5:</string>
+     <string>Player 5 :</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>22</x>
+      <x>8</x>
       <y>467</y>
-      <width>67</width>
+      <width>81</width>
       <height>20</height>
      </rect>
     </property>
@@ -267,18 +269,18 @@ background-repeat: none;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);</string>
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Player6:</string>
+     <string>Player 6 :</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_7">
     <property name="geometry">
      <rect>
-      <x>22</x>
+      <x>8</x>
       <y>524</y>
-      <width>67</width>
+      <width>81</width>
       <height>20</height>
      </rect>
     </property>
@@ -289,18 +291,18 @@ background-repeat: none;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);</string>
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Player7:</string>
+     <string>Player 7 :</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_8">
     <property name="geometry">
      <rect>
-      <x>22</x>
+      <x>8</x>
       <y>581</y>
-      <width>67</width>
+      <width>81</width>
       <height>20</height>
      </rect>
     </property>
@@ -311,10 +313,10 @@ background-repeat: none;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);</string>
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>Player8:</string>
+     <string>Player 8 :</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="lineEdit">
@@ -328,7 +330,7 @@ background-repeat: none;</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -349,7 +351,7 @@ background-repeat: none;</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -370,7 +372,7 @@ background-repeat: none;</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -391,7 +393,7 @@ background-repeat: none;</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -412,7 +414,7 @@ background-repeat: none;</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -433,7 +435,7 @@ background-repeat: none;</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -454,7 +456,7 @@ background-repeat: none;</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -475,7 +477,7 @@ background-repeat: none;</string>
     </property>
     <property name="font">
      <font>
-      <pointsize>9</pointsize>
+      <pointsize>10</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -500,8 +502,7 @@ background-repeat: none;</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">
-color: rgb(0, 0, 0);</string>
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Please enter the number of players :</string>
@@ -522,7 +523,7 @@ color: rgb(0, 0, 0);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);</string>
+     <string notr="true">color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
      <string>Please enter the name of the players :</string>
@@ -535,7 +536,7 @@ color: rgb(0, 0, 0);</string>
      <x>0</x>
      <y>0</y>
      <width>1007</width>
-     <height>21</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>
