@@ -85,9 +85,9 @@ selection-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>630</y>
-      <width>281</width>
-      <height>71</height>
+      <y>650</y>
+      <width>261</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
