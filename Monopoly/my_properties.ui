@@ -206,7 +206,7 @@ background-repeat: none;
 </string>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -228,7 +228,7 @@ background-repeat: none;
 </string>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -250,7 +250,7 @@ background-repeat: none;
 </string>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="label_5">
@@ -272,7 +272,7 @@ background-repeat: none;
 </string>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="label_6">
@@ -294,7 +294,7 @@ background-repeat: none;
 </string>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string/>
    </property>
   </widget>
  </widget>

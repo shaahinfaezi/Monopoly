@@ -32,6 +32,8 @@ void Buy::on_pushButton_clicked()
 
    gameboard->Players.at(gameboard->order)->set_Munny(gameboard->Players.at(gameboard->order)->get_Munny()-price);
 
+
+
    gameboard->Players.at(gameboard->order)->MyProperties.push_back(property);
 
    property->owner=gameboard->Players.at(gameboard->order);
@@ -42,6 +44,8 @@ void Buy::on_pushButton_clicked()
     gameboard->print_order();
 
     gameboard->HideBuyButton();
+
+
 
     this->close();
 

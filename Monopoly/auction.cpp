@@ -129,7 +129,9 @@ void auction::on_pushButton_clicked()
 
            if(reply==QMessageBox::Ok || reply==QMessageBox::Close){
 
+               gameBoard->HideBuyButton();
                accept();
+
 
 
            }
@@ -186,6 +188,8 @@ void auction::on_pushButton_2_clicked()
                    QMessageBox::StandardButton reply=QMessageBox::information(this,"information","The property goes to "+QString::fromStdString(HighestBidder->get_nickname())+ " for "+QString::number(HighestBid));
 
                    if(reply==QMessageBox::Ok || reply==QMessageBox::Close){
+
+                       gameBoard->HideBuyButton();
 
                        accept();
 

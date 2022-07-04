@@ -188,8 +188,7 @@ background-repeat: none;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
@@ -210,8 +209,7 @@ background-repeat: none;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">
-</string>
+    <string notr="true"/>
    </property>
    <property name="text">
     <string/>
@@ -340,7 +338,7 @@ background-repeat: none;
    <property name="geometry">
     <rect>
      <x>1190</x>
-     <y>990</y>
+     <y>800</y>
      <width>112</width>
      <height>34</height>
     </rect>
@@ -1357,7 +1355,7 @@ background-repeat: none;
    <property name="geometry">
     <rect>
      <x>1190</x>
-     <y>610</y>
+     <y>530</y>
      <width>112</width>
      <height>34</height>
     </rect>
@@ -1379,7 +1377,7 @@ background-repeat: none;
    <property name="geometry">
     <rect>
      <x>1190</x>
-     <y>690</y>
+     <y>600</y>
      <width>121</width>
      <height>41</height>
     </rect>
@@ -1392,7 +1390,7 @@ background-repeat: none;
    <property name="geometry">
     <rect>
      <x>1190</x>
-     <y>780</y>
+     <y>670</y>
      <width>121</width>
      <height>41</height>
     </rect>
@@ -1405,13 +1403,118 @@ background-repeat: none;
    <property name="geometry">
     <rect>
      <x>1190</x>
-     <y>870</y>
+     <y>730</y>
      <width>131</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
     <string>Use get out of jail card</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_9">
+   <property name="geometry">
+    <rect>
+     <x>1370</x>
+     <y>460</y>
+     <width>111</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Roll for rental</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_57">
+   <property name="geometry">
+    <rect>
+     <x>1640</x>
+     <y>510</y>
+     <width>274</width>
+     <height>184</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);
+border:none;
+background-repeat: none;
+
+ </string>
+   </property>
+   <property name="text">
+    <string>TextLabel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_10">
+   <property name="geometry">
+    <rect>
+     <x>1460</x>
+     <y>720</y>
+     <width>141</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Sell Get out of jail card</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>1720</x>
+     <y>740</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_58">
+   <property name="geometry">
+    <rect>
+     <x>1650</x>
+     <y>780</y>
+     <width>41</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Price :</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="geometry">
+    <rect>
+     <x>1720</x>
+     <y>790</y>
+     <width>113</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_59">
+   <property name="geometry">
+    <rect>
+     <x>1650</x>
+     <y>740</y>
+     <width>51</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>To :</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_11">
+   <property name="geometry">
+    <rect>
+     <x>1720</x>
+     <y>860</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Offer</string>
    </property>
   </widget>
   <zorder>label_16</zorder>
@@ -1481,6 +1584,14 @@ background-repeat: none;
   <zorder>pushButton_6</zorder>
   <zorder>pushButton_7</zorder>
   <zorder>pushButton_8</zorder>
+  <zorder>pushButton_9</zorder>
+  <zorder>label_57</zorder>
+  <zorder>pushButton_10</zorder>
+  <zorder>comboBox</zorder>
+  <zorder>label_58</zorder>
+  <zorder>lineEdit</zorder>
+  <zorder>label_59</zorder>
+  <zorder>pushButton_11</zorder>
  </widget>
  <resources/>
  <connections/>
