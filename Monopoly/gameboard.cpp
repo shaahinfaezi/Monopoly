@@ -1480,7 +1480,9 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
         print_order();
 
-        Double=0;
+        Double=false;
+
+        Doubles=0;
 
         ui->pushButton_6->hide();
 
