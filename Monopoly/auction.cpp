@@ -43,6 +43,8 @@ auction::auction(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    setWindowTitle("Auction");
+
 
     gameBoard=GameBoard::get_instance();
 

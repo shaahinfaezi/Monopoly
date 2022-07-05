@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/res">
-        <file>Images/pic5.png</file>
         <file>Images/chance/Advance_To_Boardwalk 1.png</file>
         <file>Images/chance/Advance_To_Go 2.png</file>
         <file>Images/chance/Chance_ATIA3.png</file>
@@ -120,5 +119,9 @@
         <file>Images/photo_2022-07-01_11-11-57__2_-removebg-preview.png</file>
         <file>Images/photo_2022-07-01_11-11-57-removebg-preview.png</file>
         <file>Images/download__7_-removebg-preview.png</file>
+        <file>Images/photo_2022-07-05_00-59-48-removebg-preview.png</file>
+        <file>Images/pic5.png</file>
+        <file>Images/pngegg-removebg-preview.png</file>
+        <file>Images/games.png</file>
     </qresource>
 </RCC>

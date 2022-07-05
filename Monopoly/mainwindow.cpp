@@ -22,11 +22,15 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    setWindowTitle("Monopoly");
+
+
+
     //ui->pushButton->setIcon(QIcon(":/res/Images/push_buuton/7.png"));
     //ui->pushButton->setIconSize(QSize(700,500));
 
 
-   QPixmap pic(":/res/Images/pic5.png");
+   QPixmap pic(":/res/Images/photo_2022-07-05_00-59-48-removebg-preview.png");
    ui->labal2->setPixmap(pic.scaled(ui->labal2->width(),ui->labal2->height(),Qt::KeepAspectRatio));
 
 
