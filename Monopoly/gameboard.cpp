@@ -3,7 +3,6 @@
 #include <QDebug>
 #include "QPixmap"
 #include <QScreen>
-#include <QDebug>
 #include <QPainter>
 #include <QThread>
 #include <QTimer>
@@ -131,8 +130,23 @@ void GameBoard::BankruptCheck(){
         }
         else{
 
+            for(int i=0;i<int(Players.at(order)->MyProperties.size());i++){
+
+                if(Players.at(order)->MyProperties.at(i)->get_type()==PROPERTY){
+
+                   Players.at(order)->MyProperties.at(i)->set_number_of_houses(0);
+
+
+                }
+
+
+
+            }
+
 
             Players.at(order)->set_Munny(Players.at(order)->get_Munny()+credit);
+
+
 
             print_order();
 

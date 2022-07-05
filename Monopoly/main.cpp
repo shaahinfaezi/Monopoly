@@ -2,7 +2,6 @@
 #include "gameboard.h"
 #include <QApplication>
 #include <QDateTime>
-#include <QTimer>
 
 int main(int argc, char *argv[])
 {

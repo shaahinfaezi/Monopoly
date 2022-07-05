@@ -604,7 +604,7 @@ border-radius: 20px;
   <widget class="QLabel" name="label_56">
    <property name="geometry">
     <rect>
-     <x>1570</x>
+     <x>1550</x>
      <y>60</y>
      <width>161</width>
      <height>51</height>
@@ -1649,26 +1649,6 @@ border-radius: 20px;</string>
     <string>Offer</string>
    </property>
   </widget>
-  <widget class="QTabWidget" name="tabWidget">
-   <property name="geometry">
-    <rect>
-     <x>260</x>
-     <y>570</y>
-     <width>127</width>
-     <height>80</height>
-    </rect>
-   </property>
-   <widget class="QWidget" name="tab">
-    <attribute name="title">
-     <string>Tab 1</string>
-    </attribute>
-   </widget>
-   <widget class="QWidget" name="tab_2">
-    <attribute name="title">
-     <string>Tab 2</string>
-    </attribute>
-   </widget>
-  </widget>
   <zorder>label_16</zorder>
   <zorder>label_17</zorder>
   <zorder>label_18</zorder>
@@ -1744,7 +1724,6 @@ border-radius: 20px;</string>
   <zorder>lineEdit</zorder>
   <zorder>label_59</zorder>
   <zorder>pushButton_11</zorder>
-  <zorder>tabWidget</zorder>
  </widget>
  <resources/>
  <connections/>
