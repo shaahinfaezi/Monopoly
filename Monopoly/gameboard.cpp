@@ -22,7 +22,7 @@
 #include "vector"
 
 
-bool Empty_string_check(string s){
+bool GameBoard::Empty_string_check(string s){//check mikone space ya khali nabashe
 
     if(all_of(s.begin(),s.end(),isspace)||s.empty()){
         return true;
@@ -33,7 +33,7 @@ bool Empty_string_check(string s){
 
 }
 
-bool IsNumber(string s){
+bool GameBoard::IsNumber(string s){//check mikone adade ya na
 
     QRegExp re("\\d*");
     if (re.exactMatch(QString::fromStdString(s)))
@@ -1648,6 +1648,7 @@ void GameBoard::print_order(){
 }
 
 //singleton pattern
+//bray ine ke mirim safe jadid information hamonn pak nashan
 GameBoard * GameBoard::get_instance(vector<string> nicknames,QWidget *parent,int number_of_players){
 
     if(instance==nullptr){

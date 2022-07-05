@@ -4,7 +4,7 @@
 #include <QMessageBox>
 #include <sell_property.h>
 
-void my_Properties::listPrint(){
+void my_Properties::listPrint(){//print information har melk
 
 
     ui->label_2->hide();
@@ -101,7 +101,7 @@ void my_Properties::listPrint(){
 
            QPixmap hotelpix(":/res/Images/photo_2022-07-01_11-11-57-removebg-preview.png");
 
-
+           ///neshon dadan khone va hotel
            switch (gameBoard->Players.at(gameBoard->order)->MyProperties.at(iterator)->get_number_of_houses()) {
 
            case 0:

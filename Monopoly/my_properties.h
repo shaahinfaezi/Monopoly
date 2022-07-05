@@ -47,7 +47,7 @@ private:
 
     void listPrint();
 
-    int iterator;
+    int iterator;//shomarandeyi baray neshon dadn amlak
 
 };
 

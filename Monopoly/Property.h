@@ -16,7 +16,7 @@ class Property{
 
    private:
 
-    Type type;
+    Type type;//noe khone dar safe
 
 
     //baraye sanad ha
@@ -25,7 +25,7 @@ class Property{
 
     string PropertyCard;
 
-    int price;
+    int price;//gheimat khone
 
     int rent0;
 
@@ -41,13 +41,13 @@ class Property{
 
     int mortgage;
 
-    int house;
+    int house;//gheimat har khone
 
-    int hotel;
+    int hotel;//gheimat har hotel
 
     int number_of_houses;
 
-    bool mortgaged;
+    bool mortgaged;//rahn dade shode ya na
 
     string color;
 
@@ -57,19 +57,19 @@ class Property{
 
     //Utility
 
-    int multiplier1;
+    int multiplier1;//4
 
-    int multiplier2;
+    int multiplier2;//10
 
 
 
     public:
 
-    QLabel * PropertyOnTheBoard;
+    QLabel * PropertyOnTheBoard;//melk dar board
 
     Player * owner;
 
-    vector<Player *> PlayersOnProperty;
+    vector<Player *> PlayersOnProperty;//player hay ke ro har khone
 
     //constructor baraye 4 gooshe va community va chance
     Property(QLabel*,Type);

@@ -6,27 +6,7 @@
 
 
 
-bool empty_string_check_(string s){
 
-    if(all_of(s.begin(),s.end(),isspace)||s.empty()){
-        return true;
-    }
-    else{
-        return false;
-    }
-
-}
-
-bool isNumber(string s){
-
-    QRegExp re("\\d*");
-    if (re.exactMatch(QString::fromStdString(s)))
-        return true;
-
-    return false;
-
-
-}
 sell_property::sell_property(int Iterator,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::sell_property)
@@ -72,7 +52,7 @@ void sell_property::on_pushButton_clicked()
 {
     if(ui->comboBox->currentIndex()!=-1){
 
-        if(!empty_string_check_(ui->lineEdit->text().toUtf8().constData()) && isNumber(ui->lineEdit->text().toUtf8().constData()) &&ui->lineEdit->text().toInt()>0 ){
+        if(!gameBoard->Empty_string_check(ui->lineEdit->text().toUtf8().constData()) && gameBoard->IsNumber(ui->lineEdit->text().toUtf8().constData()) &&ui->lineEdit->text().toInt()>0 ){
 
             QMessageBox::StandardButton reply;
 
