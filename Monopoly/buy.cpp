@@ -10,6 +10,8 @@ Buy::Buy(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    setWindowTitle("Buy");
+
     gameboard=GameBoard::get_instance();
 
     this->property=gameboard->Properties.at(gameboard->Players.at(gameboard->order)->get_position());

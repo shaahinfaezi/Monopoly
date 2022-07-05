@@ -292,7 +292,7 @@ my_Properties::my_Properties(QWidget *parent) :
 
     gameBoard=GameBoard::get_instance();
 
-
+    setWindowTitle("My Properties");
 
     iterator=0;
 

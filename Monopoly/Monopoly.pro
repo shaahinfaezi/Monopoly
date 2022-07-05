@@ -27,7 +27,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     my_properties.cpp \
-    sell_property.cpp
+    sell_property.cpp \
+    winner.cpp
 
 HEADERS += \
     Chance.h \
@@ -40,7 +41,8 @@ HEADERS += \
     gameboard.h \
     mainwindow.h \
     my_properties.h \
-    sell_property.h
+    sell_property.h \
+    winner.h
 
 FORMS += \
     auction.ui \
@@ -49,7 +51,8 @@ FORMS += \
     gameboard.ui \
     mainwindow.ui \
     my_properties.ui \
-    sell_property.ui
+    sell_property.ui \
+    winner.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

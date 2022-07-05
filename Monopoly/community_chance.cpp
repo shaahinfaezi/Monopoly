@@ -22,6 +22,7 @@ Community_Chance::Community_Chance(bool CommunityOrChance,QWidget *parent) :
         ui->label->setPixmap(card.scaled(344,200,Qt::KeepAspectRatio));
 
 
+        setWindowTitle("Community Cards");
 
 
 
@@ -33,7 +34,7 @@ Community_Chance::Community_Chance(bool CommunityOrChance,QWidget *parent) :
         ui->label->setPixmap(card.scaled(344,200,Qt::KeepAspectRatio));
 
 
-
+         setWindowTitle("Chance Cards");
     }
 
 

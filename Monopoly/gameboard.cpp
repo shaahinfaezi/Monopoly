@@ -13,6 +13,8 @@
 #include "my_properties.h"
 #include "community_chance.h"
 #include "mainwindow.h"
+#include "winner.h"
+
 
 #include <stdlib.h>
 #include <time.h>
@@ -84,7 +86,7 @@ void GameBoard::move(int destination){
 
 void GameBoard::BankruptCheck(){
 
-qDebug()<<"check";
+
 
 
     if(Players.at(order)->get_Munny()<0){
@@ -119,7 +121,6 @@ qDebug()<<"check";
 
         }
 
-        qDebug()<<credit;
 
         if(Players.at(order)->get_Munny()+credit<0){
 
@@ -206,7 +207,7 @@ void GameBoard::Bankrupt(){
 
     number_of_players--;
 
-    qDebug()<<order;
+
 
     Players.erase(Players.begin()+order);
 
@@ -215,7 +216,7 @@ void GameBoard::Bankrupt(){
         order=0;
 
 
-     qDebug()<<order;
+
 
 
       BankruptCheck();
@@ -257,21 +258,33 @@ void GameBoard::Bankrupt(){
 
 
 
+    Winner * winner=new Winner(Players.at(0)->get_nickname(),this);
 
-        QMessageBox::StandardButton reply=QMessageBox::information(this,"Information",QString::fromStdString(Players.at(order)->get_nickname())+" WON!!!!!!");
-
-        if(reply==QMessageBox::Ok || reply==QMessageBox::Close){
-
-            MainWindow * mainwindow=new MainWindow(this);
-
-            mainwindow->show();
-
-           this->hide();
+    int code=winner->exec();
 
 
+    if(code==Accepted ||code== Rejected){
+
+        MainWindow * mainwindow=new MainWindow(this);
+
+        mainwindow->show();
+
+         instance=nullptr;
+
+         this->hide();
 
 
-        }
+
+    }
+
+
+
+
+
+
+
+
+
 
     }
 
@@ -298,6 +311,8 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 {
 
     ui->setupUi(this);
+
+    setWindowTitle("Monopoly");
 
     QScreen *screen = QGuiApplication::primaryScreen();
         QRect  screenGeometry = screen->geometry();
@@ -345,7 +360,7 @@ GameBoard::GameBoard(vector<string> nicknames,QWidget *parent,int number_of_play
 
                 ui->label_2->setPixmap(pic.scaled(ui->label_2->width(),ui->label_2->height(),Qt::KeepAspectRatio));
 
-                qDebug()<<ui->label_2->width();
+
 
 
 

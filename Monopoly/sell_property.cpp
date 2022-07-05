@@ -33,6 +33,8 @@ sell_property::sell_property(int Iterator,QWidget *parent) :
 {
     ui->setupUi(this);
 
+    setWindowTitle("Sell Property");
+
     gameBoard=GameBoard::get_instance();
 
     this->Iterator=Iterator;
