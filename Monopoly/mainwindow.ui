@@ -85,9 +85,9 @@ selection-color: rgb(255, 255, 255);
     <property name="geometry">
      <rect>
       <x>380</x>
-      <y>630</y>
-      <width>281</width>
-      <height>71</height>
+      <y>650</y>
+      <width>261</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="font">
@@ -116,7 +116,7 @@ border-radius: 20px;</string>
     <property name="geometry">
      <rect>
       <x>310</x>
-      <y>50</y>
+      <y>220</y>
       <width>675</width>
       <height>370</height>
      </rect>
@@ -536,7 +536,7 @@ background-repeat: none;</string>
      <x>0</x>
      <y>0</y>
      <width>1007</width>
-     <height>21</height>
+     <height>30</height>
     </rect>
    </property>
   </widget>

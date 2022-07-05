@@ -27,7 +27,7 @@ Buy::~Buy()
     delete ui;
 }
 
-void Buy::on_pushButton_clicked()
+void Buy::on_pushButton_clicked()//dokme buy
 {
 
     int price=property->get_price();
@@ -54,12 +54,12 @@ void Buy::on_pushButton_clicked()
 
 }
 
-void Buy::on_pushButton_2_clicked()
+void Buy::on_pushButton_2_clicked()//mozayede
 {
 
     auction * Auction=new auction(this);
 
-    int code=Auction->exec();
+    int code=Auction->exec();//ta vaghti ke safe baste nashe natonim kary konim
 
     if(code==QDialog::Rejected ||code==QDialog::Accepted){
 

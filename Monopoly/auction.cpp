@@ -4,34 +4,13 @@
 #include <QMessageBox>
 
 
-bool empty_string_check__(string s){
-
-    if(all_of(s.begin(),s.end(),isspace)||s.empty()){
-        return true;
-    }
-    else{
-        return false;
-    }
-
-}
-
-bool isNumber_(string s){
-
-    QRegExp re("\\d*");
-    if (re.exactMatch(QString::fromStdString(s)))
-        return true;
-
-    return false;
 
 
-}
-
-void auction::print(){
+void auction::print(){//esm kasi ke nbateshe va bala tarin pishnahado print mikone
 
     ui->label_2->setText(QString::fromStdString(Bidders.at(iterator)->get_nickname()));
 
     ui->label_4->setText(QString::number(HighestBid)+"$");
-
 
     ui->lineEdit->clear();
 
@@ -54,7 +33,7 @@ auction::auction(QWidget *parent) :
 
     ui->label->setPixmap(pixmap.scaled(422,574,Qt::KeepAspectRatio));
 
-    iterator=0;
+    iterator=0;//nobat kie ke pishnahad bde
 
     HighestBid=0;
 
@@ -71,7 +50,7 @@ auction::~auction()
     delete ui;
 }
 
-int  auction::BidderFinder(Player * Bidder){
+int  auction::BidderFinder(Player * Bidder){//bidder finder:andis on bidder ro toye player ha pida mikone
 
 
     int index;
@@ -90,7 +69,7 @@ int  auction::BidderFinder(Player * Bidder){
     return index;
 }
 
-void auction::on_pushButton_clicked()
+void auction::on_pushButton_clicked()//quit
 {
 
     Bidders.erase(Bidders.begin()+iterator);
@@ -116,7 +95,7 @@ void auction::on_pushButton_clicked()
     }
     else{
 
-        if(int(Bidders.size()==1) && HighestBid>0){
+        if(int(Bidders.size()==1) && HighestBid>0){//vaghti ye nafar monde mifroshe behesh
 
 
             int i=BidderFinder(Bidders.at(iterator));
@@ -152,10 +131,10 @@ void auction::on_pushButton_clicked()
 
 }
 
-void auction::on_pushButton_2_clicked()
+void auction::on_pushButton_2_clicked()//vared kardan ghiemat
 {
 
-    if(!empty_string_check__(ui->lineEdit->text().toUtf8().constData()) && isNumber_(ui->lineEdit->text().toUtf8().constData()) &&ui->lineEdit->text().toInt()>0 ){
+    if(!gameBoard->Empty_string_check(ui->lineEdit->text().toUtf8().constData()) && gameBoard->IsNumber(ui->lineEdit->text().toUtf8().constData()) &&ui->lineEdit->text().toInt()>0 ){
 
         int price=ui->lineEdit->text().toInt();
 

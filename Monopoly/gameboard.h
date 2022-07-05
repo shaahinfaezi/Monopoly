@@ -41,6 +41,10 @@ public:
 
      void Bankrupt();
 
+     bool Empty_string_check(string s);
+
+     bool IsNumber(string s);
+
 
      bool CommunityOrChance;
 

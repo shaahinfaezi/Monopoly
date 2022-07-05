@@ -25,7 +25,7 @@ private slots:
 private:
     Ui::Buy *ui;
 
-    Property * property;
+    Property * property;///khoneyi ke mikhahad bkharad
 
     GameBoard * gameboard;
 };

@@ -19,13 +19,13 @@ private:
 
 
 
-    string nickname;
+    string nickname;//esm player
 
-    long int Munny;
+    long int Munny;//pul player
 
-    bool get_out_of_jail;
+    bool get_out_of_jail;//dashtn ya nadashtn cart khoroj az zendan
 
-    int position;
+    int position;//mogheiat dar board
 
 
 
@@ -35,7 +35,7 @@ public:
 
     ~Player();
 
-    QLabel* token;
+    QLabel* token;//mohre
 
     void set_Munny(long int);
 
@@ -52,11 +52,11 @@ public:
     string get_nickname() const;
 
 
-    vector<Property*> MyProperties;
+    vector<Property*> MyProperties;//vector amlak
 
-    string tokenPath;
+    string tokenPath;//addres aks mohre
 
-   int number_of_turns_in_jail;
+   int number_of_turns_in_jail;//tedad bary ke to zendadn bode
 
 
 };
