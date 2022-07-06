@@ -2,7 +2,7 @@
 #include "ui_sell_property.h"
 #include "Property.h"
 #include <QMessageBox>
-#include <QDebug>
+
 
 
 

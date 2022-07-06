@@ -3,6 +3,10 @@
 #include "gameboard.h"
 #include "QPixmap"
 #include <QMessageBox>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
+
+
 
 bool empty_string_check(string s){
 
@@ -26,12 +30,19 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-    //ui->pushButton->setIcon(QIcon(":/res/Images/push_buuton/7.png"));
-    //ui->pushButton->setIconSize(QSize(700,500));
-
-
    QPixmap pic(":/res/Images/photo_2022-07-05_00-59-48-removebg-preview.png");
    ui->labal2->setPixmap(pic.scaled(ui->labal2->width(),ui->labal2->height(),Qt::KeepAspectRatio));
+
+   QMediaPlaylist *playlist = new QMediaPlaylist(this);
+   playlist->addMedia(QUrl("qrc:/sounds/music/ES_Glitching Through the Sky - William Benckert (1).wav"));
+   playlist->setPlaybackMode(QMediaPlaylist::Loop);
+
+   QMediaPlayer *music = new QMediaPlayer(this);
+
+
+    music->setVolume(20);
+   music->setPlaylist(playlist);
+   music->play();
 
 
    LineEdits.push_back(ui->lineEdit);
