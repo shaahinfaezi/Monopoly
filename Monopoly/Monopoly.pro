@@ -1,4 +1,5 @@
 QT       += core gui
+QT +=multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -16,16 +17,49 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Chance.cpp \
+    Community.cpp \
+    Player.cpp \
+    Property.cpp \
+    auction.cpp \
+    buy.cpp \
+    community_chance.cpp \
+    gameboard.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    my_properties.cpp \
+    sell_property.cpp \
+    winner.cpp
 
 HEADERS += \
-    mainwindow.h
+    Chance.h \
+    Community.h \
+    Player.h \
+    Property.h \
+    auction.h \
+    buy.h \
+    community_chance.h \
+    gameboard.h \
+    mainwindow.h \
+    my_properties.h \
+    sell_property.h \
+    winner.h
 
 FORMS += \
-    mainwindow.ui
+    auction.ui \
+    buy.ui \
+    community_chance.ui \
+    gameboard.ui \
+    mainwindow.ui \
+    my_properties.ui \
+    sell_property.ui \
+    winner.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    music.qrc \
+    resources.qrc

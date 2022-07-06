@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/sounds">
+        <file>music/ES_Glitching Through the Sky - William Benckert (1).wav</file>
+    </qresource>
+</RCC>
